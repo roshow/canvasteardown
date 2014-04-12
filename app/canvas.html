@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+        .wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .canvasButton {
+            position: absolute;
+            top: 0;
+            width: 50%;
+            height: 100%;
+        }
+        #buttonBack {
+            left: 0;
+        }
+        #buttonNext {
+            left: 50%;
+        }
+    </style>
+    <script type="text/javascript" src="/js/shitit.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="canvasButton" id="buttonBack"></div>
+        <div class="canvasButton" id="buttonNext"></div>
+        <canvas id="thisCanvas" height="450px" width="800px"></canvas>
+    </div>
+    <script type="text/javascript">
+        var canvasKALEL = document.getElementById('thisCanvas');
+        var thisHeight = this.innerHeight;
+        console.log(thisHeight);
+
+        canvasKALEL.style.zoom = thisHeight/canvasKALEL.height;
+        window.onresize = function(){
+            var thisHeight = this.innerHeight;
+            canvasKALEL.style.zoom = thisHeight/canvasKALEL.height;
+        };
+        console.log(canvasKALEL);
+        var thisMayBeTheWidget = function(cb){
+            function resolveImgUrlsFromModel(model) {
+                var L1 = model.cmxJSON.length;
+                for(i = 0; i < L1; i++) {
+                    model.cmxJSON[i].src = model.img.url + model.cmxJSON[i].src;
+                    if(model.cmxJSON[i].popups && model.cmxJSON[i].popups.length > 0) {
+                        var L2 = model.cmxJSON[i].popups.length;
+                        for(j = 0; j < L2; j++) {
+                            model.cmxJSON[i].popups[j].src = model.img.url + model.cmxJSON[i].popups[j].src;
+                        }
+                    }
+                }
+                return model;
+            }
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'http://cmxcanvasapi.herokuapp.com/cmx/rev03');
+            xhr.onload = function(){
+                var cmxData = JSON.parse(this.response).data[0];
+                resolveImgUrlsFromModel(cmxData);
+                console.log(cmxData);
+                cb(new CmxCanvas(cmxData, 'thisCanvas'));
+            }
+            xhr.send();
+        };
+        var comic;
+        thisMayBeTheWidget(function(cmxcanvas){
+            comic = cmxcanvas;
+            document.getElementById('buttonNext').onclick = function(){
+                // console.log('goNext!!!');
+                comic.goToNext();
+            }
+            document.getElementById('buttonBack').onclick = function(){
+                comic.goToPrev();
+            }
+        })
+    </script>
+</body>
+</html>
