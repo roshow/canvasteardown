@@ -1,4 +1,6 @@
-var CmxCanvas = (function(){
+/*globals CCMove, CCLoader, CountManager*/
+
+var CmxCanvas = function(){
 
 	var _cnv, _ctx, _panelCounter, _popupCounter,
         _animating = false,
@@ -6,8 +8,8 @@ var CmxCanvas = (function(){
         _loadedPanels = {
             loading: (function(){
                 var img = new Image();
-                img.crossOrigin = "Anonymous";
-                img.src = "http://roshow.net/public/images/cmxcanvas/sov01/loading.jpg";
+                img.crossOrigin = 'Anonymous';
+                img.src = 'http://roshow.net/public/images/cmxcanvas/sov01/loading.jpg';
                 return { img: img };
             }())
         };
@@ -34,66 +36,65 @@ var CmxCanvas = (function(){
     }
 
 	/** The Main Event **/
-	var cmxcanvas = {
-		goToNext: function() {
-            if (!_loadedPanels[_panelCounter.curr]) {
-                _loadingHold = true;
-            }
-			if(!_animating && !_loadingHold) {
-                if (!_popupCounter.isLast) {
-					_popupCounter.loadNext();
-					popPopup(_popupCounter.getData());
-				}
-				else if (!_panelCounter.isLast) {
-                    _panelCounter.loadNext();
-                    var _target = (_loadedPanels[_panelCounter.curr] && _loadedPanels[_panelCounter.curr].img) ? _loadedPanels[_panelCounter.curr].img : _loadedPanels.loading.img;
-                    movePanels({
-                        image1: _loadedPanels[_panelCounter.prev].img,
-                        image2: _target,
-                        direction: 1,
-                        transition: _panelCounter.getData().transition,
-                        curr: _panelCounter.curr
-                    });
-				}
-                return [_panelCounter, _popupCounter];
+	var cmxcanvas = {};
+	cmxcanvas.goToNext = function(){
+        if (!_loadedPanels[_panelCounter.curr]) {
+            _loadingHold = true;
+        }
+		if (!_animating && !_loadingHold){
+            if (!_popupCounter.isLast) {
+				_popupCounter.loadNext();
+				popPopup(_popupCounter.getData());
 			}
-            else {
-                console.log("cannot move");
-                return false;
-            }
-		},
-		goToPrev: function() {
-			if(!_animating) {
-                if (!_panelCounter.isFirst) {
-                    _panelCounter.loadPrev();
-                    movePanels({
-                        image1: _loadedPanels[_panelCounter.next].img,
-                        image2: _loadedPanels[_panelCounter.curr].img,
-                        direction: -1,
-                        transition: _panelCounter.getData().transition,
-                        curr: _panelCounter.curr
-                    });
-                }
-				else {
-					this.goToPanel(0);
-				}
-                return [_panelCounter, _popupCounter];
+			else if (!_panelCounter.isLast) {
+                _panelCounter.loadNext();
+                var _target = (_loadedPanels[_panelCounter.curr] && _loadedPanels[_panelCounter.curr].img) ? _loadedPanels[_panelCounter.curr].img : _loadedPanels.loading.img;
+                movePanels({
+                    image1: _loadedPanels[_panelCounter.prev].img,
+                    image2: _target,
+                    direction: 1,
+                    transition: _panelCounter.getData().transition,
+                    curr: _panelCounter.curr
+                });
 			}
-            else {
-                return false;
-            }
-		},
-		goToPanel: function(panel) {
-            if (!_animating) {
-                _panelCounter.goTo(panel);
-                var _image = _loadedPanels[_panelCounter.curr].img || _loadedPanels.loading.img;
-                _ctx.clearRect(0, 0, _cnv.width, _cnv.height);
-                _ctx.drawImage(_image, halfDiff(_cnv.width, _image.width), halfDiff(_cnv.height, _image.height));
-            }
+            return [_panelCounter, _popupCounter];
 		}
+        else {
+            console.log("cannot move");
+            return false;
+        }
+	};
+	cmxcanvas.goToPrev = function(){
+		if(!_animating) {
+            if (!_panelCounter.isFirst) {
+                _panelCounter.loadPrev();
+                movePanels({
+                    image1: _loadedPanels[_panelCounter.next].img,
+                    image2: _loadedPanels[_panelCounter.curr].img,
+                    direction: -1,
+                    transition: _panelCounter.getData().transition,
+                    curr: _panelCounter.curr
+                });
+            }
+			else {
+				this.goToPanel(0);
+			}
+            return [_panelCounter, _popupCounter];
+		}
+        else {
+            return false;
+        }
+	};
+	cmxcanvas.goToPanel = function(panel){
+        if (!_animating) {
+            _panelCounter.goTo(panel);
+            var _image = _loadedPanels[_panelCounter.curr].img || _loadedPanels.loading.img;
+            _ctx.clearRect(0, 0, _cnv.width, _cnv.height);
+            _ctx.drawImage(_image, halfDiff(_cnv.width, _image.width), halfDiff(_cnv.height, _image.height));
+        }
 	};
 
-	function __init(data, cnvId) {
+	function load(data, cnvId){
 		/** Get Canvases and Contexts **/
 		_cnv = document.getElementById(cnvId);
 		_ctx = _cnv.getContext('2d');
@@ -112,15 +113,16 @@ var CmxCanvas = (function(){
             for (var key in dataset) {
                 if(_loadedPanels[key]){
                     delete dataset[key];
-                } else {
-                     _loadedPanels[key] = 'loading';
-                 }
+                }
+                else {
+                    _loadedPanels[key] = 'loading';
+                }
                 panelsToKeep[key] = _loadedPanels[key];
             }
             _loadedPanels = panelsToKeep;
             panelsToKeep = null;
             CCLoader.batch(dataset, function(imgs){
-                for (key in imgs) {
+                for (var key in imgs) {
                     _loadedPanels[key] = imgs[key];
                     if (parseInt(key, 10) === _panelCounter.curr) {
                         _ctx.clearRect(0, 0, _cnv.width, _cnv.height);
@@ -136,8 +138,10 @@ var CmxCanvas = (function(){
         /* warm up the local browser's cache */
         var start = new Date();
         CCLoader.throttledBatch(_panelCounter.data.slice(2), start);
-		return cmxcanvas;
+		// return cmxcanvas;
 	}
 
-    return __init;
-}());
+    // return load;
+    cmxcanvas.load = load;
+    return cmxcanvas;
+};
