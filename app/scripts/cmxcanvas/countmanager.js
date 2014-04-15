@@ -1,19 +1,21 @@
+'use strict';
+
 var CountManager = (function(){
     function CountManager(data, offset){
-        var _curr = offset || 0,
-            _length = (data && data.length) ? data.length : 0,
-            _next = (_length > _curr + 1) ? _curr + 1 : false;
+        var curr = offset || 0,
+            total = (data && data.length) ? data.length : 0,
+            next = (total > curr + 1) ? curr + 1 : false;
 
-        var counter = (!_length) ?
+        var counter = (!total) ?
             {
                 curr: false,
                 isLast: true
             } :
             {
                 data: data,
-                last: _length,
-                curr: _curr,
-                next: _next,
+                last: total,
+                curr: curr,
+                next: next,
                 prev: false,
                 isLast: false,
                 isFirst: true,
@@ -67,10 +69,10 @@ var CountManager = (function(){
 
                 getCurr: function(min, max){
                     var that = this;
-                    var _curr = this.curr;
+                    var curr = this.curr;
                     var _last = this.last;
                     if (!min && !max) {
-                        return _curr;
+                        return curr;
                     }
                     else {
                         var arr = [];
@@ -78,7 +80,7 @@ var CountManager = (function(){
                         var L = (max - min) + 1;
                         var D = min;
                         for (var i = 0; i < L; i++) {
-                            var k = _curr + D + i;
+                            var k = curr + D + i;
                             if (k >= 0 && k < _last) {
                                 arr.push(k);
                             }
@@ -88,10 +90,10 @@ var CountManager = (function(){
                 },
                 getDataSet: function(min, max){
                     var that = this;
-                    var _curr = this.curr;
+                    var curr = this.curr;
                     var _last = this.last;
                     if (!min && !max) {
-                        return _curr;
+                        return curr;
                     }
                     else {
                         var arr = [];
@@ -99,7 +101,7 @@ var CountManager = (function(){
                         var L = (max - min) + 1;
                         var D = min;
                         for (var i = 0; i < L; i++) {
-                            var k = _curr + D + i;
+                            var k = curr + D + i;
                             if (k >= 0 && k < _last) {
                                 obj[k] = that.data[k];
                             }

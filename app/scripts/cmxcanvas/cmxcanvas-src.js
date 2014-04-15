@@ -1,8 +1,8 @@
+'use strict';
 /*globals CCMove, CCLoader, CountManager*/
 
 var CmxCanvas = function(){
-
-	var _cnv, _ctx, _panelCounter, _popupCounter,
+	var canvas, context, _panelCounter, _popupCounter,
         _animating = false,
         _loadingHold = false,
         _loadedPanels = {
@@ -20,7 +20,7 @@ var CmxCanvas = function(){
 
     function movePanels(data) {
         _animating = true;
-        CCMove.panels(data, _cnv, _ctx).start(function(){
+        CCMove.panels(data, canvas, context).start(function(){
             _animating = false;
         });
     }
@@ -31,7 +31,7 @@ var CmxCanvas = function(){
             x: popup.x || 0,
             y: popup.y || 0,
             transition: popup.transition || 'scaleIn'
-        }, _cnv, _ctx);
+        }, canvas, context);
         _animating = false;
     }
 
@@ -60,7 +60,7 @@ var CmxCanvas = function(){
             return [_panelCounter, _popupCounter];
 		}
         else {
-            console.log("cannot move");
+            console.log('cannot move');
             return false;
         }
 	};
@@ -89,19 +89,19 @@ var CmxCanvas = function(){
         if (!_animating) {
             _panelCounter.goTo(panel);
             var _image = _loadedPanels[_panelCounter.curr].img || _loadedPanels.loading.img;
-            _ctx.clearRect(0, 0, _cnv.width, _cnv.height);
-            _ctx.drawImage(_image, halfDiff(_cnv.width, _image.width), halfDiff(_cnv.height, _image.height));
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.drawImage(_image, halfDiff(canvas.width, _image.width), halfDiff(canvas.height, _image.height));
         }
 	};
 
 	function load(data, cnvId){
 		/** Get Canvases and Contexts **/
-		_cnv = document.getElementById(cnvId);
-		_ctx = _cnv.getContext('2d');
+		canvas = document.getElementById(cnvId);
+		context = canvas.getContext('2d');
 
         /** Loading placeholder **/
-        _ctx.clearRect(0, 0, _cnv.width, _cnv.height);
-        _ctx.drawImage(_loadedPanels.loading.img, halfDiff(_cnv.width, _loadedPanels.loading.img.width), halfDiff(_cnv.height, _loadedPanels.loading.img.height));
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.drawImage(_loadedPanels.loading.img, halfDiff(canvas.width, _loadedPanels.loading.img.width), halfDiff(canvas.height, _loadedPanels.loading.img.height));
 
         /** Overriding _panelCounter after this point will BREAK EVERYTHING. **/
         _panelCounter = new CountManager(data.cmxJSON);
@@ -125,8 +125,8 @@ var CmxCanvas = function(){
                 for (var key in imgs) {
                     _loadedPanels[key] = imgs[key];
                     if (parseInt(key, 10) === _panelCounter.curr) {
-                        _ctx.clearRect(0, 0, _cnv.width, _cnv.height);
-                        _ctx.drawImage(_loadedPanels[key].img, halfDiff(_cnv.width, _loadedPanels[key].img.width), halfDiff(_cnv.height, _loadedPanels[key].img.height));
+                        context.clearRect(0, 0, canvas.width, canvas.height);
+                        context.drawImage(_loadedPanels[key].img, halfDiff(canvas.width, _loadedPanels[key].img.width), halfDiff(canvas.height, _loadedPanels[key].img.height));
                     }
                 }
                 // console.log(_loadedPanels);
@@ -139,6 +139,9 @@ var CmxCanvas = function(){
         var start = new Date();
         CCLoader.throttledBatch(_panelCounter.data.slice(2), start);
 		// return cmxcanvas;
+        CCLoader.throttlePanels(_panelCounter.data.slice(0, 10)).then(function(panels){
+            console.log(panels);
+        });
 	}
 
     // return load;
