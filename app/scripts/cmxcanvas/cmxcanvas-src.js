@@ -5,7 +5,7 @@ var CmxCanvas = function(){
 	var canvas, context, panelCounter, popupCounter,
         _animating = false,
         _loadingHold = false,
-        _loadedPanels = {
+        loadedPanels = {
             loading: (function(){
                 var img = new Image();
                 img.crossOrigin = 'Anonymous';
@@ -27,7 +27,7 @@ var CmxCanvas = function(){
     function popPopup(popup) {
         _animating = true;
         CCMove.popup({
-            img: _loadedPanels[panelCounter.curr].popups[popupCounter.curr],
+            img: loadedPanels[panelCounter.curr].popups[popupCounter.curr],
             x: popup.x || 0,
             y: popup.y || 0,
             transition: popup.transition || 'scaleIn'
@@ -38,7 +38,7 @@ var CmxCanvas = function(){
 	/** The Main Event **/
 	var cmxcanvas = {};
 	cmxcanvas.goToNext = function(){
-        if (!_loadedPanels[panelCounter.curr]) {
+        if (!loadedPanels[panelCounter.curr]) {
             _loadingHold = true;
         }
 		if (!_animating && !_loadingHold){
@@ -48,9 +48,9 @@ var CmxCanvas = function(){
 			}
 			else if (!panelCounter.isLast) {
                 panelCounter.loadNext();
-                var _target = (_loadedPanels[panelCounter.curr] && _loadedPanels[panelCounter.curr].img) ? _loadedPanels[panelCounter.curr].img : _loadedPanels.loading.img;
+                var _target = (loadedPanels[panelCounter.curr] && loadedPanels[panelCounter.curr].img) ? loadedPanels[panelCounter.curr].img : loadedPanels.loading.img;
                 movePanels({
-                    image1: _loadedPanels[panelCounter.prev].img,
+                    image1: loadedPanels[panelCounter.prev].img,
                     image2: _target,
                     direction: 1,
                     transition: panelCounter.getData().transition,
@@ -69,8 +69,8 @@ var CmxCanvas = function(){
             if (!panelCounter.isFirst) {
                 panelCounter.loadPrev();
                 movePanels({
-                    image1: _loadedPanels[panelCounter.next].img,
-                    image2: _loadedPanels[panelCounter.curr].img,
+                    image1: loadedPanels[panelCounter.next].img,
+                    image2: loadedPanels[panelCounter.curr].img,
                     direction: -1,
                     transition: panelCounter.getData().transition,
                     curr: panelCounter.curr
@@ -88,7 +88,7 @@ var CmxCanvas = function(){
 	cmxcanvas.goToPanel = function(panel){
         if (!_animating) {
             panelCounter.goTo(panel);
-            var _image = _loadedPanels[panelCounter.curr].img || _loadedPanels.loading.img;
+            var _image = loadedPanels[panelCounter.curr].img || loadedPanels.loading.img;
             context.clearRect(0, 0, canvas.width, canvas.height);
             context.drawImage(_image, halfDiff(canvas.width, _image.width), halfDiff(canvas.height, _image.height));
         }
@@ -101,7 +101,7 @@ var CmxCanvas = function(){
 
         /** Loading placeholder **/
         context.clearRect(0, 0, canvas.width, canvas.height);
-        context.drawImage(_loadedPanels.loading.img, halfDiff(canvas.width, _loadedPanels.loading.img.width), halfDiff(canvas.height, _loadedPanels.loading.img.height));
+        context.drawImage(loadedPanels.loading.img, halfDiff(canvas.width, loadedPanels.loading.img.width), halfDiff(canvas.height, loadedPanels.loading.img.height));
 
         /** Overriding panelCounter after this point will BREAK EVERYTHING. **/
         panelCounter = new CountManager(data.cmxJSON);
@@ -109,22 +109,22 @@ var CmxCanvas = function(){
             popupCounter = new CountManager(panelCounter.getData().popups, -1);
             var dataset = panelCounter.getDataSet(-2, 2);
             var panelsToKeep = {};
-            panelsToKeep.loading = _loadedPanels.loading;
+            panelsToKeep.loading = loadedPanels.loading;
             for (var key in dataset) {
-                if(_loadedPanels[key]){
+                if(loadedPanels[key]){
                     delete dataset[key];
                 }
                 else {
-                    _loadedPanels[key] = 'loading';
+                    loadedPanels[key] = 'loading';
                 }
-                panelsToKeep[key] = _loadedPanels[key];
+                panelsToKeep[key] = loadedPanels[key];
             }
-            _loadedPanels = panelsToKeep;
+            loadedPanels = panelsToKeep;
             panelsToKeep = null;
             CCLoader.batchPanels(dataset).then(function(panels){
                 for (var i = 0, len = panels.length; i < len; i++){
                     var panel = panels[i].shift();
-                    _loadedPanels[panel.panel] = {
+                    loadedPanels[panel.panel] = {
                         img: panel,
                         id: panel.panel.toString,
                         popups: panels[i]
