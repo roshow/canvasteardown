@@ -4,34 +4,38 @@ var CCLoader = (function(){
 
     var loader = {};
 
-    loader.oneImage = function(url){
+    loader.oneImage = function(imgObj){
         var deferred = new Q.defer(),
             img = new Image();
         img.onload = function(){
             deferred.resolve(this);
         };
-        img.src = url;
+        // console.log(imgObj);
+        // img.id = imgObj.panel || "popup";
+        // img.setAttribute('data-panel', imgObj.panel);
+        img.panel = imgObj.panel;
+        img.src = imgObj.src;
         return deferred.promise;
     };
 
     loader.onePanel = function(panel){
         // var that = this;
-        var imgUrls = [panel.src],
+        var imgObjs = [panel],
             promisedImgs = [];
         if (panel.popups && panel.popups.length){
             for (var i = 0, len = panel.popups.length; i < len; i++){
-                imgUrls.push(panel.popups[i].src);
+                imgObjs.push(panel.popups[i]);
             }
         }
-        for (var j = 0, L = imgUrls.length; j < L; j++){
-            promisedImgs.push(this.oneImage(imgUrls[j]));
+        for (var j = 0, L = imgObjs.length; j < L; j++){
+            promisedImgs.push(this.oneImage(imgObjs[j]));
         }
         return Q.all(promisedImgs);
     };
 
     loader.batchPanels = function(panels){
         var promisedPanels = [];
-        for (var i = 0, len = panels.length; i < len; i++){
+        for (var i in panels){
             promisedPanels.push(this.onePanel(panels[i]));
         }
         return Q.all(promisedPanels);

@@ -39,7 +39,8 @@
                     "x": 345,
                     "y": 340
                 }
-            ]
+            ],
+            "panel": 0
         },
         {
             "src": "images/sov01/panel_02.jpg",
@@ -57,7 +58,8 @@
                     "x": 395,
                     "y": 270
                 }
-            ]
+            ],
+            "panel": 1
         },
         {
             "src": "images/sov01/panel_03.jpg",
@@ -87,7 +89,8 @@
                     "x": 393,
                     "y": 344
                 }
-            ]
+            ],
+            "panel": 2
         },
         {
             "src": "images/sov01/panel_04.jpg",
@@ -99,23 +102,28 @@
                     "x": 268,
                     "y": 284
                 }
-            ]
+            ],
+            "panel": 3
         },
         {
             "src": "images/sov01/panel_05.jpg",
-            "type": "panel"
+            "type": "panel",
+            "panel": 4
         },
         {
             "src": "images/sov01/panel_06.jpg",
-            "type": "panel"
+            "type": "panel",
+            "panel": 5
         },
         {
             "src": "images/sov01/panel_07.png",
-            "type": "panel"
+            "type": "panel",
+            "panel": 6
         },
         {
             "src": "images/sov01/panel_08.png",
-            "type": "panel"
+            "type": "panel",
+            "panel": 7
         },
         {
             "src": "images/sov01/panel_09_composite.jpg",
@@ -133,15 +141,18 @@
                     "x": 40,
                     "y": 75
                 }
-            ]
+            ],
+            "panel": 8
         },
         {
             "src": "images/sov01/panel_12_sfx_01.png",
-            "type": "panel"
+            "type": "panel",
+            "panel": 9
         },
         {
             "src": "images/sov01/panel_12.jpg",
-            "type": "panel"
+            "type": "panel",
+            "panel": 10
         },
         {
             "src": "images/sov01/panel_13.png",
@@ -161,7 +172,8 @@
                     "y": 0,
                     "transition": "fadeIn"
                 }
-            ]
+            ],
+            "panel": 11
         },
         {
             "src": "images/sov01/panel_16.png",
@@ -173,7 +185,8 @@
                     "x": 271,
                     "y": 318
                 }
-            ]
+            ],
+            "panel": 12
         },
         {
             "src": "images/sov01/panel_17.png",
@@ -193,7 +206,8 @@
                     "y": 48,
                     "transition": "fadeIn"
                 }
-            ]
+            ],
+            "panel": 13
         },
         {
             "src": "images/sov01/panel_19.png",
@@ -205,23 +219,28 @@
                     "x": 288,
                     "y": 248
                 }
-            ]
+            ],
+            "panel": 14
         },
         {
             "src": "images/sov01/panel_20.png",
-            "type": "panel"
+            "type": "panel",
+            "panel": 15
         },
         {
             "src": "images/sov01/panel_21.png",
-            "type": "panel"
+            "type": "panel",
+            "panel": 16
         },
         {
             "src": "images/sov01/panel_22.png",
-            "type": "panel"
+            "type": "panel",
+            "panel": 17
         },
         {
             "src": "images/sov01/panel_23.png",
-            "type": "panel"
+            "type": "panel",
+            "panel": 18
         },
         {
             "src": "images/sov01/panel_25.png",
@@ -233,7 +252,8 @@
                     "x": 478,
                     "y": 310
                 }
-            ]
+            ],
+            "panel": 19
         },
         {
             "src": "images/sov01/panel_26.jpg",
@@ -245,7 +265,8 @@
                     "x": 433,
                     "y": 140
                 }
-            ]
+            ],
+            "panel": 20
         },
         {
             "src": "images/sov01/panel_27.png",
@@ -257,7 +278,8 @@
                     "x": 357,
                     "y": 322
                 }
-            ]
+            ],
+            "panel": 21
         },
         {
             "src": "images/sov01/panel_28.png",
@@ -269,7 +291,8 @@
                     "x": 261,
                     "y": 93
                 }
-            ]
+            ],
+            "panel": 22
         },
         {
             "src": "images/sov01/panel_29.png",
@@ -281,11 +304,13 @@
                     "x": 312,
                     "y": 66
                 }
-            ]
+            ],
+            "panel": 23
         },
         {
             "src": "images/sov01/panel_30.png",
-            "type": "panel"
+            "type": "panel",
+            "panel": 24
         },
         {
             "src": "images/sov01/panel_31.png",
@@ -315,7 +340,8 @@
                     "x": 561,
                     "y": 402
                 }
-            ]
+            ],
+            "panel": 25
         }
     ],
     "published": 1
