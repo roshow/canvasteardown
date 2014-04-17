@@ -108,22 +108,26 @@
         {
             "src": "images/sov01/panel_05.jpg",
             "type": "panel",
-            "panel": 4
+            "panel": 4,
+            "popups": []
         },
         {
             "src": "images/sov01/panel_06.jpg",
             "type": "panel",
-            "panel": 5
+            "panel": 5,
+            "popups": []
         },
         {
             "src": "images/sov01/panel_07.png",
             "type": "panel",
-            "panel": 6
+            "panel": 6,
+            "popups": []
         },
         {
             "src": "images/sov01/panel_08.png",
             "type": "panel",
-            "panel": 7
+            "panel": 7,
+            "popups": []
         },
         {
             "src": "images/sov01/panel_09_composite.jpg",
@@ -147,12 +151,14 @@
         {
             "src": "images/sov01/panel_12_sfx_01.png",
             "type": "panel",
-            "panel": 9
+            "panel": 9,
+            "popups": []
         },
         {
             "src": "images/sov01/panel_12.jpg",
             "type": "panel",
-            "panel": 10
+            "panel": 10,
+            "popups": []
         },
         {
             "src": "images/sov01/panel_13.png",
@@ -225,22 +231,26 @@
         {
             "src": "images/sov01/panel_20.png",
             "type": "panel",
-            "panel": 15
+            "panel": 15,
+            "popups": []
         },
         {
             "src": "images/sov01/panel_21.png",
             "type": "panel",
-            "panel": 16
+            "panel": 16,
+            "popups": []
         },
         {
             "src": "images/sov01/panel_22.png",
             "type": "panel",
-            "panel": 17
+            "panel": 17,
+            "popups": []
         },
         {
             "src": "images/sov01/panel_23.png",
             "type": "panel",
-            "panel": 18
+            "panel": 18,
+            "popups": []
         },
         {
             "src": "images/sov01/panel_25.png",
@@ -310,7 +320,8 @@
         {
             "src": "images/sov01/panel_30.png",
             "type": "panel",
-            "panel": 24
+            "panel": 24,
+            "popups": []
         },
         {
             "src": "images/sov01/panel_31.png",

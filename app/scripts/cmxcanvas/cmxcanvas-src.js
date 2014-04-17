@@ -140,9 +140,7 @@ var CmxCanvas = function(){
         panelCounter.onchange();
 
         /* warm up the local browser's cache */
-        var start = new Date();
-        CCLoader.batchPanels(panelCounter.data.slice(2))
-		// return cmxcanvas;
+        CCLoader.batchPanels(panelCounter.data.slice(2));
 	}
 
     // return load;

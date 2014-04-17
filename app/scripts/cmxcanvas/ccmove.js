@@ -1,3 +1,4 @@
+/*globals CCjsAnimate, Crossfader*/
 var CCMove = (function(){
 
   function halfDiff(a, b){
