@@ -1,8 +1,8 @@
 'use strict';
 /*globals CCLoader, panelset*/
 
-var cmxcanvas = {};
-var panelset, canvas, context;
+var panelset, canvas, context,
+    cmxcanvas = {};
 
 var CmxCanvas = function(initData, el){
 
