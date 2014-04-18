@@ -20,7 +20,7 @@ function CCPanelSet(cmxjson){
         // else if (loc[0] === this.last[0] && loc[1] === this.last[1]){
         //     view.isLast = true;
         // }
-        cmxjson.current = view;
+        cmxjson.currentView = view;
         return view;
     };
 

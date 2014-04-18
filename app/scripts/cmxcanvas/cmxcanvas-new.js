@@ -42,14 +42,14 @@ var CmxCanvas = function(initData, el){
 
     cmxcanvas.prev = function(){
         loadAndUpdatePanels(panelset.prev().panel).then(function(loc){
-            draw(panelset.current);
+            draw(panelset.currentView);
         });
         return this;
     };
 
     cmxcanvas.next = function(){
         loadAndUpdatePanels(panelset.next().panel).then(function(loc){
-            draw(panelset.current);
+            draw(panelset.currentView);
         });
         return this;
     };
@@ -63,7 +63,7 @@ var CmxCanvas = function(initData, el){
         drawLoadingImg();
         /** Load initial panels and draw **/
         loadAndUpdatePanels(0,5).then(function(loc){
-            draw(panelset.current);
+            draw(panelset.currentView);
         });
         /* warm up the local browser's cache  */
         // CCLoader.batchPanels(panelset.slice(2));
