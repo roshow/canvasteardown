@@ -1,6 +1,7 @@
 {
     "_id": "sov01",
     "issue": 1,
+    "published": 1,
     "title": "Giant Future Robot",
     "thumb": "http://roshow.net/public/images/cmxcanvas/sov01/sov01_thumb.jpg",
     "series": {
@@ -354,6 +355,5 @@
             ],
             "panel": 25
         }
-    ],
-    "published": 1
+    ]
 }

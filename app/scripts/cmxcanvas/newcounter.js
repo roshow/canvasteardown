@@ -2,17 +2,24 @@
 
 function StoryPanels(cmxjson){
   
-    var loc = [0,-1]; 
+    var loc = [0,-1];
 
     cmxjson.setView = function(){
         var view = cmxjson[loc[0]];
-        view.type = "panel";
+        view.type = 'panel';
         if (loc[1] !== -1){
             view = view.popups[loc[1]];
             view.popup = loc[1];
-            view.type = "popup";
+            view.type = 'popup';
         }
         view.panel = loc[0];
+        /** Not sure if I really need this enough to be worth cluttering this object **/
+        // if (loc[0] === 0 && loc[1] === -1){
+        //     view.isFirst = true;
+        // }
+        // else if (loc[0] === this.last[0] && loc[1] === this.last[1]){
+        //     view.isLast = true;
+        // }
         cmxjson.current = view;
         return view;
     };
@@ -53,7 +60,7 @@ function StoryPanels(cmxjson){
   
     cmxjson.last = [cmxjson.length - 1];
     cmxjson.last[1] = cmxjson[cmxjson.last[0]].popups ? cmxjson[cmxjson.last[0]].popups.length - 1 : -1;
-    cmxjson.setView(); 
+    cmxjson.setView();
 
     return cmxjson;
 }
