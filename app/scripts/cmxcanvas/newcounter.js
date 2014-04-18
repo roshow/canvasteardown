@@ -1,6 +1,6 @@
-'use strict'
+'use strict';
 
-function StoryPanels(cmxjson){
+function CCPanelSet(cmxjson){
   
     var loc = [0,-1];
 
