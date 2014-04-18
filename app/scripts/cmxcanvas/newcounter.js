@@ -2,78 +2,58 @@
 
 function StoryPanels(cmxjson){
   
-    var loc = [0,-1];
+    var loc = [0,-1]; 
 
-    function getView(){
+    cmxjson.setView = function(){
         var view = cmxjson[loc[0]];
-        view.type = 'panel';
+        view.type = "panel";
         if (loc[1] !== -1){
             view = view.popups[loc[1]];
             view.popup = loc[1];
-            view.type = 'popup';
+            view.type = "popup";
         }
         view.panel = loc[0];
+        cmxjson.current = view;
         return view;
-    }
+    };
 
-    function next(){
+    cmxjson.next = function(){
         if (cmxjson[loc[0]].popups && loc[1] + 1 < cmxjson[loc[0]].popups.length){
             loc[1]++;
-            return getView();
         }
         else if (loc[0] + 1 < cmxjson.length){
             loc[0]++;
             loc[1] = -1;
-            return getView();
         }
         else {
             console.log('NO MAS!');
         }
-        return loc;
-    }
+        return this.setView();
+    };
 
-    function prev(){
+    cmxjson.prev = function(){
         if (loc[0] - 1 >= 0){
             loc[0]--;
             loc[1] = -1;
-            return getView();
         }
         else if (loc[0] === 0 && loc[1] !== -1){
             loc[1] = -1;
-            return getView();
         }
         else {
             console.log('MUY POCO!');
         }
-        return loc;
-    }
+        return this.setView();
+    };
 
-    function goTo(panel, popup){
+    cmxjson.goTo = function(panel, popup){
         loc[0] = panel || 0;
         loc[1] = popup || -1;
-        return getView();
-    }
+        return this.setView();
+    };
   
-    cmxjson.next = next;
-    cmxjson.prev = prev;
-    cmxjson.goTo = goTo;
-    cmxjson.getView = getView;
+    cmxjson.last = [cmxjson.length - 1];
+    cmxjson.last[1] = cmxjson[cmxjson.last[0]].popups ? cmxjson[cmxjson.last[0]].popups.length - 1 : -1;
+    cmxjson.setView(); 
+
     return cmxjson;
 }
-
-// var storypanels;
-
-// $.getJSON('http://cmxcanvasapi.herokuapp.com/cmx/sov01')
-    .done(function(data){
-      
-        storypanels = StoryPanels(data.data[0].cmxJSON);
-      
-        console.log(storypanels.getView());
-        $('#next').on('click', function(){
-            console.log(storypanels.next());
-        });
-        $('#prev').on('click', function(){
-            console.log(storypanels.prev());
-        });
-      
-    });
