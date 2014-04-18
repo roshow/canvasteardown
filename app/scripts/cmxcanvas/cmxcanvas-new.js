@@ -56,7 +56,7 @@ var CmxCanvas = function(initData, el){
 
     cmxcanvas.load = function(rawpanels, canvasId){
         /** Add all the fun stuff to the collection of panels and popups **/
-        panelset = new PanelSet(rawpanels);
+        panelset = new CCPanelSet(rawpanels);
         /** Get Canvases and Contexts and Drawing load image **/
         canvas = document.getElementById(canvasId);
         context = canvas.getContext('2d');
