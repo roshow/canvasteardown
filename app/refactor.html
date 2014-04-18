@@ -1,34 +1,51 @@
 <!doctype html>
 <html>
 <head>
-    <link href='http://fonts.googleapis.com/css?family=Londrina+Outline' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="styles/main.css">
+    <style type="text/css">
+        @import url(http://fonts.googleapis.com/css?family=IM+Fell+English);
 
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/q/q.js"></script>
+        #app-container {
+            font-family: "IM Fell English";
+            text-align: center;
+        }
+        #thisCanvas {
+            margin: auto;
+            border: 2px solid #ddd;
+        }
+        .buttons span {
+            cursor: pointer;
+            display: inline-block;
+            font-size: 1.3em;
+            margin: 20px 50px;
+        }
+    </style>
+
+    <script src="scripts/vendor/q.js"></script>
     <script src="scripts/cmxcanvas/ccloader.js"></script>
     <script src="scripts/cmxcanvas/ccpanelset.js"></script>
     <script src="scripts/cmxcanvas/cmxcanvas-new.js"></script>
+
 </head>
 <body>
         <div id="app-container">
-          <h1 class="headline">cmxcanvas-new.js</h1>
+          <h1>cmxcanvas-new.js</h1>
           <canvas id="thisCanvas" height="450px" width="800px"></canvas>
           <div class="buttons">
             <span id="book-prev">previous</span>
             <span id="book-next">next</span>
           </div>
-          <!-- <img src="images/sov01/loading.jpg" style="display:none;" /> -->
         </div>
 
-    <script type="text/javascript">
-        var cmxCanvas;
-        $.getJSON('json/sov01Model.json')
-            .done(function(data){
-                cmxCanvas = new CmxCanvas(data.cmxJSON, 'thisCanvas');
-                $('#book-next').on('click', cmxCanvas.next);
-                $('#book-prev').on('click', cmxCanvas.prev);
-            });
-    </script>
+        <!-- Only loading jQuery here for ajax and DOM. Not needed for CmxCanvas. -->
+        <script src="scripts/vendor/jquery.min.js"></script>
+        <script type="text/javascript">
+            var cmxCanvas;
+            $.getJSON('json/sov01Model.json')
+                .done(function(data){
+                    cmxCanvas = new CmxCanvas(data.cmxJSON, 'thisCanvas');
+                    $('#book-next').on('click', cmxCanvas.next);
+                    $('#book-prev').on('click', cmxCanvas.prev);
+                });
+        </script>
 </body>
 </html>

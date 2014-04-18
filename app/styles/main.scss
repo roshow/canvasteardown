@@ -3,28 +3,19 @@
 
 @import url(http://fonts.googleapis.com/css?family=IM+Fell+English);
 
-htm, body {
+#app-container {
     font-family: "IM Fell English";
-    margin: 0;
-    padding: 0;
+    text-align: center;
 }
-
 #thisCanvas {
-    display: block;
     margin: auto;
     border: 2px solid #ddd;
 }
-
-#app-container {
-    text-align: center;
-    .buttons {
-        margin: 20px 0;
-        span {
-            cursor: pointer;
-            font-size: 1.3em;
-            margin: 50px;
-        }
-    }
+.buttons span {
+    cursor: pointer;
+    display: inline-block;
+    font-size: 1.3em;
+    margin: 20px 50px;
 }
 
 
