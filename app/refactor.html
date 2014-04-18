@@ -45,6 +45,7 @@
                     cmxCanvas = new CmxCanvas(data.cmxJSON, 'thisCanvas');
                     $('#book-next').on('click', cmxCanvas.next);
                     $('#book-prev').on('click', cmxCanvas.prev);
+                    $('#app-container').on('swipeleft', cmxCanvas.next);
                 });
         </script>
 </body>
