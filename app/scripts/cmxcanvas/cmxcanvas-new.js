@@ -65,7 +65,7 @@ var CmxCanvas = function(initData, el){
         loadAndUpdatePanels(0,5).then(function(loc){
             draw(panelset.currentView);
         });
-        /* warm up the local browser's cache  */
+        /* warm up the local browser's cache  - turned off for now. */
         // CCLoader.batchPanels(panelset.slice(2));
         return this;
     };
