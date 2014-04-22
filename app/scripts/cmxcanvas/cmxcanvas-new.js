@@ -49,7 +49,7 @@ var CmxCanvas = function(initData, el){
                 CCMove.popup(panelset.currentView, canvas, context);
             }
             else {
-                draw(panelset.currentView);
+                CCMove.panelFunctions['crossfade'](panelset.currentView, canvas, context);
             }
         });
         return this;

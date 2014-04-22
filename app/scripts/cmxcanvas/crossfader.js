@@ -28,6 +28,8 @@
 */
 
 /*global window:true Int16Array:true */
+/** @roshow: added strict **/
+'use strict';
 
 function Crossfader(canvas, image1, image2) {
 
@@ -44,8 +46,8 @@ function Crossfader(canvas, image1, image2) {
         ticker;
 
     /** @roshow: Center images on canvas when drawing them. And ALWAYS use data for image1 **/
-    var image2_x = (width - image2.width)/2,
-        image2_y = (height - image2.height)/2;
+    var image2X = (width - image2.width)/2,
+        image2Y = (height - image2.height)/2;
 
     function init() {
         var i, source, target;
@@ -55,7 +57,7 @@ function Crossfader(canvas, image1, image2) {
         /** @roshow: added the canvas clearing, so we get 2 distinct images even if they're not 
           the same size. Swapped order so first image is last one loaded. **/
         context.clearRect(0, 0, width, height);
-        context.drawImage(image2, image2_x, image2_y);
+        context.drawImage(image2, image2X, image2Y);
         target = context.getImageData(0, 0, width, height);
 
         context.clearRect(0, 0, width, height);
@@ -68,8 +70,8 @@ function Crossfader(canvas, image1, image2) {
         //     source = context.getImageData(0, 0, width, height);
         // }
         // else {
-            source = image1;
-            context.putImageData (source, 0, 0);
+        source = image1;
+        context.putImageData (source, 0, 0);
         // }
 
         result = context.createImageData(width, height);
@@ -117,7 +119,7 @@ function Crossfader(canvas, image1, image2) {
 
     function stop(cb) {
         window.clearInterval(ticker);
-        if (typeof cb === "function") cb();
+        if (typeof cb === 'function') { cb(); }
     }
 
     function frameRate() {

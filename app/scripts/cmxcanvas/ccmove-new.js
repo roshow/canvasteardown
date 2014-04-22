@@ -34,7 +34,9 @@ var CCMove = (function(){
         });
     }
     function crossfadePanels(data, cnv, ctx, cb){
-        new Crossfader(cnv, data[0].img, data[1].img).start(cb);
+        var img = ctx.getImageData(0,0,800,450);
+        console.log(img);
+        new Crossfader(cnv, img, data.img).start(cb);
     }
     function animatePopUp(popup, cnv, ctx){
         popup.x = popup.x || 0;
