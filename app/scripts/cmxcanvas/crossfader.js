@@ -56,11 +56,13 @@ function Crossfader(canvas, image1, image2) {
 
         /** @roshow: added the canvas clearing, so we get 2 distinct images even if they're not 
           the same size. Swapped order so first image is last one loaded. **/
-        context.clearRect(0, 0, width, height);
+        context.fillStyle = '#fff';
+        context.fillRect(0, 0, width, height);
         context.drawImage(image2, image2X, image2Y);
         target = context.getImageData(0, 0, width, height);
 
-        context.clearRect(0, 0, width, height);
+        context.fillStyle = '#fff';
+        context.fillRect(0, 0, width, height);
 
         /** @roshow: removed option of sending regular image **/
         // if (!image1.isData) {
@@ -70,8 +72,9 @@ function Crossfader(canvas, image1, image2) {
         //     source = context.getImageData(0, 0, width, height);
         // }
         // else {
-        source = image1;
-        context.putImageData (source, 0, 0);
+        // source = image1;
+        context.putImageData (image1, 0, 0);
+        source = context.getImageData(0, 0, width, height);
         // }
 
         result = context.createImageData(width, height);
@@ -98,6 +101,7 @@ function Crossfader(canvas, image1, image2) {
             /** @roshow: added this for transparency **/
             r[i + 3] = offset[i + 3] + delta[i + 3] * factor;
         }
+        console.log(result);
         context.putImageData(result, 0, 0);
         frames += 1;
     }

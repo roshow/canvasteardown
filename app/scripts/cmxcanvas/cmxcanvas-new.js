@@ -29,7 +29,9 @@ var CmxCanvas = function(initData, el){
 
     function draw(storyimg){
         if (storyimg.type === 'panel'){
-            context.clearRect(0, 0, canvas.width, canvas.height);
+            // context.clearRect(0, 0, canvas.width, canvas.height);
+            context.fillStyle = '#fff';
+            context.fillRect(0, 0, canvas.width, canvas.height);
         }
         var x = storyimg.x || (canvas.width - storyimg.img.width) / 2,
             y = storyimg.y || (canvas.height - storyimg.img.height) / 2;
