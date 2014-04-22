@@ -8,13 +8,13 @@ var CCMove = (function(){
     }
 
     function bounceBackPanels(data, cnv, ctx, cb) {
-        var image1X = halfDiff(cnv.width, data.image1.width),
-            image1Y = halfDiff(cnv.height, data.image1.height),
-            image2X = halfDiff(cnv.width, data.image2.width),
-            image2Y = halfDiff(cnv.height, data.image2.height);
+        var image1X = halfDiff(cnv.width, data[0].img.width),
+            image1Y = halfDiff(cnv.height, data[0].img.height),
+            image2X = halfDiff(cnv.width, data[1].img.width),
+            image2Y = halfDiff(cnv.height, data[1].img.height);
         
         CCjsAnimate.animation({
-            target: [data.image1, data.image2],
+            target: [data[0].img, data[1].img],
             from: [
                 { x: image1X, y: image1Y },
                 { x: image2X + (data.direction * cnv.width), y: image2Y }
@@ -34,7 +34,7 @@ var CCMove = (function(){
         });
     }
     function crossfadePanels(data, cnv, ctx, cb){
-        new Crossfader(cnv, data.image1, data.image2).start(cb);
+        new Crossfader(cnv, data[0].img, data[1].img).start(cb);
     }
     function animatePopUp(popup, cnv, ctx){
         popup.x = popup.x || 0;
@@ -101,7 +101,7 @@ var CCMove = (function(){
         panels: function(data, cnv, ctx){
             var that = this;
             /** Override image1 with data from the current state of the canvas. **/
-            data.image1 = ctx.getImageData(0, 0, cnv.width, cnv.height);
+            data[0].img = ctx.getImageData(0, 0, cnv.width, cnv.height);
             /** set transition **/
             var transition = data.transition ? data.transition : 'bounceback';
             return {

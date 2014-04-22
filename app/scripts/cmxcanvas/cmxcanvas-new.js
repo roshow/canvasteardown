@@ -6,10 +6,6 @@ var panelset, canvas, context,
 
 var CmxCanvas = function(initData, el){
 
-    function halfDiff(a, b){
-        return (a - b)/2;
-    }
-
     function drawLoadingImg(){
         context.clearRect(0, 0, canvas.width, canvas.height);
         context.font = '30pt Monaco';
@@ -22,9 +18,9 @@ var CmxCanvas = function(initData, el){
         return CCLoader.batchPanels(panelset.slice(first,last + 1)).then(function(imgs){
             for (var i = 0, l = imgs.length; i < l; i++){
                 var panelImg = imgs[i].shift();
-                panelset[panelImg.panel].loadedImg = panelImg;
+                panelset[panelImg.panel].img = panelImg;
                 for (var ii = 0, ll = imgs[i].length; ii < ll; ii++){
-                    panelset[panelImg.panel].popups[ii].loadedImg = imgs[i][ii];
+                    panelset[panelImg.panel].popups[ii].img = imgs[i][ii];
                 }
             }
             return [first, last];
@@ -35,9 +31,9 @@ var CmxCanvas = function(initData, el){
         if (storyimg.type === 'panel'){
             context.clearRect(0, 0, canvas.width, canvas.height);
         }
-        var x = storyimg.x || halfDiff(canvas.width, storyimg.loadedImg.width),
-            y = storyimg.y || halfDiff(canvas.height, storyimg.loadedImg.height);
-        context.drawImage(storyimg.loadedImg, x, y);
+        var x = storyimg.x || (canvas.width - storyimg.img.width) / 2,
+            y = storyimg.y || (canvas.height - storyimg.img.height) / 2;
+        context.drawImage(storyimg.img, x, y);
     }
 
     cmxcanvas.prev = function(){
@@ -49,7 +45,12 @@ var CmxCanvas = function(initData, el){
 
     cmxcanvas.next = function(){
         loadAndUpdatePanels(panelset.next().panel).then(function(loc){
-            draw(panelset.currentView);
+            if (panelset.currentView.type === 'popup'){
+                CCMove.popup(panelset.currentView, canvas, context);
+            }
+            else {
+                draw(panelset.currentView);
+            }
         });
         return this;
     };

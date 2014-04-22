@@ -1,21 +1,23 @@
 // bower:scss
 // endbower
 
-@import url(http://fonts.googleapis.com/css?family=IM+Fell+English);
-
 #app-container {
+    cursor: pointer;
     font-family: "IM Fell English";
     text-align: center;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 #thisCanvas {
     margin: auto;
     border: 2px solid #ddd;
 }
 .buttons span {
-    cursor: pointer;
     display: inline-block;
     font-size: 1.3em;
-    margin: 20px 50px;
+    padding: 20px 50px;
 }
-
-
