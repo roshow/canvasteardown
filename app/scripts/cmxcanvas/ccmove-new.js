@@ -46,8 +46,7 @@ function panelSlide(data, cnv, ctx, cb){
     ctx.fillRect(0, 0, cnv.width, cnv.height);
     ctx.putImageData (data[0], 0, 0);
 
-    var animStartTime,
-        lenAnim = 300,
+    var lenAnim = 300,
         distance = cnv.width,
         distancePerLenAnim = Math.PI/lenAnim;
 
