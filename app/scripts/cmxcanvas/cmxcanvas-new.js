@@ -29,8 +29,6 @@ var CmxCanvas = function(initData, el){
 
     function draw(storyimg){
         if (storyimg.type === 'panel'){
-            // context.clearRect(0, 0, canvas.width, canvas.height);
-            context.fillStyle = '#fff';
             context.fillRect(0, 0, canvas.width, canvas.height);
         }
         var x = storyimg.x || (canvas.width - storyimg.img.width) / 2,
@@ -51,7 +49,8 @@ var CmxCanvas = function(initData, el){
                 CCMove.popup(panelset.currentView, canvas, context);
             }
             else {
-                CCMove.panelFunctions['crossfade'](panelset.currentView, canvas, context);
+                var transition = 'slide';
+                panelSlide([context.getImageData(0, 0, 800, 450), panelset.currentView.img, 1], canvas, context);
             }
         });
         return this;
@@ -63,6 +62,7 @@ var CmxCanvas = function(initData, el){
         /** Get Canvases and Contexts and Drawing load image **/
         canvas = document.getElementById(canvasId);
         context = canvas.getContext('2d');
+        context.fillStyle = '#fff';
         drawLoadingImg();
         /** Load initial panels and draw **/
         loadAndUpdatePanels(0,5).then(function(loc){

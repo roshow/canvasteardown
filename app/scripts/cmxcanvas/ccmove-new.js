@@ -1,42 +1,84 @@
 'use strict';
-/*globals CCjsAnimate, Crossfader*/
+/*globals requestAnimationFrame, performance, CCjsAnimate, Crossfader*/
+var roquestAnim = function(func, wait){
+    var that = {},
+        rAF,
+        finalCallback;
 
+    function animLoop(time){
+        var animReturnVal = (typeof func === 'function') ? func.call(that, time) : false;
+        if (animReturnVal === false) {
+            that.stop();
+        } else {
+            rAF = requestAnimationFrame(animLoop);
+        }
+    }
+
+    that.stop = function(){
+        if (typeof finalCallback === 'function'){
+            finalCallback();
+        }
+        return that;
+    };
+
+    that.start = function(){
+        that.animStartTime = performance.now();
+        rAF = requestAnimationFrame(animLoop);
+        return that;
+    };
+
+    that.then = function(fn){
+        if (typeof fn === 'function') { finalCallback = fn; }
+        return that;
+    };
+
+    if (!wait) { that.start(); }
+    return that;
+};
+
+function panelSlide(data, cnv, ctx, cb){
+
+    var addons = arguments;
+
+    ctx.fillRect(0, 0, cnv.width, cnv.height);
+    ctx.drawImage(data[1], (cnv.width-data[1].width)/2, (cnv.height-data[1].height)/2);
+    data[1] = ctx.getImageData(0, 0, cnv.width, cnv.height);
+    ctx.fillRect(0, 0, cnv.width, cnv.height);
+    ctx.putImageData (data[0], 0, 0);
+
+    var animStartTime,
+        lenAnim = 300,
+        distance = cnv.width,
+        distancePerLenAnim = Math.PI/lenAnim;
+
+    function drawSlideAF(time){
+        var timePassed = (time - this.animStartTime);
+        var sinPart = Math.sin(timePassed*distancePerLenAnim/2);
+        var deltaX =  sinPart < 0 ? 0 : sinPart * distance;
+        
+        ctx.clearRect(0,0,800,450);
+        ctx.putImageData(data[0], 0 - deltaX, 0);
+        ctx.putImageData(data[1], 800 - deltaX, 0);
+        if( timePassed >= lenAnim) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    return roquestAnim(drawSlideAF);
+}
 var CCMove = (function(){
+
+
 
     function halfDiff(a, b){
         return (a - b)/2;
     }
 
-    function bounceBackPanels(data, cnv, ctx, cb) {
-        var image1X = halfDiff(cnv.width, data[0].img.width),
-            image1Y = halfDiff(cnv.height, data[0].img.height),
-            image2X = halfDiff(cnv.width, data[1].img.width),
-            image2Y = halfDiff(cnv.height, data[1].img.height);
-        
-        CCjsAnimate.animation({
-            target: [data[0].img, data[1].img],
-            from: [
-                { x: image1X, y: image1Y },
-                { x: image2X + (data.direction * cnv.width), y: image2Y }
-            ],
-            to: [
-                { x: image1X - (data.direction * cnv.width), y: image1Y },
-                { x: image2X, y: image2Y }
-            ],
-            canvas: cnv,
-            ctx: ctx,
-            duration: 400,
-            interval: 25,
-            aFunction: CCjsAnimate.makeEaseOut(CCjsAnimate.back),
-            onComplete: function() {
-                cb();
-            }
-        });
-    }
+    
     function crossfadePanels(data, cnv, ctx, cb){
-        var img = ctx.getImageData(0,0,800,450);
-        console.log(img);
-        new Crossfader(cnv, img, data.img).start(cb);
+        new Crossfader(cnv, data[0], data[1]).start(cb);
     }
     function animatePopUp(popup, cnv, ctx){
         popup.x = popup.x || 0;
@@ -96,7 +138,6 @@ var CCMove = (function(){
 
     var Animate = {
         panelFunctions: {
-            bounceback: bounceBackPanels,
             crossfade: crossfadePanels,
             jumpcut: crossfadePanels
         },
