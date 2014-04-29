@@ -1,5 +1,5 @@
 'use strict';
-/*globals requestAnimationFrame, performance, CCjsAnimate, Crossfader*/
+/*globals requestAnimationFrame, performance, Crossfader*/
 var roquestAnim = function(func, wait){
     var that = {},
         rAF,
@@ -47,12 +47,17 @@ function panelSlide(data, cnv, ctx, cb){
     ctx.putImageData (data[0], 0, 0);
 
     var lenAnim = 300,
+         //some ideas for bounceback: offset the hook with a larger distance. Some perfect ratio?
+        // distance = cnv.width*1.18,
         distance = cnv.width,
         distancePerLenAnim = Math.PI/lenAnim;
 
     function drawSlideAF(time){
         var timePassed = (time - this.animStartTime);
+        //some ideas for bounceback: PI*3/2 and so on to get a hook.
+        // var sinPart = Math.sin(timePassed*distancePerLenAnim/(3/2));
         var sinPart = Math.sin(timePassed*distancePerLenAnim/2);
+        console.log(sinPart);
         var deltaX =  sinPart < 0 ? 0 : sinPart * distance;
         
         ctx.clearRect(0,0,800,450);
