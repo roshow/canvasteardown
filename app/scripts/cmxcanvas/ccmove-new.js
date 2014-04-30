@@ -1,6 +1,7 @@
 'use strict';
 /*globals requestAnimationFrame, performance, Crossfader*/
-var roquestAnim = function(func, wait){
+var roquestAnim = function(func){
+    var deferred = new Q.defer();
     var that = {},
         rAF,
         finalCallback;
@@ -8,78 +9,79 @@ var roquestAnim = function(func, wait){
     function animLoop(time){
         var animReturnVal = (typeof func === 'function') ? func.call(that, time) : false;
         if (animReturnVal === false) {
-            that.stop();
+            deferred.resolve();
         } else {
             rAF = requestAnimationFrame(animLoop);
         }
     }
-
-    that.stop = function(){
-        if (typeof finalCallback === 'function'){
-            finalCallback();
-        }
-        return that;
-    };
-
-    that.start = function(){
-        that.animStartTime = performance.now();
-        rAF = requestAnimationFrame(animLoop);
-        return that;
-    };
 
     that.then = function(fn){
         if (typeof fn === 'function') { finalCallback = fn; }
         return that;
     };
 
-    if (!wait) { that.start(); }
-    return that;
+    that.animStartTime = performance.now();
+    rAF = requestAnimationFrame(animLoop);
+    return deferred.promise;
 };
 
-function panelSlide(data, cnv, ctx, cb){
-
-    var addons = arguments;
-
-    ctx.fillRect(0, 0, cnv.width, cnv.height);
-    ctx.drawImage(data[1], (cnv.width-data[1].width)/2, (cnv.height-data[1].height)/2);
-    data[1] = ctx.getImageData(0, 0, cnv.width, cnv.height);
-    ctx.fillRect(0, 0, cnv.width, cnv.height);
-    ctx.putImageData (data[0], 0, 0);
-
-    var lenAnim = 300,
-         //some ideas for bounceback: offset the hook with a larger distance. Some perfect ratio?
-        // distance = cnv.width*1.18,
-        distance = cnv.width,
-        distancePerLenAnim = Math.PI/lenAnim;
-
-    function drawSlideAF(time){
-        var timePassed = (time - this.animStartTime);
-        //some ideas for bounceback: PI*3/2 and so on to get a hook.
-        // var sinPart = Math.sin(timePassed*distancePerLenAnim/(3/2));
-        var sinPart = Math.sin(timePassed*distancePerLenAnim/2);
-        console.log(sinPart);
-        var deltaX =  sinPart < 0 ? 0 : sinPart * distance;
-        
-        ctx.clearRect(0,0,800,450);
-        ctx.putImageData(data[0], 0 - deltaX, 0);
-        ctx.putImageData(data[1], 800 - deltaX, 0);
-        if( timePassed >= lenAnim) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    return roquestAnim(drawSlideAF);
-}
 var CCMove = (function(){
-
 
 
     function halfDiff(a, b){
         return (a - b)/2;
     }
 
+    function bounce(data, cnv, ctx){
+
+        ctx.fillRect(0, 0, cnv.width, cnv.height);
+        ctx.drawImage(data[1], (cnv.width-data[1].width)/2, (cnv.height-data[1].height)/2);
+        data[1] = ctx.getImageData(0, 0, cnv.width, cnv.height);
+        ctx.fillRect(0, 0, cnv.width, cnv.height);
+        ctx.putImageData (data[0], 0, 0);
+
+        var lenAnim = 300,
+            distance = cnv.width,
+            distancePerLenAnim = Math.PI/(2*lenAnim);
+
+        function drawSlideAF(time){
+            var timePassed = (performance.now() - this.animStartTime);
+            var sinPart = Math.sin(timePassed*distancePerLenAnim);
+            var deltaX =  sinPart < 0 ? 0 : sinPart * distance;
+            
+            ctx.clearRect(0,0,800,450);
+            ctx.putImageData(data[0], 0 - deltaX, 0);
+            ctx.putImageData(data[1], 800 - deltaX, 0);
+            if( timePassed >= lenAnim) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        function drawBounceAF(time){
+            //some ideas for bounceback: offset the hook with a larger distance. Some perfect ratio?
+            var bouncedistance = cnv.width*(6/5);
+            var timePassed = (time - this.animStartTime);
+            //some ideas for bounceback: PI*3/2 and so on to get a hook.
+            var sinPart = Math.sin(timePassed*distancePerLenAnim*(4/3));
+            // var sinPart = Math.sin(timePassed*distancePerLenAnim);
+            var deltaX =  sinPart < 0 ? 0 : sinPart * bouncedistance;
+            
+            ctx.clearRect(0,0,800,450);
+            ctx.putImageData(data[0], 0 - deltaX, 0);
+            ctx.putImageData(data[1], 800 - deltaX, 0);
+            if( timePassed >= lenAnim) {
+                ctx.clearRect(0,0,800,450);
+                ctx.putImageData(data[1],0, 0);
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        return roquestAnim(drawBounceAF);
+    }
     
     function crossfadePanels(data, cnv, ctx, cb){
         new Crossfader(cnv, data[0], data[1]).start(cb);
@@ -143,7 +145,9 @@ var CCMove = (function(){
     var Animate = {
         panelFunctions: {
             crossfade: crossfadePanels,
-            jumpcut: crossfadePanels
+            jumpcut: crossfadePanels,
+            bounce: bounce,
+            bounceback: bounce
         },
         panels: function(data, cnv, ctx){
             var that = this;
@@ -151,11 +155,7 @@ var CCMove = (function(){
             data[0].img = ctx.getImageData(0, 0, cnv.width, cnv.height);
             /** set transition **/
             var transition = data.transition ? data.transition : 'bounceback';
-            return {
-                start: function(cb){
-                    that.panelFunctions[transition](data, cnv, ctx, cb);
-                }
-            };
+            return that.panelFunctions[transition](data, cnv, ctx);
         },
         popup: animatePopUp
     };

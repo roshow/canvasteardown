@@ -49,8 +49,10 @@ var CmxCanvas = function(initData, el){
                 CCMove.popup(panelset.currentView, canvas, context);
             }
             else {
-                var transition = 'slide';
-                panelSlide([context.getImageData(0, 0, 800, 450), panelset.currentView.img, 1], canvas, context);
+                CCMove.panels([context.getImageData(0, 0, 800, 450), panelset.currentView.img, 1], canvas, context)
+                .then(function(){
+                    console.log('done');
+                });
             }
         });
         return this;
