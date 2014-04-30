@@ -46,18 +46,18 @@ var CmxCanvas = function(initData, el){
     cmxcanvas.next = function(){
        // loadAndUpdatePanels(panelset.next().panel).then(function(loc){
         panelset.next();
-            if (panelset.currentView.type === 'popup'){
-                CCMove.popup(panelset.currentView, canvas, context)
-                    .then(function(){
-                        console.log('popup up');
-                    });
-            }
-            else {
-                CCMove.panels(panelset.currentView, canvas, context)
-                    .then(function(){
-                        console.log('panel in');
-                    });
-            }
+        if (panelset.currentView.type === 'popup'){
+            CCMove.popup(panelset.currentView, canvas, context)
+                .then(function(){
+                    console.log('popup up');
+                });
+        }
+        else {
+            CCMove.panels(panelset.currentView, canvas, context)
+                .then(function(){
+                    console.log('panel in');
+                });
+        }
         // });
         return this;
     };
