@@ -49,7 +49,7 @@ var CmxCanvas = function(initData, el){
                 CCMove.popup(panelset.currentView, canvas, context);
             }
             else {
-                CCMove.panels([context.getImageData(0, 0, 800, 450), panelset.currentView.img, 1, panelset.currentView.transition], canvas, context)
+                CCMove.panels(panelset.currentView, canvas, context)
                 .then(function(){
                     console.log('done');
                 });
