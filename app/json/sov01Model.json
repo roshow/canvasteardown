@@ -41,13 +41,11 @@
                     "y": 340
                 }
             ],
-            "panel": 0,
-            "transition": "crossfade"
+            "panel": 0
         },
         {
             "src": "images/sov01/panel_02.jpg",
             "type": "panel",
-            "transition": "crossfade",
             "popups": [
                 {
                     "src": "images/sov01/panel_02_letters_01.png",
