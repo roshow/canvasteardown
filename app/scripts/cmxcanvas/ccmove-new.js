@@ -83,8 +83,13 @@ var CCMove = (function(){
         return roquestAnim(drawBounceAF);
     }
     
-    function crossfadePanels(data, cnv, ctx, cb){
-        new Crossfader(cnv, data[0], data[1]).start(cb);
+    function crossfadePanels(data, cnv, ctx){
+        // I should just refactor crossfader with roquestAnimation
+        var deferred = Q.defer();
+        new Crossfader(cnv, data[0], data[1]).start(function(){
+            deferred.resolve();
+        });
+        return deferred.promise;
     }
     function animatePopUp(popup, cnv, ctx){
         popup.x = popup.x || 0;
