@@ -44,21 +44,26 @@ var CmxCanvas = function(initData, el){
     };
 
     cmxcanvas.next = function(){
-        loadAndUpdatePanels(panelset.next().panel).then(function(loc){
+       // loadAndUpdatePanels(panelset.next().panel).then(function(loc){
+        panelset.next();
             if (panelset.currentView.type === 'popup'){
-                CCMove.popup(panelset.currentView, canvas, context);
+                CCMove.popup(panelset.currentView, canvas, context)
+                    .then(function(){
+                        console.log('popup up');
+                    });
             }
             else {
                 CCMove.panels(panelset.currentView, canvas, context)
-                .then(function(){
-                    console.log('done');
-                });
+                    .then(function(){
+                        console.log('panel in');
+                    });
             }
-        });
+        // });
         return this;
     };
 
     cmxcanvas.load = function(rawpanels, canvasId){
+        var startt = performance.now();
         /** Add all the fun stuff to the collection of panels and popups **/
         panelset = new CCPanelSet(rawpanels);
         /** Get Canvases and Contexts and Drawing load image **/
@@ -69,6 +74,10 @@ var CmxCanvas = function(initData, el){
         /** Load initial panels and draw **/
         loadAndUpdatePanels(0,5).then(function(loc){
             draw(panelset.currentView);
+        });
+        loadAndUpdatePanels(0,(panelset.length - 1)).then(function(){
+            console.log('allll loaded');
+            console.log((performance.now()-startt)/1000);
         });
         /* warm up the local browser's cache  - turned off for now. */
         // CCLoader.batchPanels(panelset.slice(2));

@@ -102,6 +102,7 @@ var CCMove = (function(){
         return deferred.promise;
     }
     function animatePopUp(popup, cnv, ctx){
+        var deferred = Q.defer();
         popup.x = popup.x || 0;
         popup.y = popup.y || 0;
         popup.dur = popup.dur || 100;
@@ -124,6 +125,7 @@ var CCMove = (function(){
 
                 _frame++;
                 if (ctx.globalAlpha === 1) {
+                    deferred.resolve();
                     clearInterval(_fadeIn);
                 }
             }, _int);
@@ -145,11 +147,14 @@ var CCMove = (function(){
 
                 _frame++;
                 if (_scale === 100){
+                    deferred.resolve();
                     clearInterval(_scaleIn);
                 }
             }, _int);
             break;
         }
+
+        return deferred.promise;
     }
     function done(cb){
         if (typeof cb === "function") {
