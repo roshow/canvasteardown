@@ -154,7 +154,8 @@ var CCMove = (function(){
             /** Override image1 with data from the current state of the canvas. **/
             data[0].img = ctx.getImageData(0, 0, cnv.width, cnv.height);
             /** set transition **/
-            var transition = data.transition ? data.transition : 'bounceback';
+            var transition = data[3] && that.panelFunctions[data[3]]? data[3] : 'bounceback';
+            console.log(data[3]);
             return that.panelFunctions[transition](data, cnv, ctx);
         },
         popup: animatePopUp
