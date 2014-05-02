@@ -56,7 +56,7 @@ var CCMove = (function(){
             ctx.clearRect(0,0,800,450);
             ctx.putImageData(data[0], 0 - deltaX, 0);
             ctx.putImageData(data[1], 800 - deltaX, 0);
-            if( timePassed >= lenAnim) {
+            if (timePassed >= lenAnim){
                 return false;
             } else {
                 return true;
@@ -64,12 +64,7 @@ var CCMove = (function(){
         });
     }
     function crossfadePanels(data, cnv, ctx){
-        // I should just refactor crossfader with roquestAnimation
-        var deferred = Q.defer();
-        new Crossfader(cnv, data[0], data[1]).start(function(){
-            deferred.resolve();
-        });
-        return deferred.promise;
+        return Crossfader(cnv, data[0], data[1]);
     }
 
     function animatePopUp(popup, cnv, ctx){
@@ -127,13 +122,8 @@ var CCMove = (function(){
 
         return deferred.promise;
     }
-    function done(cb){
-        if (typeof cb === "function") {
-            cb();
-        }
-    }
 
-    var Animate = {
+    return {
         panelFunctions: {
             crossfade: crossfadePanels,
             jumpcut: crossfadePanels,
@@ -147,13 +137,11 @@ var CCMove = (function(){
             var imgZero = ctx.getImageData(0, 0, cnv.width, cnv.height);
             /** set transition **/
             var transition = data.transition && that.panelFunctions[data.transition]? data.transition
-                : 'bounce';
+                : 'crossfade';
             return that.panelFunctions[transition]([imgZero, data.img], cnv, ctx);
         },
         popup: animatePopUp
     };
-
-    return  Animate;
 }());
 
 console.log('animation startTime');

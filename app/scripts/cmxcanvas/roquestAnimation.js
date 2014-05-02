@@ -1,12 +1,12 @@
 'use strict';
 
-var roquestAnim = function(func){
+var roquestAnim = function(animFunc, lenAnim){
     var deferred = new Q.defer(),
         animStartTime,
         rAF;
 
-    function animLoop(time){
-        var animReturnVal = (typeof func === 'function') ? func.call(undefined, animStartTime) : false;
+    function animLoop(){
+        var animReturnVal = animFunc.call(undefined, animStartTime);
         if (animReturnVal === false) {
             deferred.resolve();
         } else {
@@ -14,8 +14,21 @@ var roquestAnim = function(func){
         }
     }
 
+    function timeBasedLoop(){
+        var timePassed = performance.now() - animStartTime;
+
+        animFunc.call(undefined, timePassed);
+
+        if (timePassed >= lenAnim) {
+            deferred.resolve();
+        } else {
+            rAF = requestAnimationFrame(timeBasedLoop);
+        }
+
+    }
+
     animStartTime = performance.now();
-    rAF = requestAnimationFrame(animLoop);
+    rAF = lenAnim ? requestAnimationFrame(timeBasedLoop) : requestAnimationFrame(animLoop);
 
     return deferred.promise;
 };
