@@ -1,36 +1,7 @@
 'use strict';
-/*globals requestAnimationFrame, performance, Crossfader*/
-var roquestAnim = function(func){
-    var deferred = new Q.defer();
-    var that = {},
-        rAF,
-        finalCallback;
-
-    function animLoop(time){
-        var animReturnVal = (typeof func === 'function') ? func.call(that, time) : false;
-        if (animReturnVal === false) {
-            deferred.resolve();
-        } else {
-            rAF = requestAnimationFrame(animLoop);
-        }
-    }
-
-    that.then = function(fn){
-        if (typeof fn === 'function') { finalCallback = fn; }
-        return that;
-    };
-
-    that.animStartTime = performance.now();
-    rAF = requestAnimationFrame(animLoop);
-    return deferred.promise;
-};
+/*globals Crossfader*/
 
 var CCMove = (function(){
-
-
-    function halfDiff(a, b){
-        return (a - b)/2;
-    }
 
     function bounce(data, cnv, ctx){
 
@@ -44,10 +15,10 @@ var CCMove = (function(){
             distance = cnv.width,
             distancePerLenAnim = Math.PI/(2*lenAnim);
 
-        return roquestAnim(function(){
+        return roquestAnim(function(startTime){
             //some ideas for bounceback: offset the hook with a larger distance. Some perfect ratio?
             var bouncedistance = cnv.width*(6/5);
-            var timePassed = (performance.now() - this.animStartTime);
+            var timePassed = (performance.now() - startTime);
             //some ideas for bounceback: PI*3/2 and so on to get a hook.
             var sinPart = Math.sin(timePassed*distancePerLenAnim*(4/3));
             // var sinPart = Math.sin(timePassed*distancePerLenAnim);
@@ -77,8 +48,8 @@ var CCMove = (function(){
             distance = cnv.width,
             distancePerLenAnim = Math.PI/(2*lenAnim);
 
-        return roquestAnim(function(){
-            var timePassed = (performance.now() - this.animStartTime);
+        return roquestAnim(function(startTime){
+            var timePassed = (performance.now() - startTime);
             var sinPart = Math.sin(timePassed*distancePerLenAnim);
             var deltaX =  sinPart < 0 ? 0 : sinPart * distance;
             
@@ -92,7 +63,6 @@ var CCMove = (function(){
             }
         });
     }
-    
     function crossfadePanels(data, cnv, ctx){
         // I should just refactor crossfader with roquestAnimation
         var deferred = Q.defer();
@@ -101,6 +71,7 @@ var CCMove = (function(){
         });
         return deferred.promise;
     }
+
     function animatePopUp(popup, cnv, ctx){
         var deferred = Q.defer();
         popup.x = popup.x || 0;
@@ -184,3 +155,5 @@ var CCMove = (function(){
 
     return  Animate;
 }());
+
+console.log('animation startTime');
