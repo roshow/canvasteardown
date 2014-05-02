@@ -6,7 +6,7 @@ var roquestAnim = function(animFunc, lenAnim){
         rAF;
 
     function animLoop(){
-        var animReturnVal = animFunc.call(undefined, animStartTime);
+        var animReturnVal = animFunc(animStartTime);
         if (animReturnVal === false) {
             deferred.resolve();
         } else {
@@ -17,7 +17,7 @@ var roquestAnim = function(animFunc, lenAnim){
     function timeBasedLoop(){
         var timePassed = performance.now() - animStartTime;
 
-        animFunc.call(undefined, timePassed);
+        animFunc(timePassed);
 
         if (timePassed >= lenAnim) {
             deferred.resolve();

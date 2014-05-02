@@ -58,18 +58,12 @@ function Crossfader(canvas, image1, image2) {
     }
 
     function start(){
-        var lenAnim = 500,
+        var lenAnim = 300,
             distancePerLenAnim = Math.PI/(2*lenAnim);
 
-        return roquestAnim(function(startTime){
-            var timePassed = (performance.now() - startTime);
+        return roquestAnim(function(timePassed){
             tween(Math.sin(timePassed*distancePerLenAnim + Math.PI/2));
-            if (timePassed >= lenAnim) {
-                return false;
-            } else {
-                return true;
-            }
-        });
+        }, lenAnim);
     }
 
     if (typeof Int16Array !== 'undefined') {

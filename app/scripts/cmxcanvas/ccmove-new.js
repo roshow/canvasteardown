@@ -15,10 +15,9 @@ var CCMove = (function(){
             distance = cnv.width,
             distancePerLenAnim = Math.PI/(2*lenAnim);
 
-        return roquestAnim(function(startTime){
+        return roquestAnim(function(timePassed, startTime){
             //some ideas for bounceback: offset the hook with a larger distance. Some perfect ratio?
             var bouncedistance = cnv.width*(6/5);
-            var timePassed = (performance.now() - startTime);
             //some ideas for bounceback: PI*3/2 and so on to get a hook.
             var sinPart = Math.sin(timePassed*distancePerLenAnim*(4/3));
             // var sinPart = Math.sin(timePassed*distancePerLenAnim);
@@ -27,13 +26,9 @@ var CCMove = (function(){
             ctx.clearRect(0,0,800,450);
             ctx.putImageData(data[0], 0 - deltaX, 0);
             ctx.putImageData(data[1], 800 - deltaX, 0);
-            if( timePassed >= lenAnim) {
-                ctx.clearRect(0,0,800,450);
-                ctx.putImageData(data[1],0, 0);
-                return false;
-            } else {
-                return true;
-            }
+        }, lenAnim).then(function(){
+            ctx.clearRect(0,0,800,450);
+            ctx.putImageData(data[1],0, 0);
         });
     }
     function slide(data, cnv, ctx){
@@ -137,7 +132,7 @@ var CCMove = (function(){
             var imgZero = ctx.getImageData(0, 0, cnv.width, cnv.height);
             /** set transition **/
             var transition = data.transition && that.panelFunctions[data.transition]? data.transition
-                : 'crossfade';
+                : 'bounce';
             return that.panelFunctions[transition]([imgZero, data.img], cnv, ctx);
         },
         popup: animatePopUp
