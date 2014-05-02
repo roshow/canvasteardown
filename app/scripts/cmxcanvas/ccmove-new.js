@@ -20,7 +20,6 @@ var CCMove = (function(){
             var bouncedistance = cnv.width*(6/5);
             //some ideas for bounceback: PI*3/2 and so on to get a hook.
             var sinPart = Math.sin(timePassed*distancePerLenAnim*(4/3));
-            // var sinPart = Math.sin(timePassed*distancePerLenAnim);
             var deltaX =  sinPart < 0 ? 0 : sinPart * bouncedistance;
             
             ctx.clearRect(0,0,800,450);
@@ -43,20 +42,14 @@ var CCMove = (function(){
             distance = cnv.width,
             distancePerLenAnim = Math.PI/(2*lenAnim);
 
-        return roquestAnim(function(startTime){
-            var timePassed = (performance.now() - startTime);
+        return roquestAnim(function(timePassed){
             var sinPart = Math.sin(timePassed*distancePerLenAnim);
             var deltaX =  sinPart < 0 ? 0 : sinPart * distance;
             
             ctx.clearRect(0,0,800,450);
             ctx.putImageData(data[0], 0 - deltaX, 0);
             ctx.putImageData(data[1], 800 - deltaX, 0);
-            if (timePassed >= lenAnim){
-                return false;
-            } else {
-                return true;
-            }
-        });
+        }, lenAnim);
     }
     function crossfadePanels(data, cnv, ctx){
         return Crossfader(cnv, data[0], data[1]);
