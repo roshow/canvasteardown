@@ -1,5 +1,7 @@
+/*globals roquestAnim, Crossfader, Q*/
+/*exported CCMove*/
+
 'use strict';
-/*globals Crossfader*/
 
 var CCMove = (function(){
 
@@ -12,10 +14,9 @@ var CCMove = (function(){
         ctx.putImageData (data[0], 0, 0);
 
         var lenAnim = 300,
-            distance = cnv.width,
             distancePerLenAnim = Math.PI/(2*lenAnim);
 
-        return roquestAnim(function(timePassed, startTime){
+        return roquestAnim(function(timePassed){
             //some ideas for bounceback: offset the hook with a larger distance. Some perfect ratio?
             var bouncedistance = cnv.width*(6/5);
             //some ideas for bounceback: PI*3/2 and so on to get a hook.
@@ -51,8 +52,8 @@ var CCMove = (function(){
             ctx.putImageData(data[1], 800 - deltaX, 0);
         }, lenAnim);
     }
-    function crossfadePanels(data, cnv, ctx){
-        return Crossfader(cnv, data[0], data[1]);
+    function crossfadePanels(data, cnv){
+        return new Crossfader(cnv, data[0], data[1]);
     }
 
     function animatePopUp(popup, cnv, ctx){

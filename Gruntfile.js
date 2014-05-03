@@ -218,7 +218,7 @@ module.exports = function (grunt) {
             options: {
                 dest: '<%= config.dist %>'
             },
-            html: '<%= config.app %>/refactor.html'
+            html: '<%= config.app %>/index.html'
         },
 
         // Performs rewrites based on rev and the useminPrepare configuration
@@ -307,14 +307,7 @@ module.exports = function (grunt) {
                     expand: true,
                     dot: true,
                     cwd: '<%= config.app %>',
-                    dest: '<%= config.dist %>',
-                    // src: [
-                    //     '*.{ico,png,txt}',
-                    //     '.htaccess',
-                    //     'images/{,*/}*.webp',
-                    //     '{,*/}*.html',
-                    //     'styles/fonts/{,*/}*.*'
-                    // ]
+                    dest: '<%= config.dist %>'
                 }]
             },
             styles: {
@@ -395,7 +388,6 @@ module.exports = function (grunt) {
 
     grunt.registerTask('default', [
         'newer:jshint',
-        'test',
         'build'
     ]);
 };

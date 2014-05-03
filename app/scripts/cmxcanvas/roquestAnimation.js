@@ -1,6 +1,9 @@
+/*globals performance, requestAnimationFrame, Q*/
+/*exported roquestAnim*/
+
 'use strict';
 
-var roquestAnim = function(animFunc, lenAnim){
+var roquestAnim = function (animFunc, lenAnim){
     var deferred = new Q.defer(),
         animStartTime,
         rAF;

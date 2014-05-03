@@ -1,5 +1,8 @@
-'use strict';
 /*globals Q*/
+/*exported CCLoader*/
+
+'use strict';
+
 var CCLoader = (function(){
 
     var loader = {};

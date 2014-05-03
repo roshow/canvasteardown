@@ -1,3 +1,5 @@
+/*exported CCPanelSet*/
+
 'use strict';
 
 function CCPanelSet(cmxjson){

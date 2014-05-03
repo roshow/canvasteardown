@@ -1,6 +1,6 @@
+/*global Int16Array, roquestAnim */
+/*exported Crossfader, Q*/
 
-
-/*global window:true Int16Array:true */
 'use strict';
 
 function Crossfader(canvas, image1, image2) {
@@ -12,10 +12,7 @@ function Crossfader(canvas, image1, image2) {
         result = context.createImageData(width, height),
         offset = new Array(len),
         delta = new Array(len),
-        timestamp = Date.now(),
-        frames = 0,
-        value = 0,
-        ticker;
+        frames = 0;
 
     /** @roshow: Center images on canvas when drawing them. And ALWAYS use data for image1 **/
     var image2X = (width - image2.width)/2,

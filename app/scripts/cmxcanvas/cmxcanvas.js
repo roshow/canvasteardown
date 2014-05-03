@@ -1,5 +1,8 @@
+/*globals CCLoader, CCMove, CCPanelSet, performance*/
+/*exported CmxCanvas*/
+
 'use strict';
-/*globals CCLoader, CCMove, panelset*/
+
 
 var CmxCanvas = function(initData, el){
 
@@ -37,7 +40,7 @@ var CmxCanvas = function(initData, el){
     }
 
     cmxcanvas.prev = function(){
-        loadAndUpdatePanels(panelset.prev().panel).then(function(loc){
+        loadAndUpdatePanels(panelset.prev().panel).then(function(){
             draw(panelset.currentView);
         });
         return this;
