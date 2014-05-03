@@ -143,17 +143,17 @@ module.exports = function (grunt) {
         // Compiles Sass to CSS and generates necessary files if requested
         compass: {
             options: {
-                sassDir: '<%= config.app %>/styles',
-                cssDir: '.tmp/styles',
-                generatedImagesDir: '.tmp/images/generated',
-                imagesDir: '<%= config.app %>/images',
+                // sassDir: '<%= config.app %>/styles',
+                // cssDir: '.tmp/styles',
+                // generatedImagesDir: '.tmp/images/generated',
+                // imagesDir: '<%= config.app %>/images',
                 javascriptsDir: '<%= config.app %>/scripts',
-                fontsDir: '<%= config.app %>/styles/fonts',
-                importPath: '<%= config.app %>/bower_components',
-                httpImagesPath: '/images',
-                httpGeneratedImagesPath: '/images/generated',
-                httpFontsPath: '/styles/fonts',
-                relativeAssets: false,
+                // fontsDir: '<%= config.app %>/styles/fonts',
+                // importPath: '<%= config.app %>/bower_components',
+                // httpImagesPath: '/images',
+                // httpGeneratedImagesPath: '/images/generated',
+                // httpFontsPath: '/styles/fonts',
+                // relativeAssets: false,
                 assetCacheBuster: false
             },
             dist: {
@@ -201,11 +201,11 @@ module.exports = function (grunt) {
             dist: {
                 files: {
                     src: [
-                        '<%= config.dist %>/scripts/{,*/}*.js',
-                        '<%= config.dist %>/styles/{,*/}*.css',
-                        '<%= config.dist %>/images/{,*/}*.*',
-                        '<%= config.dist %>/styles/fonts/{,*/}*.*',
-                        '<%= config.dist %>/*.{ico,png}'
+                        // '<%= config.dist %>/scripts/{,*/}*.js',
+                        // '<%= config.dist %>/styles/{,*/}*.css',
+                        // '<%= config.dist %>/images/{,*/}*.*',
+                        // '<%= config.dist %>/styles/fonts/{,*/}*.*',
+                        // '<%= config.dist %>/*.{ico,png}'
                     ]
                 }
             }
@@ -218,7 +218,7 @@ module.exports = function (grunt) {
             options: {
                 dest: '<%= config.dist %>'
             },
-            html: '<%= config.app %>/index.html'
+            html: '<%= config.app %>/refactor.html'
         },
 
         // Performs rewrites based on rev and the useminPrepare configuration
@@ -308,13 +308,13 @@ module.exports = function (grunt) {
                     dot: true,
                     cwd: '<%= config.app %>',
                     dest: '<%= config.dist %>',
-                    src: [
-                        '*.{ico,png,txt}',
-                        '.htaccess',
-                        'images/{,*/}*.webp',
-                        '{,*/}*.html',
-                        'styles/fonts/{,*/}*.*'
-                    ]
+                    // src: [
+                    //     '*.{ico,png,txt}',
+                    //     '.htaccess',
+                    //     'images/{,*/}*.webp',
+                    //     '{,*/}*.html',
+                    //     'styles/fonts/{,*/}*.*'
+                    // ]
                 }]
             },
             styles: {
@@ -338,7 +338,7 @@ module.exports = function (grunt) {
             dist: [
                 'compass',
                 'copy:styles',
-                'imagemin',
+                // 'imagemin',
                 'svgmin'
             ]
         }

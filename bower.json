@@ -2,7 +2,6 @@
   "name": "yoapp",
   "private": true,
   "dependencies": {
-    "jquery": "~1.11.0",
     "q": "~1"
   },
   "devDependencies": {}
