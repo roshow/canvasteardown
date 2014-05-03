@@ -45,16 +45,30 @@
           </div>
         </div>
 
-        <!-- Only loading jQuery here for ajax and DOM. Not needed for CmxCanvas. -->
-        <script src="scripts/vendor/jquery.min.js"></script>
         <script type="text/javascript">
-            var cmxCanvas;
-            $.getJSON('json/sov01Model.json')
-                .done(function(data){
-                    cmxCanvas = new CmxCanvas(data.cmxJSON, 'thisCanvas');
-                    $('#book-next').on('click', cmxCanvas.next);
-                    $('#book-prev').on('click', cmxCanvas.prev);
-                });
+            (function(){
+                var cmxCanvas;
+
+                function _init(json){
+                    cmxCanvas = new CmxCanvas(json, 'thisCanvas');
+                    document.getElementById('book-next').onclick = cmxCanvas.next;
+                    document.getElementById('book-prev').onclick = cmxCanvas.prev;
+                };
+                
+
+                request = new XMLHttpRequest();
+                request.open('GET', 'json/sov01Model.json', true);
+
+                request.onload = function() {
+                  if (request.status >= 200 && request.status < 400){
+                    _init(JSON.parse(request.response).cmxJSON);
+                  } else {
+                    console.log(request.responseText);
+                  }
+                };
+
+                request.send();
+            }());
         </script>
 </body>
 </html>

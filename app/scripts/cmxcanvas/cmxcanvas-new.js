@@ -1,11 +1,11 @@
 'use strict';
-/*globals CCLoader, panelset*/
-
-var panelset, canvas, context,
-    cmxcanvas = {};
+/*globals CCLoader, CCMove, panelset*/
 
 var CmxCanvas = function(initData, el){
 
+    var panelset, canvas, context,
+        cmxcanvas = {};
+        
     function drawLoadingImg(){
         context.clearRect(0, 0, canvas.width, canvas.height);
         context.font = '30pt Monaco';
@@ -63,24 +63,28 @@ var CmxCanvas = function(initData, el){
     };
 
     cmxcanvas.load = function(rawpanels, canvasId){
-        var startt = performance.now();
+
         /** Add all the fun stuff to the collection of panels and popups **/
         panelset = new CCPanelSet(rawpanels);
+        
         /** Get Canvases and Contexts and Drawing load image **/
         canvas = document.getElementById(canvasId);
         context = canvas.getContext('2d');
         context.fillStyle = '#fff';
         drawLoadingImg();
+
         /** Load initial panels and draw **/
-        loadAndUpdatePanels(0,5).then(function(loc){
+        loadAndUpdatePanels(0,5).then(function(){
             draw(panelset.currentView);
         });
-        loadAndUpdatePanels(0,(panelset.length - 1)).then(function(){
-            console.log('allll loaded');
-            console.log((performance.now()-startt)/1000);
-        });
-        /* warm up the local browser's cache  - turned off for now. */
-        // CCLoader.batchPanels(panelset.slice(2));
+
+        /** Batch preload the rest **/
+        var startPreload = performance.now();
+        loadAndUpdatePanels(6,(panelset.length - 1)).then(function(){
+                console.log('all loaded');
+                console.log((performance.now()-startPreload)/1000);
+            });
+
         return this;
     };
 
