@@ -65,6 +65,10 @@ var CmxCanvas = function(initData, el){
         return this;
     };
 
+    cmxcanvas.goTo = function(panel, popup){
+        draw(panelset.goTo(panel,popup));
+    };
+
     cmxcanvas.load = function(rawpanels, canvasId){
 
         /** Add all the fun stuff to the collection of panels and popups **/
