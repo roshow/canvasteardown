@@ -109,7 +109,16 @@ module.exports = function (grunt) {
                     src: [
                         '.tmp',
                         '<%= config.dist %>/*',
-                        '!<%= config.dist %>/.git*'
+                        '!<%= config.dist %>/.git*',
+                        '/Users/roshow/github/angularcmx/app/scripts/lib/cmxcanvas-dist-min.js'
+                    ]
+                }]
+            },
+            angularcmx: {
+                files: [{
+                    dot: true,
+                    src: [
+                        '/Users/roshow/github/angularcmx/app/scripts/lib/cmxcanvas-dist-min.js'
                     ]
                 }]
             },
@@ -316,6 +325,10 @@ module.exports = function (grunt) {
                 cwd: '<%= config.app %>/styles',
                 dest: '.tmp/styles/',
                 src: '{,*/}*.css'
+            },
+            angularcmx: {
+                src: '<%= config.dist %>/cmxcanvas-dist-min.js',
+                dest: '/Users/roshow/github/angularcmx/app/scripts/lib/cmxcanvas-dist-min.js'
             }
         },
 
@@ -389,5 +402,11 @@ module.exports = function (grunt) {
     grunt.registerTask('default', [
         'newer:jshint',
         'build'
+    ]);
+
+    grunt.registerTask('angularcmx', [
+        'clean:angularcmx',
+        'default',
+        'copy:angularcmx'
     ]);
 };

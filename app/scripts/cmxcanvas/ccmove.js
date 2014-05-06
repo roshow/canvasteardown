@@ -132,5 +132,3 @@ var CCMove = (function(){
         popup: animatePopUp
     };
 }());
-
-console.log('animation startTime');

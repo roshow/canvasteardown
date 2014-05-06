@@ -52,13 +52,13 @@ var CmxCanvas = function(initData, el){
         if (panelset.currentView.type === 'popup'){
             CCMove.popup(panelset.currentView, canvas, context)
                 .then(function(){
-                    console.log('popup up');
+                    // console.log('popup up');
                 });
         }
         else {
             CCMove.panels(panelset.currentView, canvas, context)
                 .then(function(){
-                    console.log('panel in');
+                    // console.log('panel in');
                 });
         }
         // });
@@ -84,8 +84,8 @@ var CmxCanvas = function(initData, el){
         /** Batch preload the rest **/
         var startPreload = performance.now();
         loadAndUpdatePanels(6,(panelset.length - 1)).then(function(){
-                console.log('all loaded');
-                console.log((performance.now()-startPreload)/1000);
+                // console.log('all loaded');
+                // console.log((performance.now()-startPreload)/1000);
             });
 
         return this;
