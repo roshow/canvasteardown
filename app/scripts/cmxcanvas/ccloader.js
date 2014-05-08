@@ -13,6 +13,7 @@ var CCLoader = (function(){
         img.onload = function(){
             deferred.resolve(this);
         };
+        img.crossOrigin="anonymous";
         img.panel = imgObj.panel;
         img.src = imgObj.src;
         return deferred.promise;
