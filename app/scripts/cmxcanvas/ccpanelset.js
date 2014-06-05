@@ -23,6 +23,8 @@ function CCPanelSet(cmxjson){
         //     view.isLast = true;
         // }
         cmxjson.currentView = view;
+        cmxjson.currentIndex = loc;
+        cmxjson.onchange && cmxjson.onchange();
         return view;
     };
 

@@ -7,6 +7,8 @@
 var CmxCanvas = function(initData, el){
 
     var panelset, canvas, context,
+        isMoving = false,
+        wasLast = false,
         cmxcanvas = {};
         
     function drawLoadingImg(){
@@ -40,28 +42,42 @@ var CmxCanvas = function(initData, el){
     }
 
     cmxcanvas.prev = function(){
+        wasLast = false;
         loadAndUpdatePanels(panelset.prev().panel).then(function(){
             draw(panelset.currentView);
         });
         return this;
     };
-
+    
     cmxcanvas.next = function(){
-       // loadAndUpdatePanels(panelset.next().panel).then(function(loc){
-        panelset.next();
-        if (panelset.currentView.type === 'popup'){
-            CCMove.popup(panelset.currentView, canvas, context)
-                .then(function(){
-                    // console.log('popup up');
-                });
+        if (!isMoving){
+           // loadAndUpdatePanels(panelset.next().panel).then(function(loc){
+            panelset.next();
+            if (!wasLast){
+                isMoving = true;
+                if (panelset.currentIndex[0] === panelset.last[0] && panelset.currentIndex[1] === panelset.last[1]){
+                    wasLast = true;
+                }
+                if (panelset.currentView.type === 'popup'){
+                    CCMove.popup(panelset.currentView, canvas, context)
+                        .then(function(){
+                            isMoving = false;
+                            // console.log('popup upped');
+                        });
+                }
+                else {
+                    CCMove.panels(panelset.currentView, canvas, context)
+                        .then(function(){
+                            isMoving = false;
+                            // console.log('panel inned');
+                        });
+                }
+            }
+            // });
         }
         else {
-            CCMove.panels(panelset.currentView, canvas, context)
-                .then(function(){
-                    // console.log('panel in');
-                });
+            // console.log('is already moving');
         }
-        // });
         return this;
     };
 
@@ -71,8 +87,13 @@ var CmxCanvas = function(initData, el){
 
     cmxcanvas.load = function(rawpanels, canvasId){
 
+        var that = this;
+
         /** Add all the fun stuff to the collection of panels and popups **/
         panelset = new CCPanelSet(rawpanels);
+        panelset.onchange = function(){
+            that.currentView = panelset.currentView;
+        };
         
         /** Get Canvases and Contexts and Drawing load image **/
         canvas = document.getElementById(canvasId);
@@ -83,14 +104,16 @@ var CmxCanvas = function(initData, el){
         /** Load initial panels and draw **/
         loadAndUpdatePanels(0,5).then(function(){
             draw(panelset.currentView);
-        });
-
-        /** Batch preload the rest **/
-        var startPreload = performance.now();
-        loadAndUpdatePanels(6,(panelset.length - 1)).then(function(){
+            
+            /** Batch preload the rest **/
+            // var startPreload = performance.now();
+            loadAndUpdatePanels(6,(panelset.length - 1)).then(function(){
                 // console.log('all loaded');
                 // console.log((performance.now()-startPreload)/1000);
             });
+        });
+
+        
 
         return this;
     };

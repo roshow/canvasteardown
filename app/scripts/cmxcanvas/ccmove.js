@@ -13,7 +13,7 @@ var CCMove = (function(){
         ctx.fillRect(0, 0, cnv.width, cnv.height);
         ctx.putImageData (data[0], 0, 0);
 
-        var lenAnim = 300,
+        var lenAnim = 400,
             distancePerLenAnim = Math.PI/(2*lenAnim);
 
         return roquestAnim(function(timePassed){
