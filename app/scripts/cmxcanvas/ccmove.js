@@ -1,6 +1,5 @@
 /*globals roquestAnim, Crossfader, Q*/
 /*exported CCMove*/
-
 'use strict';
 
 var CCMove = (function(){

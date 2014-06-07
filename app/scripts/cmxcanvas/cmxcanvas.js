@@ -6,16 +6,18 @@
 
 var CmxCanvas = function(initData, el){
 
-    var panelset, canvas, context,
-        isMoving = false,
+    var panelset, canvas, context, loadingImg,
+        doNotMove = false,
         wasLast = false,
         cmxcanvas = {};
         
     function drawLoadingImg(){
+        context.fillStyle = '#000';
         context.clearRect(0, 0, canvas.width, canvas.height);
         context.font = '30pt Monaco';
         context.textAlign = 'center';
         context.fillText('LOADING...', canvas.width / 2, canvas.height / 2);
+        context.fillStyle = '#fff';
     }
 
     function loadAndUpdatePanels(first, last){
@@ -32,44 +34,79 @@ var CmxCanvas = function(initData, el){
         });
     }
 
+    function resolveLoadingImgPromise(imgPromise){
+        if (imgPromise){
+            doNotMove = true;
+            imgPromise.then(function (imgs){
+                panelset.currentView.img = imgs.shift();
+                for (var ii = 0, ll = imgs.length; ii < ll; ii++){
+                     panelset.currentView.popups[ii].img = imgs[ii];
+                }
+                draw(panelset.currentView);
+                doNotMove = false;
+            });
+        }
+    }
+
     function draw(storyimg){
+        /** TODO: check this logic. It may be dodgy. Or it may not be. **/
+        var imgPromise;
+        doNotMove = true;
+        if (!storyimg.img){
+            storyimg.img = loadingImg;
+            imgPromise = CCLoader.onePanel(storyimg);
+        }
         if (storyimg.type === 'panel'){
             context.fillRect(0, 0, canvas.width, canvas.height);
         }
         var x = storyimg.x || (canvas.width - storyimg.img.width) / 2,
             y = storyimg.y || (canvas.height - storyimg.img.height) / 2;
         context.drawImage(storyimg.img, x, y);
+        doNotMove = false;
+        resolveLoadingImgPromise(imgPromise);
+        
     }
 
     cmxcanvas.prev = function(){
-        wasLast = false;
-        loadAndUpdatePanels(panelset.prev().panel).then(function(){
+        if(!doNotMove){
+            wasLast = false;
+            panelset.prev();
             draw(panelset.currentView);
-        });
-        return this;
+            return this;
+        }
     };
     
     cmxcanvas.next = function(){
-        if (!isMoving){
+        if (!doNotMove){
            // loadAndUpdatePanels(panelset.next().panel).then(function(loc){
             panelset.next();
             if (!wasLast){
-                isMoving = true;
+                doNotMove = true;
                 if (panelset.currentIndex[0] === panelset.last[0] && panelset.currentIndex[1] === panelset.last[1]){
                     wasLast = true;
                 }
+
                 if (panelset.currentView.type === 'popup'){
                     CCMove.popup(panelset.currentView, canvas, context)
                         .then(function(){
-                            isMoving = false;
+                            doNotMove = false;
                             // console.log('popup upped');
                         });
                 }
                 else {
+                    var imgPromise;
+                    if (!panelset.currentView.img){
+                        panelset.currentView.img = loadingImg;
+                        /** this is my favorite use of promises yet because it's the first 
+                            time I've grokked their full potential. By making this promise
+                            here I can call it later without worrying about whether it's
+                            resolve or not -- the promise handles it for me **/
+                        imgPromise = CCLoader.onePanel(panelset.currentView);
+                    }
                     CCMove.panels(panelset.currentView, canvas, context)
                         .then(function(){
-                            isMoving = false;
-                            // console.log('panel inned');
+                            doNotMove = false;
+                            resolveLoadingImgPromise(imgPromise);
                         });
                 }
             }
@@ -99,13 +136,19 @@ var CmxCanvas = function(initData, el){
         canvas = document.getElementById(canvasId);
         context = canvas.getContext('2d');
         context.fillStyle = '#fff';
+
+        /** Draw initial load image and load/save it for later uses on unloaded images **/
         drawLoadingImg();
+        CCLoader.oneImage({ src: canvas.toDataURL()}).then(function (img){
+            loadingImg = img;
+        });
 
         /** Load initial panels and draw **/
         loadAndUpdatePanels(0,5).then(function(){
             draw(panelset.currentView);
-            
+
             /** Batch preload the rest **/
+
             // var startPreload = performance.now();
             loadAndUpdatePanels(6,(panelset.length - 1)).then(function(){
                 // console.log('all loaded');

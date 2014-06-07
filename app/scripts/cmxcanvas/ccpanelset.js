@@ -25,6 +25,7 @@ function CCPanelSet(cmxjson){
         cmxjson.currentView = view;
         cmxjson.currentIndex = loc;
         cmxjson.onchange && cmxjson.onchange();
+        // console.log(view);
         return view;
     };
 
@@ -37,7 +38,7 @@ function CCPanelSet(cmxjson){
             loc[1] = -1;
         }
         else {
-            console.log('NO MAS!');
+            // console.log('NO MAS!');
         }
         return this.setView();
     };
@@ -51,7 +52,7 @@ function CCPanelSet(cmxjson){
             loc[1] = -1;
         }
         else {
-            console.log('MUY POCO!');
+            // console.log('MUY POCO!');
         }
         return this.setView();
     };
