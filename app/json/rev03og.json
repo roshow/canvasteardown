@@ -1,0 +1,48 @@
+{
+    "_id": "rev03og",
+    "issue": 4,
+    "published": 1,
+    "title": "Cluster---k!",
+    "thumb": "http://roshow.net/public/images/cmxcanvas/sov01/sov01_thumb.jpg",
+    "series": {
+        "name": "Revenger",
+        "id": "rev"
+    },
+    "creators": [
+        {
+            "name": "Michael Powell",
+            "credit": "Artist",
+            "url": "http://michaelpowellart.tumblr.com"
+        },
+        {
+            "name": "Rolando Garcia",
+            "credit": "Writer",
+            "url": "http://roshow.net"
+        }
+    ],
+    "img": {
+        // "url": "http://roshow.net/public/images/cmxcanvas/sov01/"
+        "url": "/images/rev03og/"
+    },
+    "cmxJSON": [
+        {
+            "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_01.jpg",
+            "type": "panel",
+            "popups": [
+                {
+                    "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_01_letters_01.png",
+                    "type": "popup",
+                    "x": 335,
+                    "y": 10
+                },
+                {
+                    "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_01_letters_02.png",
+                    "type": "popup",
+                    "x": 345,
+                    "y": 340
+                }
+            ],
+            "panel": 0
+        }
+    ]
+}

@@ -6,6 +6,8 @@
 
 var CmxCanvas = function(initData, el){
 
+    var ccMove;
+
     var panelset, canvas, context, loadingImg,
         doNotMove = false,
         wasLast = false,
@@ -69,9 +71,13 @@ var CmxCanvas = function(initData, el){
 
     cmxcanvas.prev = function(){
         if(!doNotMove){
-            wasLast = false;
+            doNotMove = true;
             panelset.prev();
-            draw(panelset.currentView);
+            wasLast = false;
+            ccMove.panels(panelset.currentView, true)
+                .then(function(){
+                    doNotMove = false;
+                });
             return this;
         }
     };
@@ -87,7 +93,7 @@ var CmxCanvas = function(initData, el){
                 }
 
                 if (panelset.currentView.type === 'popup'){
-                    CCMove.popup(panelset.currentView, canvas, context)
+                    ccMove.popup(panelset.currentView)
                         .then(function(){
                             doNotMove = false;
                             // console.log('popup upped');
@@ -103,7 +109,7 @@ var CmxCanvas = function(initData, el){
                             resolve or not -- the promise handles it for me **/
                         imgPromise = CCLoader.onePanel(panelset.currentView);
                     }
-                    CCMove.panels(panelset.currentView, canvas, context)
+                    ccMove.panels(panelset.currentView)
                         .then(function(){
                             doNotMove = false;
                             resolveLoadingImgPromise(imgPromise);
@@ -136,6 +142,8 @@ var CmxCanvas = function(initData, el){
         canvas = document.getElementById(canvasId);
         context = canvas.getContext('2d');
         context.fillStyle = '#fff';
+
+        ccMove = new CCMove(context,canvas);
 
         /** Draw initial load image and load/save it for later uses on unloaded images **/
         drawLoadingImg();

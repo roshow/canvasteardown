@@ -48,12 +48,11 @@ var roquestAnim = (function(){
 
         function timeBasedLoop(){
             var timePassed = now() - animStartTime;
-
-            animFunc(timePassed);
-
             if (timePassed >= lenAnim) {
+                animFunc(lenAnim);
                 deferred.resolve();
             } else {
+                animFunc(timePassed);
                 rAF = reqAF(timeBasedLoop);
             }
 

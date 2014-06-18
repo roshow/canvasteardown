@@ -2,9 +2,13 @@
 /*exported CCMove*/
 'use strict';
 
-var CCMove = (function(){
+function CCMove(context, canvas, defaults){
 
-    function bounce(data, cnv, ctx){
+    var ctx = context,
+        cnv = canvas,
+        defaults = defaults || {};
+
+    function bounce(data){
 
         ctx.fillRect(0, 0, cnv.width, cnv.height);
         ctx.drawImage(data[1], (cnv.width-data[1].width)/2, (cnv.height-data[1].height)/2);
@@ -22,40 +26,48 @@ var CCMove = (function(){
             var sinPart = Math.sin(timePassed*distancePerLenAnim*(4/3));
             var deltaX =  sinPart < 0 ? 0 : sinPart * bouncedistance;
             
-            ctx.clearRect(0,0,800,450);
+            ctx.clearRect(0,0,cnv.width, cnv.height);
             ctx.putImageData(data[0], 0 - deltaX, 0);
-            ctx.putImageData(data[1], 800 - deltaX, 0);
+            ctx.putImageData(data[1], cnv.width - deltaX, 0);
         }, lenAnim).then(function(){
-            ctx.clearRect(0,0,800,450);
+            ctx.clearRect(0,0,cnv.width, cnv.height);
             ctx.putImageData(data[1],0, 0);
         });
     }
-    function slide(data, cnv, ctx){
+    function slide(data, reverse, fade){
 
+        var back = reverse ? -1 : 1;
         ctx.fillRect(0, 0, cnv.width, cnv.height);
         ctx.drawImage(data[1], (cnv.width-data[1].width)/2, (cnv.height-data[1].height)/2);
         data[1] = ctx.getImageData(0, 0, cnv.width, cnv.height);
         ctx.fillRect(0, 0, cnv.width, cnv.height);
         ctx.putImageData (data[0], 0, 0);
 
-        var lenAnim = 300,
+        var lenAnim = 1000,
             distance = cnv.width,
-            distancePerLenAnim = Math.PI/(2*lenAnim);
+            distancePerLenAnim = (Math.PI/2)/lenAnim;
 
         return roquestAnim(function(timePassed){
             var sinPart = Math.sin(timePassed*distancePerLenAnim);
-            var deltaX =  sinPart < 0 ? 0 : sinPart * distance;
-            
-            ctx.clearRect(0,0,800,450);
-            ctx.putImageData(data[0], 0 - deltaX, 0);
-            ctx.putImageData(data[1], 800 - deltaX, 0);
+            var deltaX =  sinPart * distance;
+            if (fade){
+                for ( var i = 0, len = data[0].data.length; i < len; i+= 4 ){
+                    data[0].data[i+3] = 255*(1 - sinPart);
+                    data[1].data[i+3] = 255*sinPart;
+                }
+            }
+
+            ctx.clearRect(0,0,cnv.width, cnv.height);
+            ctx.putImageData(data[0], back*(0 - deltaX), 0);
+            ctx.putImageData(data[1], back*(cnv.width - deltaX), 0);
+
         }, lenAnim);
     }
-    function crossfadePanels(data, cnv){
+    function crossfadePanels(data){
         return new Crossfader(cnv, data[0], data[1]);
     }
 
-    function animatePopUp(popup, cnv, ctx){
+    function animatePopUp(popup){
         var deferred = Q.defer();
         popup.x = popup.x || 0;
         popup.y = popup.y || 0;
@@ -117,17 +129,21 @@ var CCMove = (function(){
             jumpcut: crossfadePanels,
             bounce: bounce,
             bounceback: bounce,
+            slideAndFade: function(data, reverse){
+                return slide(data, reverse, true);
+            },
             slide: slide
         },
-        panels: function(data, cnv, ctx){
+        panels: function(data, reverse){
             var that = this;
             /** Override image1 with data from the current state of the canvas. **/
             var imgZero = ctx.getImageData(0, 0, cnv.width, cnv.height);
             /** set transition **/
-            var transition = data.transition && that.panelFunctions[data.transition]? data.transition
-                : 'bounce';
-            return that.panelFunctions[transition]([imgZero, data.img], cnv, ctx);
+            var transition = data.transition && that.panelFunctions[data.transition] ? data.transition
+                : defaults.transition && that.panelFunctions[defaults.transition] ? defaults.transition
+                : 'slideAndFade';
+            return that.panelFunctions[transition]([imgZero, data.img], reverse || false);
         },
         popup: animatePopUp
     };
-}());
+};
