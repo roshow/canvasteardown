@@ -156,12 +156,7 @@ var CmxCanvas = function(initData, el){
             draw(panelset.currentView);
 
             /** Batch preload the rest **/
-
-            // var startPreload = performance.now();
-            loadAndUpdatePanels(6,(panelset.length - 1)).then(function(){
-                // console.log('all loaded');
-                // console.log((performance.now()-startPreload)/1000);
-            });
+            loadAndUpdatePanels(6,(panelset.length - 1));
         });
 
         
