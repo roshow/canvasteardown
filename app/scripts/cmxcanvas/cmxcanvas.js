@@ -74,7 +74,10 @@ var CmxCanvas = function(initData, el){
             doNotMove = true;
             panelset.prev();
             wasLast = false;
-            ccMove.panels(panelset.currentView, true)
+            ccMove.panels(panelset.currentView.img, {
+                reverse: true,
+                transition: panelset.currentView.transition
+            })
                 .then(function(){
                     doNotMove = false;
                 });
@@ -109,7 +112,9 @@ var CmxCanvas = function(initData, el){
                             resolve or not -- the promise handles it for me **/
                         imgPromise = CCLoader.onePanel(panelset.currentView);
                     }
-                    ccMove.panels(panelset.currentView)
+                    ccMove.panels(panelset.currentView.img, {
+                        transition: panelset.currentView.transition
+                    })
                         .then(function(){
                             doNotMove = false;
                             resolveLoadingImgPromise(imgPromise);

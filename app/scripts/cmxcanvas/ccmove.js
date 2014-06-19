@@ -5,10 +5,13 @@
 function CCMove(context, canvas, defaults){
 
     var ctx = context,
-        cnv = canvas,
-        defaults = defaults || {};
+        cnv = canvas;
+    defaults = defaults || {};
+    defaults.transition = defaults.transition || 'defaultAnim';
 
-    function bounce(data){
+    function bounce(data, options){
+
+        var back = options.reverse ;
 
         ctx.fillRect(0, 0, cnv.width, cnv.height);
         ctx.drawImage(data[1], (cnv.width-data[1].width)/2, (cnv.height-data[1].height)/2);
@@ -27,16 +30,16 @@ function CCMove(context, canvas, defaults){
             var deltaX =  sinPart < 0 ? 0 : sinPart * bouncedistance;
             
             ctx.clearRect(0,0,cnv.width, cnv.height);
-            ctx.putImageData(data[0], 0 - deltaX, 0);
-            ctx.putImageData(data[1], cnv.width - deltaX, 0);
+            ctx.putImageData(data[0], 0 - deltaX*back, 0);
+            ctx.putImageData(data[1], (cnv.width - deltaX)*back, 0);
+
         }, lenAnim).then(function(){
-            ctx.clearRect(0,0,cnv.width, cnv.height);
-            ctx.putImageData(data[1],0, 0);
+            ctx.putImageData(data[1], 0, 0);
         });
     }
-    function slide(data, reverse, fade){
+    function slide(data, options){
 
-        var back = reverse ? -1 : 1;
+        var back = options.reverse;
         ctx.fillRect(0, 0, cnv.width, cnv.height);
         ctx.drawImage(data[1], (cnv.width-data[1].width)/2, (cnv.height-data[1].height)/2);
         data[1] = ctx.getImageData(0, 0, cnv.width, cnv.height);
@@ -50,7 +53,8 @@ function CCMove(context, canvas, defaults){
         return roquestAnim(function(timePassed){
             var sinPart = Math.sin(timePassed*distancePerLenAnim);
             var deltaX =  sinPart * distance;
-            if (fade){
+
+            if (options.fade){
                 for ( var i = 0, len = data[0].data.length; i < len; i+= 4 ){
                     data[0].data[i+3] = 255*(1 - sinPart);
                     data[1].data[i+3] = 255*sinPart;
@@ -68,59 +72,42 @@ function CCMove(context, canvas, defaults){
     }
 
     function animatePopUp(popup){
-        var deferred = Q.defer();
+        var lenAnim = 1000;
         popup.x = popup.x || 0;
         popup.y = popup.y || 0;
-        popup.dur = popup.dur || 100;
-        popup.totalFrames = popup.totalFrames || 10;
-        var _int = popup.dur/popup.totalFrames,
-            _bkgPartial = ctx.getImageData(popup.x, popup.y, popup.img.width, popup.img.height),
-            _frame = 0;
+        var _bkgPartial = ctx.getImageData(popup.x, popup.y, popup.img.width, popup.img.height);
 
         switch (popup.transition || 'scaleIn') {
+
         case 'fadeIn':
+            lenAnim = 300;
             ctx.globalAlpha = 0;
-            var _fadeIn = setInterval(function(){
-                //increase globalAlpha by 1 / total frames and make it into a normal fraction
-                var ga = ctx.globalAlpha + 1/popup.totalFrames;
-                ctx.globalAlpha = parseFloat(ga.toFixed(1), 10);
+            return  roquestAnim(function(timePassed){
+                var sinPart = Math.sin(timePassed*(Math.PI/2)/lenAnim);
+                ctx.globalAlpha = sinPart;
 
                 ctx.clearRect(popup.x, popup.y, popup.img.width, popup.img.height);
                 ctx.putImageData(_bkgPartial, popup.x, popup.y);
                 ctx.drawImage(popup.img, popup.x, popup.y);
 
-                _frame++;
-                if (ctx.globalAlpha === 1) {
-                    deferred.resolve();
-                    clearInterval(_fadeIn);
-                }
-            }, _int);
-            break;
+            }, lenAnim).then(function(){
+
+            });
+
         case 'scaleIn':
-            var _scale = 0,
-            _scaleIn = setInterval(function(){
-          
-                _scale += 10;
-          
-                var _scaledW = popup.img.width*(_scale/100),
-                    _scaledH = popup.img.height*(_scale/100),
-                    _dX = popup.x + ((popup.img.width - _scaledW)/2),
-                    _dY = popup.y + ((popup.img.height - _scaledH)/2);
+            lenAnim = 150;
+            return  roquestAnim(function(timePassed){
+                var sinPart = Math.sin(timePassed*(Math.PI/2)/lenAnim),
+                    scaledW = popup.img.width*sinPart,
+                    scaledH = popup.img.height*sinPart,
+                    dX = popup.x + ((popup.img.width - scaledW)/2),
+                    dY = popup.y + ((popup.img.height - scaledH)/2);
 
                 ctx.clearRect(popup.x, popup.y, popup.img.width, popup.img.height);
                 ctx.putImageData(_bkgPartial, popup.x, popup.y);
-                ctx.drawImage(popup.img, _dX, _dY, _scaledW, _scaledH);
-
-                _frame++;
-                if (_scale === 100){
-                    deferred.resolve();
-                    clearInterval(_scaleIn);
-                }
-            }, _int);
-            break;
+                ctx.drawImage(popup.img, dX, dY, scaledW, scaledH);
+            }, lenAnim);
         }
-
-        return deferred.promise;
     }
 
     return {
@@ -129,20 +116,29 @@ function CCMove(context, canvas, defaults){
             jumpcut: crossfadePanels,
             bounce: bounce,
             bounceback: bounce,
-            slideAndFade: function(data, reverse){
-                return slide(data, reverse, true);
+            slideAndFade: function(data, options){
+                options.fade = true;
+                return slide(data, options);
             },
-            slide: slide
+            slide: slide,
+            defaultAnim: function(){
+                return this.bounceback.apply(this, arguments);
+            }
         },
-        panels: function(data, reverse){
-            var that = this;
-            /** Override image1 with data from the current state of the canvas. **/
-            var imgZero = ctx.getImageData(0, 0, cnv.width, cnv.height);
-            /** set transition **/
-            var transition = data.transition && that.panelFunctions[data.transition] ? data.transition
-                : defaults.transition && that.panelFunctions[defaults.transition] ? defaults.transition
-                : 'slideAndFade';
-            return that.panelFunctions[transition]([imgZero, data.img], reverse || false);
+        panels: function(imgs, options){
+            imgs = Array.isArray(imgs) ? imgs : [null, imgs];
+            imgs[0] = imgs[0] || ctx.getImageData(0, 0, cnv.width, cnv.height);
+            
+            options = options || {};
+            if (options.reverse){
+                options.reverse = -1;
+            }
+            else {
+                options.reverse = 1;
+            }
+            options.transition = options.transition && this.panelFunctions[options.transition] ? options.transition : defaults.transition;
+            // var transition = options.transition && this.panelFunctions[options.transition] ? options.transition : defaults.transition;
+            return this.panelFunctions[options.transition](imgs, options);
         },
         popup: animatePopUp
     };
