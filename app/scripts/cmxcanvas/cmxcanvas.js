@@ -8,7 +8,7 @@ var CmxCanvas = function(initData, el){
 
     var ccMove;
 
-    var panelset, canvas, context, loadingImg,
+    var panelset, canvas, context, loadingImg, 
         doNotMove = false,
         wasLast = false,
         cmxcanvas = {};
@@ -133,9 +133,9 @@ var CmxCanvas = function(initData, el){
         draw(panelset.goTo(panel,popup));
     };
 
-    cmxcanvas.load = function(rawpanels, canvasId){
-
-        var that = this;
+    cmxcanvas.load = function(initData, canvasId){
+        var that = this,
+            rawpanels = initData.cmxJSON;
 
         /** Add all the fun stuff to the collection of panels and popups **/
         panelset = new CCPanelSet(rawpanels);
@@ -148,7 +148,8 @@ var CmxCanvas = function(initData, el){
         context = canvas.getContext('2d');
         context.fillStyle = '#fff';
 
-        ccMove = new CCMove(context,canvas);
+        var moveoptions = initData.view && initData.view.move ? initData.view.move : {};
+        ccMove = new CCMove(context, canvas, moveoptions);
 
         /** Draw initial load image and load/save it for later uses on unloaded images **/
         drawLoadingImg();
