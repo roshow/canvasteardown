@@ -11,6 +11,7 @@ var CmxCanvas = function(initData, el){
     var panelset, canvas, context, loadingImg, 
         doNotMove = false,
         wasLast = false,
+        wasFirst = true,
         cmxcanvas = {};
         
     function drawLoadingImg(){
@@ -71,17 +72,19 @@ var CmxCanvas = function(initData, el){
 
     cmxcanvas.prev = function(){
         if(!doNotMove){
-            doNotMove = true;
-            panelset.prev();
             wasLast = false;
-            ccMove.panels(panelset.currentView.img, {
-                reverse: true,
-                transition: panelset.currentView.transition
-            })
-                .then(function(){
-                    doNotMove = false;
-                });
-            return this;
+            panelset.prev();
+            if (!wasFirst){
+                doNotMove = true;
+                wasFirst = (panelset.currentIndex[0] === 0);
+                ccMove.panels(panelset.currentView.img, {
+                    reverse: true,
+                    transition: panelset.currentView.transition
+                })
+                    .then(function(){
+                        doNotMove = false;
+                    });
+            }
         }
     };
     
@@ -89,6 +92,7 @@ var CmxCanvas = function(initData, el){
         if (!doNotMove){
            // loadAndUpdatePanels(panelset.next().panel).then(function(loc){
             panelset.next();
+            wasFirst = false;
             if (!wasLast){
                 doNotMove = true;
                 if (panelset.currentIndex[0] === panelset.last[0] && panelset.currentIndex[1] === panelset.last[1]){
