@@ -156,7 +156,7 @@ var CmxCanvas = function(initData, el){
         var moveoptions = initData.view && initData.view.move ? initData.view.move : {};
         ccMove = new CCMove(context, canvas, moveoptions);
 
-        fillColor = initData.view && initData.view.background ? initData.view.background : fillColor;
+        fillColor = initData.view && initData.view.backgroundColor ? initData.view.backgroundColor : fillColor;
 
         /** Draw initial load image and load/save it for later uses on unloaded images **/
         drawLoadingImg();
