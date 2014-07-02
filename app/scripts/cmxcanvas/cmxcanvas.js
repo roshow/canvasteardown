@@ -16,7 +16,7 @@ var CmxCanvas = function(initData, el){
         cmxcanvas = {};
         
     function drawLoadingImg(){
-        context.fillStyle = fillColor;
+        context.fillStyle = (fillColor === '#000') ? '#fff' : '#000';
         context.clearRect(0, 0, canvas.width, canvas.height);
         context.font = '30pt Monaco';
         context.textAlign = 'center';
