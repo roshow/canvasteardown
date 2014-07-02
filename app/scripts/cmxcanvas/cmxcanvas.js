@@ -6,7 +6,8 @@
 
 var CmxCanvas = function(initData, el){
 
-    var ccMove;
+    var ccMove,
+        fillColor = '#fff';
 
     var panelset, canvas, context, loadingImg, 
         doNotMove = false,
@@ -15,12 +16,12 @@ var CmxCanvas = function(initData, el){
         cmxcanvas = {};
         
     function drawLoadingImg(){
-        context.fillStyle = '#000';
+        context.fillStyle = fillColor;
         context.clearRect(0, 0, canvas.width, canvas.height);
         context.font = '30pt Monaco';
         context.textAlign = 'center';
         context.fillText('LOADING...', canvas.width / 2, canvas.height / 2);
-        context.fillStyle = '#fff';
+        context.fillStyle = fillColor;
     }
 
     function loadAndUpdatePanels(first, last){
@@ -150,10 +151,12 @@ var CmxCanvas = function(initData, el){
         /** Get Canvases and Contexts and Drawing load image **/
         canvas = document.getElementById(canvasId);
         context = canvas.getContext('2d');
-        context.fillStyle = '#fff';
+        context.fillStyle = fillColor;
 
         var moveoptions = initData.view && initData.view.move ? initData.view.move : {};
         ccMove = new CCMove(context, canvas, moveoptions);
+
+        fillColor = initData.view && initData.view.background ? initData.view.background : fillColor;
 
         /** Draw initial load image and load/save it for later uses on unloaded images **/
         drawLoadingImg();
