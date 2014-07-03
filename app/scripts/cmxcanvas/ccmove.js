@@ -46,7 +46,7 @@ function CCMove(context, canvas, defaults){
         ctx.fillRect(0, 0, cnv.width, cnv.height);
         ctx.putImageData (data[0], 0, 0);
 
-        var lenAnim = 400,
+        var lenAnim = 250,
             distance = cnv.width,
             distancePerLenAnim = (Math.PI/2)/lenAnim;
 
@@ -80,7 +80,7 @@ function CCMove(context, canvas, defaults){
         switch (popup.transition || 'scaleIn') {
 
         case 'fadeIn':
-            lenAnim = 300;
+            lenAnim = 200;
             ctx.globalAlpha = 0;
             return  roquestAnim(function(timePassed){
                 var sinPart = Math.sin(timePassed*(Math.PI/2)/lenAnim);
@@ -95,7 +95,7 @@ function CCMove(context, canvas, defaults){
             });
 
         case 'scaleIn':
-            lenAnim = 150;
+            lenAnim = 100;
             return  roquestAnim(function(timePassed){
                 var sinPart = Math.sin(timePassed*(Math.PI/2)/lenAnim),
                     scaledW = popup.img.width*sinPart,
