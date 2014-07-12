@@ -1,0 +1,407 @@
+{
+    "code": 200,
+    "data": [
+        {
+            "_id": "rev03",
+            "issue": 3,
+            "title": "Cluster#*@$!",
+            "thumb": "http://roshow.net/public/images/cmxcanvas/rev03/rev03_thumb.jpg",
+            "series": {
+                "name": "Revenger",
+                "id": "rev"
+            },
+            "creators": [
+                {
+                    "name": "Michael Powell",
+                    "credit": "Artist",
+                    "url": "http://michaelpowellart.tumblr.com"
+                },
+                {
+                    "name": "Rolando Garcia",
+                    "credit": "Writer",
+                    "url": "http://roshow.net"
+                }
+            ],
+            "img": {
+                "_url": "http://roshow.net/public/images/cmxcanvas/rev03/",
+                "url": "/images/rev03dig/"
+            },
+            "view": {
+                "move": {
+                    "transition": "slideAndFade"
+                }
+            },
+            "cmxJSON": [
+                {
+                    "src": "panel01.png",
+                    "type": "panel",
+                    "transition": "crossfade",
+                    "popups": []
+                },
+                {
+                    "src": "panel02.png",
+                    "type": "panel",
+                    "transition": "crossfade",
+                    "popups": []
+                },
+                {
+                    "src": "panel03.jpg",
+                    "type": "panel",
+                    "transition": "crossfade",
+                    "popups": []
+                },
+                {
+                    "src": "panel04.jpg",
+                    "type": "panel",
+                    "transition": "crossfade",
+                    "popups": []
+                },
+                {
+                    "src": "panel05.jpg",
+                    "type": "panel"
+                },
+                {
+                    "src": "panel06.jpg",
+                    "type": "panel"
+                },
+                {
+                    "src": "panel07.jpg",
+                    "type": "panel",
+                    "popups": [
+                        {
+                            "src": "panel07L01.png",
+                            "type": "popup",
+                            "x": 102,
+                            "y": 16
+                        }
+                    ]
+                },
+                {
+                    "src": "panel08.jpg",
+                    "type": "panel",
+                    "popups": [
+                        {
+                            "src": "panel08L01.png",
+                            "type": "popup",
+                            "x": 277,
+                            "y": 286
+                        }
+                    ]
+                },
+                {
+                    "src": "panel09.jpg",
+                    "type": "panel"
+                },
+                {
+                    "src": "panel10.jpg",
+                    "type": "panel"
+                },
+                {
+                    "src": "panel11.jpg",
+                    "type": "panel"
+                },
+                {
+                    "src": "panel12.jpg",
+                    "type": "panel"
+                },
+                {
+                    "src": "panel13.jpg",
+                    "type": "panel"
+                },
+                {
+                    "src": "panel14.jpg",
+                    "type": "panel"
+                },
+                {
+                    "src": "panel15.jpg",
+                    "type": "panel",
+                    "popups": [
+                        {
+                            "src": "panel15L01.png",
+                            "type": "popup",
+                            "x": 8,
+                            "y": 261
+                        }
+                    ]
+                },
+                {
+                    "src": "panel16.png",
+                    "type": "panel",
+                    "popups": [
+                        {
+                            "src": "panel16P1.jpg",
+                            "type": "popup",
+                            "x": 412,
+                            "y": 100,
+                            "transition": "fadeIn"
+                        }
+                    ]
+                },
+                {
+                    "src": "panel17.jpg",
+                    "type": "panel",
+                    "popups": [
+                        {
+                            "src": "panel17L01.png",
+                            "type": "popup",
+                            "x": 292,
+                            "y": 180
+                        },
+                        {
+                            "src": "panel17L02.png",
+                            "type": "popup",
+                            "x": 172,
+                            "y": 217
+                        },
+                        {
+                            "src": "panel17L03.png",
+                            "type": "popup",
+                            "x": 570,
+                            "y": 285
+                        }
+                    ]
+                },
+                {
+                    "src": "panel18.png",
+                    "type": "panel",
+                    "popups": [
+                        {
+                            "src": "panel18p01.jpg",
+                            "type": "popup",
+                            "x": 414,
+                            "y": 70,
+                            "transition": "fadeIn"
+                        }
+                    ]
+                },
+                {
+                    "src": "panel19.jpg",
+                    "type": "panel",
+                    "popups": []
+                },
+                {
+                    "src": "panel20.jpg",
+                    "type": "panel",
+                    "popups": [
+                        {
+                            "src": "panel20p01.jpg",
+                            "type": "popup",
+                            "x": 406,
+                            "y": 48,
+                            "transition": "fadeIn"
+                        }
+                    ]
+                },
+                {
+                    "src": "panel21.jpg",
+                    "type": "panel",
+                    "popups": [
+                        {
+                            "src": "panel21p01.png",
+                            "type": "popup",
+                            "x": 307,
+                            "y": 25
+                        },
+                        {
+                            "src": "panel21p02.png",
+                            "type": "popup",
+                            "x": 368,
+                            "y": 233
+                        }
+                    ]
+                },
+                {
+                    "src": "panel22.jpg",
+                    "type": "panel",
+                    "transition": "crossfade"
+                },
+                {
+                    "src": "panel23.jpg",
+                    "type": "panel",
+                    "transition": "crossfade"
+                },
+                {
+                    "src": "panel24.jpg",
+                    "type": "panel",
+                    "transition": "crossfade"
+                },
+                {
+                    "src": "panel25.jpg",
+                    "type": "panel",
+                    "transition": "crossfade",
+                    "popups": [
+                        {
+                            "src": "panel25p01.png",
+                            "type": "popup",
+                            "x": 306,
+                            "y": 56
+                        },
+                        {
+                            "src": "panel25p02.png",
+                            "type": "popup",
+                            "x": 527,
+                            "y": 303
+                        }
+                    ]
+                },
+                {
+                    "src": "panel26.jpg",
+                    "type": "panel",
+                    "transition": "crossfade",
+                    "popups": [
+                        {
+                            "src": "panel26p01.png",
+                            "type": "popup",
+                            "x": 640,
+                            "y": 293
+                        }
+                    ]
+                },
+                {
+                    "src": "panel27.jpg",
+                    "type": "panel",
+                    "popups": []
+                },
+                {
+                    "src": "panel28.jpg",
+                    "type": "panel",
+                    "popups": []
+                },
+                {
+                    "src": "panel29.jpg",
+                    "type": "panel",
+                    "popups": [
+                        {
+                            "src": "panel29p01.png",
+                            "type": "popup",
+                            "transition": "fadeIn",
+                            "x": 235,
+                            "y": 191
+                        },
+                        {
+                            "src": "panel29p02.png",
+                            "type": "popup",
+                            "transition": "fadeIn",
+                            "x": 599,
+                            "y": 221
+                        }
+                    ]
+                },
+                {
+                    "src": "panel30.jpg",
+                    "type": "panel",
+                    "popups": [
+                        {
+                            "src": "panel30p01.png",
+                            "type": "popup",
+                            "x": 137,
+                            "y": 74
+                        }
+                    ]
+                },
+                {
+                    "src": "panel31.jpg",
+                    "type": "panel",
+                    "transition": "crossfade",
+                    "popups": []
+                },
+                {
+                    "src": "panel32.jpg",
+                    "type": "panel",
+                    "transition": "bounceback",
+                    "popups": [
+                        {
+                            "src": "panel32p01.png",
+                            "type": "popup",
+                            "transition": "fadeIn",
+                            "x": 44,
+                            "y": 0
+                        }
+                    ]
+                },
+                {
+                    "src": "panel33.jpg",
+                    "type": "panel",
+                    "popups": []
+                },
+                {
+                    "src": "panel34.jpg",
+                    "type": "panel",
+                    "popups": [
+                        {
+                            "src": "panel34p01.png",
+                            "type": "popup",
+                            "x": 229,
+                            "y": 226
+                        }
+                    ]
+                },
+                {
+                    "src": "panel35.jpg",
+                    "type": "panel",
+                    "popups": [
+                        {
+                            "src": "panel35p01.png",
+                            "type": "popup",
+                            "x": 470,
+                            "y": 166
+                        }
+                    ]
+                },
+                {
+                    "src": "panel36.jpg",
+                    "type": "panel",
+                    "transition": "bounceback",
+                    "popups": []
+                },
+                {
+                    "src": "panel37.png",
+                    "type": "panel",
+                    "popups": [
+                        {
+                            "src": "panel37p01.jpg",
+                            "type": "popup",
+                            "transition": "fadeIn",
+                            "x": 410,
+                            "y": 58
+                        }
+                    ]
+                },
+                {
+                    "src": "panel38.png",
+                    "type": "panel",
+                    "transition": "crossfade",
+                    "popups": [
+                        {
+                            "src": "panel38p01.jpg",
+                            "type": "popup",
+                            "transition": "fadeIn",
+                            "x": 410,
+                            "y": 58
+                        }
+                    ]
+                },
+                {
+                    "src": "panel39.png",
+                    "type": "panel",
+                    "transition": "crossfade",
+                    "popups": [
+                        {
+                            "src": "panel39p01.jpg",
+                            "type": "popup",
+                            "transition": "fadeIn",
+                            "x": 410,
+                            "y": 58
+                        }
+                    ]
+                },
+                {
+                    "src": "tbc.png",
+                    "type": "panel",
+                    "popups": []
+                }
+            ],
+            "published": 1
+        }
+    ]
+}
