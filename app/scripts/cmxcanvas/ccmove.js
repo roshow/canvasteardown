@@ -1,4 +1,4 @@
-/*globals roquestAnim, Crossfader, Q*/
+/*globals roquestAnim, Crossfader*/
 /*exported CCMove*/
 'use strict';
 
@@ -110,21 +110,28 @@ function CCMove(context, canvas, defaults){
         }
     }
 
-    return {
-        panelFunctions: {
-            crossfade: crossfadePanels,
-            jumpcut: crossfadePanels,
-            bounce: bounce,
-            bounceback: bounce,
-            slideAndFade: function(data, options){
-                options.fade = true;
-                return slide(data, options);
-            },
-            slide: slide,
-            defaultAnim: function(){
-                return this.bounceback.apply(this, arguments);
-            }
+    var _panelFunctions = {
+        // crossfade: crossfadePanels,
+        // jumpcut: crossfadePanels,
+        bounce: bounce,
+        bounceback: bounce,
+        slideAndFade: function(data, options){
+            options.fade = true;
+            return slide(data, options);
         },
+        slide: slide,
+        defaultAnim: function(){
+            return this.bounceback.apply(this, arguments);
+        }
+    };
+
+    function addPanelAnim(key, func){
+        _panelFunctions[key] = func;
+        console.log(_panelFunctions);
+    };
+
+    var move = {
+        addPanelAnim: addPanelAnim,
         panels: function(imgs, options){
             imgs = Array.isArray(imgs) ? imgs : [null, imgs];
             imgs[0] = imgs[0] || ctx.getImageData(0, 0, cnv.width, cnv.height);
@@ -136,10 +143,12 @@ function CCMove(context, canvas, defaults){
             else {
                 options.reverse = 1;
             }
-            options.transition = options.transition && this.panelFunctions[options.transition] ? options.transition : defaults.transition;
-            // var transition = options.transition && this.panelFunctions[options.transition] ? options.transition : defaults.transition;
-            return this.panelFunctions[options.transition](imgs, options);
+            options.transition = options.transition && _panelFunctions[options.transition] ? options.transition : defaults.transition;
+            // var transition = options.transition && _panelFunctions[options.transition] ? options.transition : defaults.transition;
+            return _panelFunctions[options.transition](imgs, options);
         },
         popup: animatePopUp
     };
+
+    return move;
 };

@@ -1,10 +1,27 @@
-/*globals CCLoader, CCMove, CCPanelSet, performance*/
+/*globals CCLoader, CCMove, CCPanelSet*/
 /*exported CmxCanvas*/
 
 'use strict';
 
 
 var CmxCanvas = function(initData, el){
+
+    function resolveImgUrlsAndOtherInconsistencies(model){
+        if (model.img.url){
+            for(var i = 0, l = model.cmxJSON.length; i < l; i++) {
+                /** Make sure panel numbers are there and match index (eventually you'll want to handle panel numbers on the API/DB level to assure maximum flexibility and so on). **/
+                model.cmxJSON[i].panel = i;
+                model.cmxJSON[i].src = model.img.url + model.cmxJSON[i].src;
+                if(model.cmxJSON[i].popups && model.cmxJSON[i].popups.length > 0) {
+                    for(var ii = 0, ll = model.cmxJSON[i].popups.length; ii < ll; ii++) {
+                        model.cmxJSON[i].popups[ii].src = model.img.url + model.cmxJSON[i].popups[ii].src;
+                    }
+                }
+            }
+        }
+        // console.log(model);
+        return model;
+    }
 
     var ccMove,
         viewInfo = initData ? initData.view || {} : {};
@@ -141,9 +158,10 @@ var CmxCanvas = function(initData, el){
     };
 
     cmxcanvas.load = function(initData, canvasId){
+        console.log(initData);
+        initData = resolveImgUrlsAndOtherInconsistencies(initData);
         var that = this,
             rawpanels = initData.cmxJSON;
-
         /** Add all the fun stuff to the collection of panels and popups **/
         panelset = new CCPanelSet(rawpanels);
         panelset.onchange = function(){
