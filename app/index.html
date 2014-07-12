@@ -35,13 +35,38 @@
             padding: 20px 0;
             width: 400px;
         }
+        .canvas-btn {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+        }
+        .canvasbook-container {
+            position: relative;
+        }
+        .canvas-btn-left {
+            left: 0;
+            right: 50%;
+            border: 1px solid red;
+        }
+        .canvas-btn-right {
+            left: 50%;
+            right: 0;
+            border: 1px solid green;
+        }
+
+
+
     </style>
 
 </head>
 <body>
         <div id="app-container">
           <h1>cmxcanvas-new.js</h1>
-          <canvas id="thisCanvas" height="450px" width="800px"></canvas>
+            <div class="canvasbook-container">
+                <canvas id="thisCanvas" height="450px" width="800px"></canvas>
+                <span class="canvas-btn canvas-btn-left" id="book-prev"></span>
+                <span class="canvas-btn canvas-btn-right" id="book-next"></span>
+            </div>
           <div class="buttons">
             <span id="book-prev">previous</span>
             <span id="book-next">next</span>
