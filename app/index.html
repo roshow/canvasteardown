@@ -72,6 +72,9 @@
         </div>
 
         <script type="text/javascript">
+            /*global CmxCanvas */
+            'use strict';
+
             (function(){
                 var cmxCanvas;
 
@@ -79,15 +82,16 @@
                     cmxCanvas = new CmxCanvas(json, 'thisCanvas');
                     document.getElementById('book-next').onclick = cmxCanvas.next;
                     document.getElementById('book-prev').onclick = cmxCanvas.prev;
-                };
+                }
                 
 
-                request = new XMLHttpRequest();
-                request.open('GET', '/json/sov01Model.json', true);
+                var request = new XMLHttpRequest();
+                request.open('GET', '/json/rev03dig.json', true);
 
                 request.onload = function() {
                   if (request.status >= 200 && request.status < 400){
-                    _init(JSON.parse(request.response));
+                    var json = JSON.parse(request.response).data[0];
+                    _init(json);
                   } else {
                     console.log(request.responseText);
                   }
