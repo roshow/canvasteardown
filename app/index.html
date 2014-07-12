@@ -68,8 +68,8 @@
                 <span class="canvas-btn canvas-btn-right" id="book-next"></span>
             </div>
           <div class="buttons">
-            <span id="book-prev">previous</span>
-            <span id="book-next">next</span>
+            <span id="book-prev2">previous</span>
+            <span id="book-next2">next</span>
           </div>
         </div>
 
@@ -81,6 +81,8 @@
                 var cmxCanvas,
                     btnNext =  document.getElementById('book-next'),
                     btnPrev =  document.getElementById('book-prev'),
+                    btnNext2 =  document.getElementById('book-next2'),
+                    btnPrev2 =  document.getElementById('book-prev2'),
                     htmlTitle = document.getElementById('title');
 
 
@@ -88,6 +90,8 @@
                     cmxCanvas = new CmxCanvas(json, 'thisCanvas');
                     btnNext.onclick = cmxCanvas.next;
                     btnPrev.onclick = cmxCanvas.prev;
+                    btnNext2.onclick = cmxCanvas.next;
+                    btnPrev2.onclick = cmxCanvas.prev;
                     htmlTitle.innerHTML = json.series.name + " #" + json.issue + " : " + json.title;
                 }
                 
