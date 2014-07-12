@@ -111,8 +111,8 @@ function CCMove(context, canvas, defaults){
     }
 
     var _panelFunctions = {
-        // crossfade: crossfadePanels,
-        // jumpcut: crossfadePanels,
+        crossfade: crossfadePanels,
+        jumpcut: crossfadePanels,
         bounce: bounce,
         bounceback: bounce,
         slideAndFade: function(data, options){
