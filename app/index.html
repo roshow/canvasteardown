@@ -14,6 +14,7 @@
     
     <style type="text/css">
         @import url(http://fonts.googleapis.com/css?family=IM+Fell+English);
+
         #app-container {
             cursor: pointer;
             font-family: "IM Fell English";
@@ -59,7 +60,8 @@
 </head>
 <body>
         <div id="app-container">
-          <h1>cmxcanvas-new.js</h1>
+          <!-- <h1>cmxcanvas-new.js</h1> -->
+          <h2 id="title"></h2>
             <div class="canvasbook-container">
                 <canvas id="thisCanvas" height="450px" width="800px"></canvas>
                 <span class="canvas-btn canvas-btn-left" id="book-prev"></span>
@@ -76,12 +78,17 @@
             'use strict';
 
             (function(){
-                var cmxCanvas;
+                var cmxCanvas,
+                    btnNext =  document.getElementById('book-next'),
+                    btnPrev =  document.getElementById('book-prev'),
+                    htmlTitle = document.getElementById('title');
+
 
                 function _init(json){
                     cmxCanvas = new CmxCanvas(json, 'thisCanvas');
-                    document.getElementById('book-next').onclick = cmxCanvas.next;
-                    document.getElementById('book-prev').onclick = cmxCanvas.prev;
+                    btnNext.onclick = cmxCanvas.next;
+                    btnPrev.onclick = cmxCanvas.prev;
+                    htmlTitle.innerHTML = json.series.name + " #" + json.issue + " : " + json.title;
                 }
                 
 

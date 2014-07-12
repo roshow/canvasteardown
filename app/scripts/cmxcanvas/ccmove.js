@@ -46,7 +46,7 @@ function CCMove(context, canvas, defaults){
         ctx.fillRect(0, 0, cnv.width, cnv.height);
         ctx.putImageData (data[0], 0, 0);
 
-        var lenAnim = 250,
+        var lenAnim = 600,
             distance = cnv.width,
             distancePerLenAnim = (Math.PI/2)/lenAnim;
 
