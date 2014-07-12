@@ -6,15 +6,16 @@
 
 var CmxCanvas = function(initData, el){
 
-
     function resolveImgUrlsAndOtherInconsistencies(model){
-        for(var i = 0, l = model.cmxJSON.length; i < l; i++) {
-            /** Make sure panel numbers are there and match index (eventually you'll want to handle panel numbers on the API/DB level to assure maximum flexibility and so on). **/
-            model.cmxJSON[i].panel = i;
-            model.cmxJSON[i].src = model.img.url + model.cmxJSON[i].src;
-            if(model.cmxJSON[i].popups && model.cmxJSON[i].popups.length > 0) {
-                for(var ii = 0, ll = model.cmxJSON[i].popups.length; ii < ll; ii++) {
-                    model.cmxJSON[i].popups[ii].src = model.img.url + model.cmxJSON[i].popups[ii].src;
+        if (model.img.url){
+            for(var i = 0, l = model.cmxJSON.length; i < l; i++) {
+                /** Make sure panel numbers are there and match index (eventually you'll want to handle panel numbers on the API/DB level to assure maximum flexibility and so on). **/
+                model.cmxJSON[i].panel = i;
+                model.cmxJSON[i].src = model.img.url + model.cmxJSON[i].src;
+                if(model.cmxJSON[i].popups && model.cmxJSON[i].popups.length > 0) {
+                    for(var ii = 0, ll = model.cmxJSON[i].popups.length; ii < ll; ii++) {
+                        model.cmxJSON[i].popups[ii].src = model.img.url + model.cmxJSON[i].popups[ii].src;
+                    }
                 }
             }
         }
