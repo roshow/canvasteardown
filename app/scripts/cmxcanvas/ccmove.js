@@ -1,4 +1,4 @@
-/*globals roquestAnim, Crossfader, Q*/
+/*globals roquestAnim, Crossfader*/
 /*exported CCMove*/
 'use strict';
 
@@ -111,8 +111,8 @@ function CCMove(context, canvas, defaults){
     }
 
     var _panelFunctions = {
-        crossfade: crossfadePanels,
-        jumpcut: crossfadePanels,
+        // crossfade: crossfadePanels,
+        // jumpcut: crossfadePanels,
         bounce: bounce,
         bounceback: bounce,
         slideAndFade: function(data, options){
@@ -125,7 +125,13 @@ function CCMove(context, canvas, defaults){
         }
     };
 
-    return {
+    function addPanelAnim(key, func){
+        _panelFunctions[key] = func;
+        console.log(_panelFunctions);
+    };
+
+    var move = {
+        addPanelAnim: addPanelAnim,
         panels: function(imgs, options){
             imgs = Array.isArray(imgs) ? imgs : [null, imgs];
             imgs[0] = imgs[0] || ctx.getImageData(0, 0, cnv.width, cnv.height);
@@ -143,4 +149,6 @@ function CCMove(context, canvas, defaults){
         },
         popup: animatePopUp
     };
+
+    return move;
 };
