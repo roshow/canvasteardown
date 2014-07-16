@@ -1,4 +1,4 @@
-/*globals performance,Q*/
+/*globals performance, requestAnimFrame, Q*/
 /*exported roquestAnim*/
 
 'use strict';
