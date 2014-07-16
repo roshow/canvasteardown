@@ -1,4 +1,4 @@
-/*globals requestAnimationFrame, webkitRequestAnimationFrame, Q*/
+/*globals performance,Q*/
 /*exported roquestAnim*/
 
 'use strict';
