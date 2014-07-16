@@ -167,13 +167,13 @@ var CmxCanvas = function(initData, el){
         panelset.onchange = function(){
             that.currentView = panelset.currentView;
         };
-        
+        initData.view = initData.view || {};
         /** Get Canvases and Contexts and Drawing load image **/
         canvas = document.getElementById(canvasId);
         context = canvas.getContext('2d');
         context.fillStyle = viewInfo.backgroundColor;
 
-        var moveoptions = initData.view && initData.view.move ? initData.view.move : {};
+        var moveoptions = initData.view.move || {};
         ccMove = new CCMove(context, canvas, moveoptions);
 
         viewInfo.backgroundColor = initData.view && initData.view.backgroundColor ? initData.view.backgroundColor : viewInfo.backgroundColor;

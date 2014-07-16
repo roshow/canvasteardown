@@ -79,6 +79,7 @@
 
             (function(){
                 var cmxCanvas,
+                    canvasEl = document.getElementById('thisCanvas'),
                     btnNext =  document.getElementById('book-next'),
                     btnPrev =  document.getElementById('book-prev'),
                     btnNext2 =  document.getElementById('book-next2'),
@@ -87,6 +88,11 @@
 
 
                 function _init(json){
+
+                    json.view = json.view || {};
+                    canvasEl.height = json.view.height || canvasEl.height;
+                    canvasEl.width = json.view.width || canvasEl.width;
+
                     cmxCanvas = new CmxCanvas(json, 'thisCanvas');
                     btnNext.onclick = cmxCanvas.next;
                     btnPrev.onclick = cmxCanvas.prev;
@@ -97,7 +103,7 @@
                 
 
                 var request = new XMLHttpRequest();
-                request.open('GET', '/json/rev03dig.json', true);
+                request.open('GET', '/json/sov01Model.json', true);
 
                 request.onload = function() {
                   if (request.status >= 200 && request.status < 400){

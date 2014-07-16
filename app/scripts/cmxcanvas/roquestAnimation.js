@@ -3,29 +3,28 @@
 
 'use strict';
 
+window.requestAnimFrame = (function(){
+    return  window.requestAnimationFrame       ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame    ||
+        function( callback ){
+            window.setTimeout(callback, 1000 / 60);
+        };
+})();
+
+window.performance = window.performance || {};
+performance.now = (function() {
+    return performance.now       ||
+        performance.mozNow    ||
+        performance.msNow     ||
+        performance.oNow      ||
+        performance.webkitNow ||
+        function() {
+            return new Date().getTime();
+        };
+})();
+
 var roquestAnim = (function(){
-
-    
-    window.requestAnimFrame = (function(){
-        return  window.requestAnimationFrame       ||
-            window.webkitRequestAnimationFrame ||
-            window.mozRequestAnimationFrame    ||
-            function( callback ){
-                window.setTimeout(callback, 1000 / 60);
-            };
-    })();
-
-    window.performance = window.performance || {};
-    performance.now = (function() {
-        return performance.now       ||
-            performance.mozNow    ||
-            performance.msNow     ||
-            performance.oNow      ||
-            performance.webkitNow ||
-            function() {
-                return new Date().getTime();
-            };
-    })();
 
     function roquest(animFunc, lenAnim){
         var deferred = new Q.defer(),
