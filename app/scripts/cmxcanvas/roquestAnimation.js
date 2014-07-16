@@ -28,15 +28,14 @@ var roquestAnim = (function(){
 
     function roquest(animFunc, lenAnim){
         var deferred = new Q.defer(),
-            animStartTime,
-            rAF;
+            animStartTime;
 
         function animLoop(){
             var animReturnVal = animFunc(animStartTime);
             if (animReturnVal === false) {
                 deferred.resolve();
             } else {
-                rAF = requestAnimFrame(animLoop);
+                requestAnimFrame(animLoop);
             }
         }
 
@@ -47,13 +46,18 @@ var roquestAnim = (function(){
                 deferred.resolve();
             } else {
                 animFunc(timePassed);
-                rAF = requestAnimFrame(timeBasedLoop);
+                requestAnimFrame(timeBasedLoop);
             }
 
         }
 
         animStartTime = performance.now();
-        rAF = lenAnim ? requestAnimFrame(timeBasedLoop) : requestAnimFrame(animLoop);
+        if (lenAnim){
+            requestAnimFrame(timeBasedLoop);
+        }
+        else {
+            requestAnimFrame(animLoop);
+        }
 
         return deferred.promise;
     }
