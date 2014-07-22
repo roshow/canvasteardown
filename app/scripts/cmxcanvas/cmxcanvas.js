@@ -159,7 +159,7 @@ var CmxCanvas = function(initData, el){
 
     cmxcanvas.load = function(initData, canvasId){
         console.log(initData);
-        // initData = resolveImgUrlsAndOtherInconsistencies(initData);
+        initData = resolveImgUrlsAndOtherInconsistencies(initData);
         var that = this,
             rawpanels = initData.cmxJSON;
         /** Add all the fun stuff to the collection of panels and popups **/
