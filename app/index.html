@@ -103,7 +103,9 @@
                 
 
                 var request = new XMLHttpRequest();
-                request.open('GET', '/json/sov01Model.json', true);
+                // request.open('GET', '/json/sov01Model.json', true);
+                var paramId = window.location.hash.slice(1) || 'rev03';
+                request.open('GET', 'http://localhost:5000/cmx/' + paramId, true);
 
                 request.onload = function() {
                   if (request.status >= 200 && request.status < 400){
