@@ -1,5 +1,6 @@
 {
     "code": 200,
+    "parseOptions": {},
     "data": [
     {
         "_id": "sov01",
@@ -23,9 +24,6 @@
                 "url": "http://roshow.net"
             }
         ],
-        "img": {
-            "_url": "http://roshow.net/public/images/cmxcanvas/sov01/"
-        },
         "cmxJSON": [
             {
                 "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_01.jpg",
