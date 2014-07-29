@@ -23,6 +23,16 @@
                     "url": "http://roshow.net"
                 }
             ],
+            "versions": [
+                {
+                    "format": "digital",
+                    "id": "rev03dig"
+                },
+                {
+                    "format": "original",
+                    "id": "rev03og"
+                }
+            ],
             "view": {
                 "height": "730",
                 "width": "600",
