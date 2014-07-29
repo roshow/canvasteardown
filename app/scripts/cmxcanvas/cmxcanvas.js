@@ -8,13 +8,13 @@ var CmxCanvas = function(initData, el){
 
     function resolveImgUrlsAndOtherInconsistencies(model){
         // console.log('resolving other inconsistencies');
-        for(var i = 0, l = model.cmxJSON.length; i < l; i++) {
+        for(var i = 0, l = model.view.panels.length; i < l; i++) {
             /** Make sure panel numbers are there and match index (eventually you'll want to handle panel numbers on the API/DB level to ensure maximum flexibility and so on). **/
-            model.cmxJSON[i].panel = i;
-            model.cmxJSON[i].src = (model.cmxJSON[i].path || '') + model.cmxJSON[i].src;
-            if(model.cmxJSON[i].popups && model.cmxJSON[i].popups.length > 0) {
-                for(var ii = 0, ll = model.cmxJSON[i].popups.length; ii < ll; ii++) {
-                    model.cmxJSON[i].popups[ii].src = (model.cmxJSON[i].popups[ii].path || '') + model.cmxJSON[i].popups[ii].src;
+            model.view.panels[i].panel = i;
+            model.view.panels[i].src = (model.view.panels[i].path || '') + model.view.panels[i].src;
+            if(model.view.panels[i].popups && model.view.panels[i].popups.length > 0) {
+                for(var ii = 0, ll = model.view.panels[i].popups.length; ii < ll; ii++) {
+                    model.view.panels[i].popups[ii].src = (model.view.panels[i].popups[ii].path || '') + model.view.panels[i].popups[ii].src;
                 }
             }
         }
@@ -159,10 +159,8 @@ var CmxCanvas = function(initData, el){
     cmxcanvas.load = function(initData, canvasId){
         console.log(initData);
         initData = resolveImgUrlsAndOtherInconsistencies(initData);
-        var that = this,
-            rawpanels = initData.cmxJSON;
-        /** Add all the fun stuff to the collection of panels and popups **/
-        panelset = new CCPanelSet(rawpanels);
+        var that = this;
+        panelset = new CCPanelSet(initData.view.panels);
         panelset.onchange = function(){
             that.currentView = panelset.currentView;
         };
