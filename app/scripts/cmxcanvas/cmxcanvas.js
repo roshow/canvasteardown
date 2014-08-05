@@ -11,10 +11,10 @@ var CmxCanvas = function(initData, el){
         for(var i = 0, l = model.view.panels.length; i < l; i++) {
             /** Make sure panel numbers are there and match index (eventually you'll want to handle panel numbers on the API/DB level to ensure maximum flexibility and so on). **/
             model.view.panels[i].panel = i;
-            model.view.panels[i].src = (model.view.panels[i].path || '') + model.view.panels[i].src;
+            model.view.panels[i].src = (model.view.panels[i].path || model.view.imgPath || '') + model.view.panels[i].src;
             if(model.view.panels[i].popups && model.view.panels[i].popups.length > 0) {
                 for(var ii = 0, ll = model.view.panels[i].popups.length; ii < ll; ii++) {
-                    model.view.panels[i].popups[ii].src = (model.view.panels[i].popups[ii].path || '') + model.view.panels[i].popups[ii].src;
+                    model.view.panels[i].popups[ii].src = (model.view.panels[i].popups[ii].path || model.view.imgPath || '') + model.view.panels[i].popups[ii].src;
                 }
             }
         }
