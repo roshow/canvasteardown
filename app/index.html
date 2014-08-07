@@ -99,7 +99,7 @@
 
                 var request = new XMLHttpRequest();
                 // request.open('GET', '/json/rev03og.json', true);
-                var paramId = window.location.hash.slice(1) || 'rev03dig';
+                var paramId = window.location.hash.slice(1) || 'rev03';
                 request.open('GET', 'http://0.0.0.0:5000/books/' + paramId, true);
 
                 request.onload = function() {
