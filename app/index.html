@@ -105,7 +105,7 @@
                 var request = new XMLHttpRequest();
                 // request.open('GET', '/json/rev03og.json', true);
                 var paramId = window.location.hash.slice(1) || 'rev03dig';
-                request.open('GET', 'http://0.0.0.0:5000/cmx/' + paramId, true);
+                request.open('GET', 'http://0.0.0.0:5000/books/' + paramId, true);
 
                 request.onload = function() {
                   if (request.status >= 200 && request.status < 400){
