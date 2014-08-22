@@ -29,6 +29,7 @@
         #thisCanvas {
             margin: auto;
             border: 2px solid #ddd;
+            max-width: 700px;
         }
         .buttons span {
             display: inline-block;
@@ -98,7 +99,6 @@
                 
 
                 var request = new XMLHttpRequest();
-                // request.open('GET', '/json/rev03og.json', true);
                 var paramId = window.location.hash.slice(1) || 'rev03';
                 request.open('GET', 'http://0.0.0.0:5000/books/' + paramId, true);
 
