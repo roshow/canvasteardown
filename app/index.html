@@ -14,10 +14,20 @@
     
     <style type="text/css">
         @import url(http://fonts.googleapis.com/css?family=IM+Fell+English);
+        @import url(http://fonts.googleapis.com/css?family=Francois+One);
+        @import url(http://fonts.googleapis.com/css?family=Roboto:100,400,700,300,100,500,900);
+
+        h2, #title {
+            font-size: 1.3em;
+        }
+        #title {
+            margin-bottom: 15px;
+        }
 
         #app-container {
             cursor: pointer;
-            font-family: "IM Fell English";
+            font-family: "Francois One";
+            font-weight: 500;
             text-align: center;
             -webkit-touch-callout: none;
             -webkit-user-select: none;
@@ -62,7 +72,7 @@
 <body>
         <div id="app-container">
           <!-- <h1>cmxcanvas-new.js</h1> -->
-          <h2 id="title"></h2>
+          <div id="title"></div>
             <div class="canvasbook-container">
                 <canvas id="thisCanvas" height="450px" width="800px"></canvas>
                 <span class="canvas-btn canvas-btn-left" id="book-prev"></span>
