@@ -104,6 +104,10 @@ var CmxCanvas = function(initData, el){
                         doNotMove = false;
                     });
             }
+            else {
+                return 'wasFirst';
+            }
+            return this;
         }
     };
     
@@ -144,12 +148,11 @@ var CmxCanvas = function(initData, el){
                         });
                 }
             }
-            // });
+            else {
+                return 'wasLast';
+            }
+            return this;
         }
-        else {
-            // console.log('is already moving');
-        }
-        return this;
     };
 
     cmxcanvas.goTo = function(panel, popup){
