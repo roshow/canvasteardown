@@ -105,9 +105,9 @@ var CmxCanvas = function(initData, el){
                     });
             }
             else {
-                return 'wasFirst';
+                return false;
             }
-            return this;
+            return this.currentView;
         }
     };
     
@@ -149,9 +149,9 @@ var CmxCanvas = function(initData, el){
                 }
             }
             else {
-                return 'wasLast';
+                return false;
             }
-            return this;
+            return this.currentView;
         }
     };
 
