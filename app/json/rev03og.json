@@ -1,48 +1,144 @@
 {
-    "_id": "rev03og",
-    "issue": 4,
-    "published": 1,
-    "title": "Cluster---k!",
-    "thumb": "http://roshow.net/public/images/cmxcanvas/sov01/sov01_thumb.jpg",
-    "series": {
-        "name": "Revenger",
-        "id": "rev"
-    },
-    "creators": [
+    "code": 200,
+    "parseOptions": {},
+    "data": [
         {
-            "name": "Michael Powell",
-            "credit": "Artist",
-            "url": "http://michaelpowellart.tumblr.com"
-        },
-        {
-            "name": "Rolando Garcia",
-            "credit": "Writer",
-            "url": "http://roshow.net"
-        }
-    ],
-    "img": {
-        // "url": "http://roshow.net/public/images/cmxcanvas/sov01/"
-        "url": "/images/rev03og/"
-    },
-    "cmxJSON": [
-        {
-            "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_01.jpg",
-            "type": "panel",
-            "popups": [
+            "_id": "rev03og",
+            "issue": 3,
+            "title": "Cluster#*@$!",
+            "thumb": "http://roshow.net/public/images/cmxcanvas/rev03/rev03_thumb.jpg",
+            "series": {
+                "name": "Revenger",
+                "id": "revog"
+            },
+            "creators": [
                 {
-                    "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_01_letters_01.png",
-                    "type": "popup",
-                    "x": 335,
-                    "y": 10
+                    "name": "Michael Powell",
+                    "credit": "Artist",
+                    "url": "http://michaelpowellart.tumblr.com"
                 },
                 {
-                    "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_01_letters_02.png",
-                    "type": "popup",
-                    "x": 345,
-                    "y": 340
+                    "name": "Rolando Garcia",
+                    "credit": "Writer",
+                    "url": "http://roshow.net"
                 }
             ],
-            "panel": 0
+            "versions": [
+                {
+                    "format": "digital",
+                    "id": "rev03dig"
+                },
+                {
+                    "format": "original",
+                    "id": "rev03og"
+                }
+            ],
+            "view": {
+                "height": "730",
+                "width": "600",
+                "move": {
+                    "transition": "slideAndFade"
+                }
+            },
+            "cmxJSON": [
+                {
+                    "panel": 0,
+                    "src": "2013-07-30.jpg",
+                    "path": "/images/rev03og/",
+                    "type": "panel"
+                },
+                {
+                    "panel": 1,
+                    "src": "2013-07-31.jpg",
+                    "path": "/images/rev03og/",
+                    "type": "panel"
+                },
+                {
+                    "panel": 2,
+                    "src": "2013-08-01.jpg",
+                    "path": "/images/rev03og/",
+                    "type": "panel"
+                },
+                {
+                    "panel": 3,
+                    "src": "2013-08-06.jpg",
+                    "path": "/images/rev03og/",
+                    "type": "panel"
+                },
+                {
+                    "panel": 4,
+                    "src": "2013-08-07.jpg",
+                    "path": "/images/rev03og/",
+                    "type": "panel"
+                },
+                {
+                    "panel": 5,
+                    "src": "2013-08-08.jpg",
+                    "path": "/images/rev03og/",
+                    "type": "panel"
+                },
+                {
+                    "panel": 6,
+                    "src": "2013-08-13.jpg",
+                    "path": "/images/rev03og/",
+                    "type": "panel"
+                },
+                {
+                    "panel": 7,
+                    "src": "2013-08-14.jpg",
+                    "path": "/images/rev03og/",
+                    "type": "panel"
+                },
+                {
+                    "panel": 8,
+                    "src": "2013-08-15.jpg",
+                    "path": "/images/rev03og/",
+                    "type": "panel"
+                },
+                {
+                    "panel": 9,
+                    "src": "2013-08-20.jpg",
+                    "path": "/images/rev03og/",
+                    "type": "panel"
+                },
+                {
+                    "panel": 10,
+                    "src": "2013-08-21.jpg",
+                    "path": "/images/rev03og/",
+                    "type": "panel"
+                },
+                {
+                    "panel": 11,
+                    "src": "2013-08-22.jpg",
+                    "path": "/images/rev03og/",
+                    "type": "panel"
+                },
+                {
+                    "panel": 12,
+                    "src": "2013-08-27.jpg",
+                    "path": "/images/rev03og/",
+                    "type": "panel"
+                },
+                {
+                    "panel": 13,
+                    "src": "2013-08-28.jpg",
+                    "path": "/images/rev03og/",
+                    "type": "panel"
+                },
+                {
+                    "panel": 14,
+                    "src": "2013-08-29.jpg",
+                    "path": "/images/rev03og/",
+                    "type": "panel"
+                },
+                {
+                    "panel": 15,
+                    "src": "2013-08-30.jpg",
+                    "path": "/images/rev03og/",
+                    "type": "panel"
+                }
+            ],
+            "published": 1
         }
     ]
 }

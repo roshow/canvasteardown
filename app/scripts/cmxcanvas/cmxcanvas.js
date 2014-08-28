@@ -1,4 +1,4 @@
-/*globals CCLoader, CCMove, CCPanelSet, performance*/
+/*globals CCLoader, CCMove, CCPanelSet*/
 /*exported CmxCanvas*/
 
 'use strict';
@@ -6,8 +6,26 @@
 
 var CmxCanvas = function(initData, el){
 
+    function resolveImgUrlsAndOtherInconsistencies(model){
+        // console.log('resolving other inconsistencies');
+        for(var i = 0, l = model.view.panels.length; i < l; i++) {
+            /** Make sure panel numbers are there and match index (eventually you'll want to handle panel numbers on the API/DB level to ensure maximum flexibility and so on). **/
+            model.view.panels[i].panel = i;
+            model.view.panels[i].src = (model.view.panels[i].path || model.view.imgPath || '') + model.view.panels[i].src;
+            if(model.view.panels[i].popups && model.view.panels[i].popups.length > 0) {
+                for(var ii = 0, ll = model.view.panels[i].popups.length; ii < ll; ii++) {
+                    model.view.panels[i].popups[ii].src = (model.view.panels[i].popups[ii].path || model.view.imgPath || '') + model.view.panels[i].popups[ii].src;
+                }
+            }
+        }
+        // console.log(model);
+        return model;
+    }
+
     var ccMove,
-        fillColor = '#fff';
+        viewInfo = initData ? initData.view || {} : {};
+    viewInfo.backgroundColor = viewInfo.backgroundColor || '#fff';
+    viewInfo.backgroundTextColor = viewInfo.backgroundTextColor || '#000';
 
     var panelset, canvas, context, loadingImg, 
         doNotMove = false,
@@ -16,12 +34,12 @@ var CmxCanvas = function(initData, el){
         cmxcanvas = {};
         
     function drawLoadingImg(){
-        context.fillStyle = (fillColor === '#000') ? '#fff' : '#000';
+        context.fillStyle = viewInfo.backgroundTextColor;
         context.clearRect(0, 0, canvas.width, canvas.height);
         context.font = '30pt Monaco';
         context.textAlign = 'center';
         context.fillText('LOADING...', canvas.width / 2, canvas.height / 2);
-        context.fillStyle = fillColor;
+        context.fillStyle = viewInfo.backgroundColor;
     }
 
     function loadAndUpdatePanels(first, last){
@@ -86,6 +104,10 @@ var CmxCanvas = function(initData, el){
                         doNotMove = false;
                     });
             }
+            else {
+                return false;
+            }
+            return this.currentView;
         }
     };
     
@@ -126,12 +148,11 @@ var CmxCanvas = function(initData, el){
                         });
                 }
             }
-            // });
+            else {
+                return false;
+            }
+            return this.currentView;
         }
-        else {
-            // console.log('is already moving');
-        }
-        return this;
     };
 
     cmxcanvas.goTo = function(panel, popup){
@@ -139,24 +160,23 @@ var CmxCanvas = function(initData, el){
     };
 
     cmxcanvas.load = function(initData, canvasId){
-        var that = this,
-            rawpanels = initData.cmxJSON;
-
-        /** Add all the fun stuff to the collection of panels and popups **/
-        panelset = new CCPanelSet(rawpanels);
+        console.log(initData);
+        initData = resolveImgUrlsAndOtherInconsistencies(initData);
+        var that = this;
+        panelset = new CCPanelSet(initData.view.panels);
         panelset.onchange = function(){
             that.currentView = panelset.currentView;
         };
-        
+        initData.view = initData.view || {};
         /** Get Canvases and Contexts and Drawing load image **/
         canvas = document.getElementById(canvasId);
         context = canvas.getContext('2d');
-        context.fillStyle = fillColor;
+        context.fillStyle = viewInfo.backgroundColor;
 
-        var moveoptions = initData.view && initData.view.move ? initData.view.move : {};
+        var moveoptions = initData.view.move || {};
         ccMove = new CCMove(context, canvas, moveoptions);
 
-        fillColor = initData.view && initData.view.backgroundColor ? initData.view.backgroundColor : fillColor;
+        viewInfo.backgroundColor = initData.view && initData.view.backgroundColor ? initData.view.backgroundColor : viewInfo.backgroundColor;
 
         /** Draw initial load image and load/save it for later uses on unloaded images **/
         drawLoadingImg();

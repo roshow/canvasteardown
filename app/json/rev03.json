@@ -1,0 +1,477 @@
+{
+    "code": 200,
+    "parseOptions": {},
+    "data": [
+        {
+            "_id": "rev03",
+            "issue": 3,
+            "title": "Cluster#*@$!",
+            "thumb": "http://roshow.net/public/images/cmxcanvas/rev03/rev03_thumb.jpg",
+            "series": {
+                "name": "Revenger",
+                "id": "rev"
+            },
+            "creators": [
+                {
+                    "name": "Michael Powell",
+                    "credit": "Artist",
+                    "url": "http://michaelpowellart.tumblr.com"
+                },
+                {
+                    "name": "Rolando Garcia",
+                    "credit": "Writer",
+                    "url": "http://roshow.net"
+                }
+            ],
+            "versions": [
+                {
+                    "format": "digital",
+                    "id": "rev03dig"
+                },
+                {
+                    "format": "original",
+                    "id": "rev03og"
+                }
+            ],
+            "view": {
+                "move": {
+                    "transition": "slideAndFade"
+                }
+            },
+            "cmxJSON": [
+                {
+                    "src": "panel01.png",
+                    "path": "/images/rev03dig/",
+                    "type": "panel",
+                    "transition": "crossfade",
+                    "popups": []
+                },
+                {
+                    "src": "panel02.png",
+                    "path": "/images/rev03dig/",
+                    "type": "panel",
+                    "transition": "crossfade",
+                    "popups": []
+                },
+                {
+                    "src": "panel03.jpg",
+                    "path": "/images/rev03dig/",
+                    "type": "panel",
+                    "transition": "crossfade",
+                    "popups": []
+                },
+                {
+                    "src": "panel04.jpg",
+                    "path": "/images/rev03dig/",
+                    "type": "panel",
+                    "transition": "crossfade",
+                    "popups": []
+                },
+                {
+                    "src": "panel05.jpg",
+                    "path": "/images/rev03dig/",
+                    "type": "panel"
+                },
+                {
+                    "src": "panel06.jpg",
+                    "path": "/images/rev03dig/",
+                    "type": "panel"
+                },
+                {
+                    "src": "panel07.jpg",
+                    "path": "/images/rev03dig/",
+                    "type": "panel",
+                    "popups": [
+                        {
+                            "src": "panel07L01.png",
+                            "path": "/images/rev03dig/",
+                            "type": "popup",
+                            "x": 102,
+                            "y": 16
+                        }
+                    ]
+                },
+                {
+                    "src": "panel08.jpg",
+                    "path": "/images/rev03dig/",
+                    "type": "panel",
+                    "popups": [
+                        {
+                            "src": "panel08L01.png",
+                            "path": "/images/rev03dig/",
+                            "type": "popup",
+                            "x": 277,
+                            "y": 286
+                        }
+                    ]
+                },
+                {
+                    "src": "panel09.jpg",
+                    "path": "/images/rev03dig/",
+                    "type": "panel"
+                },
+                {
+                    "src": "panel10.jpg",
+                    "path": "/images/rev03dig/",
+                    "type": "panel"
+                },
+                {
+                    "src": "panel11.jpg",
+                    "path": "/images/rev03dig/",
+                    "type": "panel"
+                },
+                {
+                    "src": "panel12.jpg",
+                    "path": "/images/rev03dig/",
+                    "type": "panel"
+                },
+                {
+                    "src": "panel13.jpg",
+                    "path": "/images/rev03dig/",
+                    "type": "panel"
+                },
+                {
+                    "src": "panel14.jpg",
+                    "path": "/images/rev03dig/",
+                    "type": "panel"
+                },
+                {
+                    "src": "panel15.jpg",
+                    "path": "/images/rev03dig/",
+                    "type": "panel",
+                    "popups": [
+                        {
+                            "src": "panel15L01.png",
+                            "path": "/images/rev03dig/",
+                            "type": "popup",
+                            "x": 8,
+                            "y": 261
+                        }
+                    ]
+                },
+                {
+                    "src": "panel16.png",
+                    "path": "/images/rev03dig/",
+                    "type": "panel",
+                    "popups": [
+                        {
+                            "src": "panel16P1.jpg",
+                            "path": "/images/rev03dig/",
+                            "type": "popup",
+                            "x": 412,
+                            "y": 100,
+                            "transition": "fadeIn"
+                        }
+                    ]
+                },
+                {
+                    "src": "panel17.jpg",
+                    "path": "/images/rev03dig/",
+                    "type": "panel",
+                    "popups": [
+                        {
+                            "src": "panel17L01.png",
+                            "path": "/images/rev03dig/",
+                            "type": "popup",
+                            "x": 292,
+                            "y": 180
+                        },
+                        {
+                            "src": "panel17L02.png",
+                            "path": "/images/rev03dig/",
+                            "type": "popup",
+                            "x": 172,
+                            "y": 217
+                        },
+                        {
+                            "src": "panel17L03.png",
+                            "path": "/images/rev03dig/",
+                            "type": "popup",
+                            "x": 570,
+                            "y": 285
+                        }
+                    ]
+                },
+                {
+                    "src": "panel18.png",
+                    "path": "/images/rev03dig/",
+                    "type": "panel",
+                    "popups": [
+                        {
+                            "src": "panel18p01.jpg",
+                            "path": "/images/rev03dig/",
+                            "type": "popup",
+                            "x": 414,
+                            "y": 70,
+                            "transition": "fadeIn"
+                        }
+                    ]
+                },
+                {
+                    "src": "panel19.jpg",
+                    "path": "/images/rev03dig/",
+                    "type": "panel",
+                    "popups": []
+                },
+                {
+                    "src": "panel20.jpg",
+                    "path": "/images/rev03dig/",
+                    "type": "panel",
+                    "popups": [
+                        {
+                            "src": "panel20p01.jpg",
+                            "path": "/images/rev03dig/",
+                            "type": "popup",
+                            "x": 406,
+                            "y": 48,
+                            "transition": "fadeIn"
+                        }
+                    ]
+                },
+                {
+                    "src": "panel21.jpg",
+                    "path": "/images/rev03dig/",
+                    "type": "panel",
+                    "popups": [
+                        {
+                            "src": "panel21p01.png",
+                            "path": "/images/rev03dig/",
+                            "type": "popup",
+                            "x": 307,
+                            "y": 25
+                        },
+                        {
+                            "src": "panel21p02.png",
+                            "path": "/images/rev03dig/",
+                            "type": "popup",
+                            "x": 368,
+                            "y": 233
+                        }
+                    ]
+                },
+                {
+                    "src": "panel22.jpg",
+                    "path": "/images/rev03dig/",
+                    "type": "panel",
+                    "transition": "crossfade"
+                },
+                {
+                    "src": "panel23.jpg",
+                    "path": "/images/rev03dig/",
+                    "type": "panel",
+                    "transition": "crossfade"
+                },
+                {
+                    "src": "panel24.jpg",
+                    "path": "/images/rev03dig/",
+                    "type": "panel",
+                    "transition": "crossfade"
+                },
+                {
+                    "src": "panel25.jpg",
+                    "path": "/images/rev03dig/",
+                    "type": "panel",
+                    "transition": "crossfade",
+                    "popups": [
+                        {
+                            "src": "panel25p01.png",
+                            "path": "/images/rev03dig/",
+                            "type": "popup",
+                            "x": 306,
+                            "y": 56
+                        },
+                        {
+                            "src": "panel25p02.png",
+                            "path": "/images/rev03dig/",
+                            "type": "popup",
+                            "x": 527,
+                            "y": 303
+                        }
+                    ]
+                },
+                {
+                    "src": "panel26.jpg",
+                    "path": "/images/rev03dig/",
+                    "type": "panel",
+                    "transition": "crossfade",
+                    "popups": [
+                        {
+                            "src": "panel26p01.png",
+                            "path": "/images/rev03dig/",
+                            "type": "popup",
+                            "x": 640,
+                            "y": 293
+                        }
+                    ]
+                },
+                {
+                    "src": "panel27.jpg",
+                    "path": "/images/rev03dig/",
+                    "type": "panel",
+                    "popups": []
+                },
+                {
+                    "src": "panel28.jpg",
+                    "path": "/images/rev03dig/",
+                    "type": "panel",
+                    "popups": []
+                },
+                {
+                    "src": "panel29.jpg",
+                    "path": "/images/rev03dig/",
+                    "type": "panel",
+                    "popups": [
+                        {
+                            "src": "panel29p01.png",
+                            "path": "/images/rev03dig/",
+                            "type": "popup",
+                            "transition": "fadeIn",
+                            "x": 235,
+                            "y": 191
+                        },
+                        {
+                            "src": "panel29p02.png",
+                            "path": "/images/rev03dig/",
+                            "type": "popup",
+                            "transition": "fadeIn",
+                            "x": 599,
+                            "y": 221
+                        }
+                    ]
+                },
+                {
+                    "src": "panel30.jpg",
+                    "path": "/images/rev03dig/",
+                    "type": "panel",
+                    "popups": [
+                        {
+                            "src": "panel30p01.png",
+                            "path": "/images/rev03dig/",
+                            "type": "popup",
+                            "x": 137,
+                            "y": 74
+                        }
+                    ]
+                },
+                {
+                    "src": "panel31.jpg",
+                    "path": "/images/rev03dig/",
+                    "type": "panel",
+                    "transition": "crossfade",
+                    "popups": []
+                },
+                {
+                    "src": "panel32.jpg",
+                    "path": "/images/rev03dig/",
+                    "type": "panel",
+                    "transition": "bounceback",
+                    "popups": [
+                        {
+                            "src": "panel32p01.png",
+                            "path": "/images/rev03dig/",
+                            "type": "popup",
+                            "transition": "fadeIn",
+                            "x": 44,
+                            "y": 0
+                        }
+                    ]
+                },
+                {
+                    "src": "panel33.jpg",
+                    "path": "/images/rev03dig/",
+                    "type": "panel",
+                    "popups": []
+                },
+                {
+                    "src": "panel34.jpg",
+                    "path": "/images/rev03dig/",
+                    "type": "panel",
+                    "popups": [
+                        {
+                            "src": "panel34p01.png",
+                            "path": "/images/rev03dig/",
+                            "type": "popup",
+                            "x": 229,
+                            "y": 226
+                        }
+                    ]
+                },
+                {
+                    "src": "panel35.jpg",
+                    "path": "/images/rev03dig/",
+                    "type": "panel",
+                    "popups": [
+                        {
+                            "src": "panel35p01.png",
+                            "path": "/images/rev03dig/",
+                            "type": "popup",
+                            "x": 470,
+                            "y": 166
+                        }
+                    ]
+                },
+                {
+                    "src": "panel36.jpg",
+                    "path": "/images/rev03dig/",
+                    "type": "panel",
+                    "transition": "bounceback",
+                    "popups": []
+                },
+                {
+                    "src": "panel37.png",
+                    "path": "/images/rev03dig/",
+                    "type": "panel",
+                    "popups": [
+                        {
+                            "src": "panel37p01.jpg",
+                            "path": "/images/rev03dig/",
+                            "type": "popup",
+                            "transition": "fadeIn",
+                            "x": 410,
+                            "y": 58
+                        }
+                    ]
+                },
+                {
+                    "src": "panel38.png",
+                    "path": "/images/rev03dig/",
+                    "type": "panel",
+                    "transition": "crossfade",
+                    "popups": [
+                        {
+                            "src": "panel38p01.jpg",
+                            "path": "/images/rev03dig/",
+                            "type": "popup",
+                            "transition": "fadeIn",
+                            "x": 410,
+                            "y": 58
+                        }
+                    ]
+                },
+                {
+                    "src": "panel39.png",
+                    "path": "/images/rev03dig/",
+                    "type": "panel",
+                    "transition": "crossfade",
+                    "popups": [
+                        {
+                            "src": "panel39p01.jpg",
+                            "path": "/images/rev03dig/",
+                            "type": "popup",
+                            "transition": "fadeIn",
+                            "x": 410,
+                            "y": 58
+                        }
+                    ]
+                },
+                {
+                    "src": "tbc.png",
+                    "path": "/images/rev03dig/",
+                    "type": "panel",
+                    "popups": []
+                }
+            ],
+            "published": 1
+        }
+    ]
+}

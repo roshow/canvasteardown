@@ -1,360 +1,362 @@
 {
-    "_id": "sov01",
-    "issue": 1,
-    "published": 1,
-    "title": "Giant Future Robot",
-    "thumb": "http://roshow.net/public/images/cmxcanvas/sov01/sov01_thumb.jpg",
-    "series": {
-        "name": "Sovereign",
-        "id": "sov"
-    },
-    "creators": [
-        {
-            "name": "Michael Powell",
-            "credit": "Artist",
-            "url": "http://michaelpowellart.tumblr.com"
+    "code": 200,
+    "parseOptions": {},
+    "data": [
+    {
+        "_id": "sov01",
+        "issue": 1,
+        "published": 1,
+        "title": "Giant Future Robot",
+        "thumb": "http://roshow.net/public/images/cmxcanvas/sov01/sov01_thumb.jpg",
+        "series": {
+            "name": "Sovereign",
+            "id": "sov"
         },
-        {
-            "name": "Rolando Garcia",
-            "credit": "Writer",
-            "url": "http://roshow.net"
-        }
-    ],
-    "img": {
-        "url": "http://roshow.net/public/images/cmxcanvas/sov01/"
-    },
-    "cmxJSON": [
-        {
-            "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_01.jpg",
-            "type": "panel",
-            "popups": [
-                {
-                    "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_01_letters_01.png",
-                    "type": "popup",
-                    "x": 335,
-                    "y": 10
-                },
-                {
-                    "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_01_letters_02.png",
-                    "type": "popup",
-                    "x": 345,
-                    "y": 340
-                }
-            ],
-            "panel": 0
-        },
-        {
-            "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_02.jpg",
-            "type": "panel",
-            "popups": [
-                {
-                    "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_02_letters_01.png",
-                    "type": "popup",
-                    "x": 235,
-                    "y": 95
-                },
-                {
-                    "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_02_letters_02.png",
-                    "type": "popup",
-                    "x": 395,
-                    "y": 270
-                }
-            ],
-            "panel": 1
-        },
-        {
-            "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_03.jpg",
-            "type": "panel",
-            "popups": [
-                {
-                    "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_03_letters_01.png",
-                    "type": "popup",
-                    "x": 455,
-                    "y": 45
-                },
-                {
-                    "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_03_letters_02.png",
-                    "type": "popup",
-                    "x": 115,
-                    "y": 100
-                },
-                {
-                    "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_03_title_01.png",
-                    "type": "popup",
-                    "x": 10,
-                    "y": 20
-                },
-                {
-                    "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_03_title_02.png",
-                    "type": "popup",
-                    "x": 393,
-                    "y": 344
-                }
-            ],
-            "panel": 2
-        },
-        {
-            "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_04.jpg",
-            "type": "panel",
-            "popups": [
-                {
-                    "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_04_letters_01.png",
-                    "type": "popup",
-                    "x": 268,
-                    "y": 284
-                }
-            ],
-            "panel": 3
-        },
-        {
-            "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_05.jpg",
-            "type": "panel",
-            "panel": 4,
-            "popups": []
-        },
-        {
-            "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_06.jpg",
-            "type": "panel",
-            "panel": 5,
-            "popups": []
-        },
-        {
-            "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_07.png",
-            "type": "panel",
-            "panel": 6,
-            "popups": []
-        },
-        {
-            "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_08.png",
-            "type": "panel",
-            "panel": 7,
-            "popups": []
-        },
-        {
-            "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_09_composite.jpg",
-            "type": "panel",
-            "popups": [
-                {
-                    "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_10_composite.jpg",
-                    "type": "popup",
-                    "x": 40,
-                    "y": 116
-                },
-                {
-                    "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_11_composite.jpg",
-                    "type": "popup",
-                    "x": 40,
-                    "y": 75
-                }
-            ],
-            "panel": 8
-        },
-        {
-            "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_12_sfx_01.png",
-            "type": "panel",
-            "panel": 9,
-            "popups": []
-        },
-        {
-            "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_12.jpg",
-            "type": "panel",
-            "panel": 10,
-            "popups": []
-        },
-        {
-            "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_13.png",
-            "type": "panel",
-            "transition": "crossfade",
-            "popups": [
-                {
-                    "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_14.png",
-                    "type": "popup",
-                    "x": 308,
-                    "y": 0,
-                    "transition": "fadeIn"
-                },
-                {
-                    "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_15.png",
-                    "type": "popup",
-                    "x": 296,
-                    "y": 0,
-                    "transition": "fadeIn"
-                }
-            ],
-            "panel": 11
-        },
-        {
-            "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_16.png",
-            "type": "panel",
-            "popups": [
-                {
-                    "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_16_letters_01.png",
-                    "type": "popup",
-                    "x": 271,
-                    "y": 318
-                }
-            ],
-            "panel": 12
-        },
-        {
-            "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_17.png",
-            "type": "panel",
-            "popups": [
-                {
-                    "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_18_inverse.png",
-                    "type": "popup",
-                    "x": 214,
-                    "y": 48,
-                    "transition": "fadeIn"
-                },
-                {
-                    "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_18.png",
-                    "type": "popup",
-                    "x": 214,
-                    "y": 48,
-                    "transition": "fadeIn"
-                }
-            ],
-            "panel": 13
-        },
-        {
-            "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_19.png",
-            "type": "panel",
-            "popups": [
-                {
-                    "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_19_letters_01.png",
-                    "type": "popup",
-                    "x": 288,
-                    "y": 248
-                }
-            ],
-            "panel": 14
-        },
-        {
-            "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_20.png",
-            "type": "panel",
-            "panel": 15,
-            "popups": []
-        },
-        {
-            "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_21.png",
-            "type": "panel",
-            "panel": 16,
-            "popups": []
-        },
-        {
-            "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_22.png",
-            "type": "panel",
-            "panel": 17,
-            "popups": []
-        },
-        {
-            "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_23.png",
-            "type": "panel",
-            "panel": 18,
-            "popups": []
-        },
-        {
-            "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_25.png",
-            "type": "panel",
-            "popups": [
-                {
-                    "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_23_letters_01.png",
-                    "type": "popup",
-                    "x": 478,
-                    "y": 310
-                }
-            ],
-            "panel": 19
-        },
-        {
-            "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_26.jpg",
-            "type": "panel",
-            "popups": [
-                {
-                    "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_26_letters_01.png",
-                    "type": "popup",
-                    "x": 433,
-                    "y": 140
-                }
-            ],
-            "panel": 20
-        },
-        {
-            "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_27.png",
-            "type": "panel",
-            "popups": [
-                {
-                    "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_27_sfx_01.png",
-                    "type": "popup",
-                    "x": 357,
-                    "y": 322
-                }
-            ],
-            "panel": 21
-        },
-        {
-            "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_28.png",
-            "type": "panel",
-            "popups": [
-                {
-                    "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_28_letters_01.png",
-                    "type": "popup",
-                    "x": 261,
-                    "y": 93
-                }
-            ],
-            "panel": 22
-        },
-        {
-            "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_29.png",
-            "type": "panel",
-            "popups": [
-                {
-                    "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_29_letters_01.png",
-                    "type": "popup",
-                    "x": 312,
-                    "y": 66
-                }
-            ],
-            "panel": 23
-        },
-        {
-            "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_30.png",
-            "type": "panel",
-            "panel": 24,
-            "popups": []
-        },
-        {
-            "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_31.png",
-            "type": "panel",
-            "popups": [
-                {
-                    "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_31_letters_01.png",
-                    "type": "popup",
-                    "x": 39,
-                    "y": 25
-                },
-                {
-                    "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_31_letters_02.png",
-                    "type": "popup",
-                    "x": 376,
-                    "y": 66
-                },
-                {
-                    "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_31_letters_03.png",
-                    "type": "popup",
-                    "x": 169,
-                    "y": 304
-                },
-                {
-                    "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_31_theend.png",
-                    "type": "popup",
-                    "x": 561,
-                    "y": 402
-                }
-            ],
-            "panel": 25
-        }
-    ]
+        "creators": [
+            {
+                "name": "Michael Powell",
+                "credit": "Artist",
+                "url": "http://michaelpowellart.tumblr.com"
+            },
+            {
+                "name": "Rolando Garcia",
+                "credit": "Writer",
+                "url": "http://roshow.net"
+            }
+        ],
+        "cmxJSON": [
+            {
+                "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_01.jpg",
+                "type": "panel",
+                "popups": [
+                    {
+                        "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_01_letters_01.png",
+                        "type": "popup",
+                        "x": 335,
+                        "y": 10
+                    },
+                    {
+                        "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_01_letters_02.png",
+                        "type": "popup",
+                        "x": 345,
+                        "y": 340
+                    }
+                ],
+                "panel": 0
+            },
+            {
+                "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_02.jpg",
+                "type": "panel",
+                "popups": [
+                    {
+                        "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_02_letters_01.png",
+                        "type": "popup",
+                        "x": 235,
+                        "y": 95
+                    },
+                    {
+                        "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_02_letters_02.png",
+                        "type": "popup",
+                        "x": 395,
+                        "y": 270
+                    }
+                ],
+                "panel": 1
+            },
+            {
+                "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_03.jpg",
+                "type": "panel",
+                "popups": [
+                    {
+                        "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_03_letters_01.png",
+                        "type": "popup",
+                        "x": 455,
+                        "y": 45
+                    },
+                    {
+                        "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_03_letters_02.png",
+                        "type": "popup",
+                        "x": 115,
+                        "y": 100
+                    },
+                    {
+                        "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_03_title_01.png",
+                        "type": "popup",
+                        "x": 10,
+                        "y": 20
+                    },
+                    {
+                        "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_03_title_02.png",
+                        "type": "popup",
+                        "x": 393,
+                        "y": 344
+                    }
+                ],
+                "panel": 2
+            },
+            {
+                "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_04.jpg",
+                "type": "panel",
+                "popups": [
+                    {
+                        "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_04_letters_01.png",
+                        "type": "popup",
+                        "x": 268,
+                        "y": 284
+                    }
+                ],
+                "panel": 3
+            },
+            {
+                "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_05.jpg",
+                "type": "panel",
+                "panel": 4,
+                "popups": []
+            },
+            {
+                "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_06.jpg",
+                "type": "panel",
+                "panel": 5,
+                "popups": []
+            },
+            {
+                "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_07.png",
+                "type": "panel",
+                "panel": 6,
+                "popups": []
+            },
+            {
+                "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_08.png",
+                "type": "panel",
+                "panel": 7,
+                "popups": []
+            },
+            {
+                "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_09_composite.jpg",
+                "type": "panel",
+                "popups": [
+                    {
+                        "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_10_composite.jpg",
+                        "type": "popup",
+                        "x": 40,
+                        "y": 116
+                    },
+                    {
+                        "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_11_composite.jpg",
+                        "type": "popup",
+                        "x": 40,
+                        "y": 75
+                    }
+                ],
+                "panel": 8
+            },
+            {
+                "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_12_sfx_01.png",
+                "type": "panel",
+                "panel": 9,
+                "popups": []
+            },
+            {
+                "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_12.jpg",
+                "type": "panel",
+                "panel": 10,
+                "popups": []
+            },
+            {
+                "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_13.png",
+                "type": "panel",
+                "transition": "crossfade",
+                "popups": [
+                    {
+                        "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_14.png",
+                        "type": "popup",
+                        "x": 308,
+                        "y": 0,
+                        "transition": "fadeIn"
+                    },
+                    {
+                        "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_15.png",
+                        "type": "popup",
+                        "x": 296,
+                        "y": 0,
+                        "transition": "fadeIn"
+                    }
+                ],
+                "panel": 11
+            },
+            {
+                "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_16.png",
+                "type": "panel",
+                "popups": [
+                    {
+                        "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_16_letters_01.png",
+                        "type": "popup",
+                        "x": 271,
+                        "y": 318
+                    }
+                ],
+                "panel": 12
+            },
+            {
+                "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_17.png",
+                "type": "panel",
+                "popups": [
+                    {
+                        "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_18_inverse.png",
+                        "type": "popup",
+                        "x": 214,
+                        "y": 48,
+                        "transition": "fadeIn"
+                    },
+                    {
+                        "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_18.png",
+                        "type": "popup",
+                        "x": 214,
+                        "y": 48,
+                        "transition": "fadeIn"
+                    }
+                ],
+                "panel": 13
+            },
+            {
+                "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_19.png",
+                "type": "panel",
+                "popups": [
+                    {
+                        "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_19_letters_01.png",
+                        "type": "popup",
+                        "x": 288,
+                        "y": 248
+                    }
+                ],
+                "panel": 14
+            },
+            {
+                "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_20.png",
+                "type": "panel",
+                "panel": 15,
+                "popups": []
+            },
+            {
+                "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_21.png",
+                "type": "panel",
+                "panel": 16,
+                "popups": []
+            },
+            {
+                "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_22.png",
+                "type": "panel",
+                "panel": 17,
+                "popups": []
+            },
+            {
+                "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_23.png",
+                "type": "panel",
+                "panel": 18,
+                "popups": []
+            },
+            {
+                "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_25.png",
+                "type": "panel",
+                "popups": [
+                    {
+                        "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_23_letters_01.png",
+                        "type": "popup",
+                        "x": 478,
+                        "y": 310
+                    }
+                ],
+                "panel": 19
+            },
+            {
+                "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_26.jpg",
+                "type": "panel",
+                "popups": [
+                    {
+                        "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_26_letters_01.png",
+                        "type": "popup",
+                        "x": 433,
+                        "y": 140
+                    }
+                ],
+                "panel": 20
+            },
+            {
+                "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_27.png",
+                "type": "panel",
+                "popups": [
+                    {
+                        "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_27_sfx_01.png",
+                        "type": "popup",
+                        "x": 357,
+                        "y": 322
+                    }
+                ],
+                "panel": 21
+            },
+            {
+                "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_28.png",
+                "type": "panel",
+                "popups": [
+                    {
+                        "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_28_letters_01.png",
+                        "type": "popup",
+                        "x": 261,
+                        "y": 93
+                    }
+                ],
+                "panel": 22
+            },
+            {
+                "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_29.png",
+                "type": "panel",
+                "popups": [
+                    {
+                        "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_29_letters_01.png",
+                        "type": "popup",
+                        "x": 312,
+                        "y": 66
+                    }
+                ],
+                "panel": 23
+            },
+            {
+                "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_30.png",
+                "type": "panel",
+                "panel": 24,
+                "popups": []
+            },
+            {
+                "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_31.png",
+                "type": "panel",
+                "popups": [
+                    {
+                        "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_31_letters_01.png",
+                        "type": "popup",
+                        "x": 39,
+                        "y": 25
+                    },
+                    {
+                        "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_31_letters_02.png",
+                        "type": "popup",
+                        "x": 376,
+                        "y": 66
+                    },
+                    {
+                        "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_31_letters_03.png",
+                        "type": "popup",
+                        "x": 169,
+                        "y": 304
+                    },
+                    {
+                        "src": "http://roshow.net/public/images/cmxcanvas/sov01/panel_31_theend.png",
+                        "type": "popup",
+                        "x": 561,
+                        "y": 402
+                    }
+                ],
+                "panel": 25
+            }
+        ]
+    }]
 }

@@ -14,9 +14,20 @@
     
     <style type="text/css">
         @import url(http://fonts.googleapis.com/css?family=IM+Fell+English);
+        @import url(http://fonts.googleapis.com/css?family=Francois+One);
+        @import url(http://fonts.googleapis.com/css?family=Roboto:100,400,700,300,100,500,900);
+
+        h2, #title {
+            font-size: 1.3em;
+        }
+        #title {
+            margin-bottom: 15px;
+        }
+
         #app-container {
             cursor: pointer;
-            font-family: "IM Fell English";
+            font-family: "Francois One";
+            font-weight: 500;
             text-align: center;
             -webkit-touch-callout: none;
             -webkit-user-select: none;
@@ -28,6 +39,7 @@
         #thisCanvas {
             margin: auto;
             border: 2px solid #ddd;
+            max-width: 700px;
         }
         .buttons span {
             display: inline-block;
@@ -35,36 +47,75 @@
             padding: 20px 0;
             width: 400px;
         }
+        .canvas-btn {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+        }
+        .canvasbook-container {
+            position: relative;
+        }
+        .canvas-btn-left {
+            left: 0;
+            right: 50%;
+        }
+        .canvas-btn-right {
+            left: 50%;
+            right: 0;
+        }
+
+
+
     </style>
 
 </head>
 <body>
         <div id="app-container">
-          <h1>cmxcanvas-new.js</h1>
-          <canvas id="thisCanvas" height="450px" width="800px"></canvas>
+          <!-- <h1>cmxcanvas-new.js</h1> -->
+          <div id="title"></div>
+            <div class="canvasbook-container">
+                <canvas id="thisCanvas" height="450px" width="800px"></canvas>
+                <span class="canvas-btn canvas-btn-left" id="book-prev"></span>
+                <span class="canvas-btn canvas-btn-right" id="book-next"></span>
+            </div>
           <div class="buttons">
-            <span id="book-prev">previous</span>
-            <span id="book-next">next</span>
+            click on the right side of the panel to go forward, on the left to go back.
           </div>
         </div>
 
         <script type="text/javascript">
+            /*global CmxCanvas */
+            'use strict';
+
             (function(){
-                var cmxCanvas;
+                var cmxCanvas,
+                    canvasEl = document.getElementById('thisCanvas'),
+                    btnNext =  document.getElementById('book-next'),
+                    btnPrev =  document.getElementById('book-prev'),
+                    htmlTitle = document.getElementById('title');
+
 
                 function _init(json){
+
+                    json.view = json.view || {};
+                    canvasEl.height = json.view.height || canvasEl.height;
+                    canvasEl.width = json.view.width || canvasEl.width;
+
                     cmxCanvas = new CmxCanvas(json, 'thisCanvas');
-                    document.getElementById('book-next').onclick = cmxCanvas.next;
-                    document.getElementById('book-prev').onclick = cmxCanvas.prev;
-                };
+                    btnNext.onclick = cmxCanvas.next;
+                    btnPrev.onclick = cmxCanvas.prev;
+                    htmlTitle.innerHTML = json.series.name + " #" + json.issue + " : " + json.title;
+                }
                 
 
-                request = new XMLHttpRequest();
-                request.open('GET', '/json/sov01Model.json', true);
+                var request = new XMLHttpRequest();
+                var paramId = window.location.hash.slice(1) || 'rev03';
+                request.open('GET', 'http://0.0.0.0:5000/books/' + paramId, true);
 
                 request.onload = function() {
                   if (request.status >= 200 && request.status < 400){
-                    _init(JSON.parse(request.response));
+                    var json = JSON.parse(request.response).data[0];
+                    _init(json);
                   } else {
                     console.log(request.responseText);
                   }
