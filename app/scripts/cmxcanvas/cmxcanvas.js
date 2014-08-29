@@ -29,9 +29,10 @@ var CmxCanvas = function(initData, el){
 
     var panelset, canvas, context, loadingImg, 
         doNotMove = false,
-        wasLast = false,
-        wasFirst = true,
         cmxcanvas = {};
+        
+    cmxcanvas.wasLast = false,
+    cmxcanvas.wasFirst = true;
         
     function drawLoadingImg(){
         context.fillStyle = viewInfo.backgroundTextColor;
@@ -91,11 +92,11 @@ var CmxCanvas = function(initData, el){
 
     cmxcanvas.prev = function(){
         if(!doNotMove){
-            wasLast = false;
+            cmxcanvas.wasLast = false;
             panelset.prev();
-            if (!wasFirst){
+            if (!cmxcanvas.wasFirst){
                 doNotMove = true;
-                wasFirst = (panelset.currentIndex[0] === 0);
+                cmxcanvas.wasFirst = (panelset.currentIndex[0] === 0);
                 ccMove.panels(panelset.currentView.img, {
                     reverse: true,
                     transition: panelset.currentView.transition
@@ -115,11 +116,11 @@ var CmxCanvas = function(initData, el){
         if (!doNotMove){
            // loadAndUpdatePanels(panelset.next().panel).then(function(loc){
             panelset.next();
-            wasFirst = false;
-            if (!wasLast){
+            cmxcanvas.wasFirst = false;
+            if (!cmxcanvas.wasLast){
                 doNotMove = true;
                 if (panelset.currentIndex[0] === panelset.last[0] && panelset.currentIndex[1] === panelset.last[1]){
-                    wasLast = true;
+                    cmxcanvas.wasLast = true;
                 }
 
                 if (panelset.currentView.type === 'popup'){
@@ -160,7 +161,7 @@ var CmxCanvas = function(initData, el){
     };
 
     cmxcanvas.load = function(initData, canvasId){
-        console.log(initData);
+        // console.log(initData);
         initData = resolveImgUrlsAndOtherInconsistencies(initData);
         var that = this;
         panelset = new CCPanelSet(initData.view.panels);
