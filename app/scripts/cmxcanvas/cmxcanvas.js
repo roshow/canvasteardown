@@ -1,4 +1,4 @@
-/*globals CCLoader, CCMove, CCPanelSet*/
+/*globals CCLoader, CCMove, CCPanelSet, Q*/
 /*exported CmxCanvas*/
 
 'use strict';
@@ -29,9 +29,10 @@ var CmxCanvas = function(initData, el){
 
     var panelset, canvas, context, loadingImg, 
         doNotMove = false,
-        wasLast = false,
-        wasFirst = true,
         cmxcanvas = {};
+        
+    cmxcanvas.wasLast = false,
+    cmxcanvas.wasFirst = true;
         
     function drawLoadingImg(){
         context.fillStyle = viewInfo.backgroundTextColor;
@@ -89,44 +90,45 @@ var CmxCanvas = function(initData, el){
         
     }
 
-    cmxcanvas.prev = function(){
+    cmxcanvas.previous = function(){
         if(!doNotMove){
-            wasLast = false;
+            cmxcanvas.wasLast = false;
             panelset.prev();
-            if (!wasFirst){
+            if (!cmxcanvas.wasFirst){
                 doNotMove = true;
-                wasFirst = (panelset.currentIndex[0] === 0);
-                ccMove.panels(panelset.currentView.img, {
+                cmxcanvas.wasFirst = (panelset.currentIndex[0] === 0);
+                return ccMove.panels(panelset.currentView.img, {
                     reverse: true,
                     transition: panelset.currentView.transition
                 })
                     .then(function(){
                         doNotMove = false;
+                        return panelset.currentView;
                     });
             }
             else {
-                return false;
+                return 'wasFirst';
             }
-            return this.currentView;
         }
+        return 'moving';
     };
     
     cmxcanvas.next = function(){
         if (!doNotMove){
            // loadAndUpdatePanels(panelset.next().panel).then(function(loc){
             panelset.next();
-            wasFirst = false;
-            if (!wasLast){
+            cmxcanvas.wasFirst = false;
+            if (!cmxcanvas.wasLast){
                 doNotMove = true;
                 if (panelset.currentIndex[0] === panelset.last[0] && panelset.currentIndex[1] === panelset.last[1]){
-                    wasLast = true;
+                    cmxcanvas.wasLast = true;
                 }
 
                 if (panelset.currentView.type === 'popup'){
-                    ccMove.popup(panelset.currentView)
+                    return ccMove.popup(panelset.currentView)
                         .then(function(){
                             doNotMove = false;
-                            // console.log('popup upped');
+                            return panelset.currentView;
                         });
                 }
                 else {
@@ -139,20 +141,22 @@ var CmxCanvas = function(initData, el){
                             resolve or not -- the promise handles it for me **/
                         imgPromise = CCLoader.onePanel(panelset.currentView);
                     }
-                    ccMove.panels(panelset.currentView.img, {
+                    return ccMove.panels(panelset.currentView.img, {
                         transition: panelset.currentView.transition
                     })
                         .then(function(){
                             doNotMove = false;
                             resolveLoadingImgPromise(imgPromise);
+                            return panelset.currentView;
                         });
                 }
             }
+            
             else {
-                return false;
+                return 'wasLast';
             }
-            return this.currentView;
         }
+        return 'moving';
     };
 
     cmxcanvas.goTo = function(panel, popup){
@@ -160,7 +164,7 @@ var CmxCanvas = function(initData, el){
     };
 
     cmxcanvas.load = function(initData, canvasId){
-        console.log(initData);
+        // console.log(initData);
         initData = resolveImgUrlsAndOtherInconsistencies(initData);
         var that = this;
         panelset = new CCPanelSet(initData.view.panels);
