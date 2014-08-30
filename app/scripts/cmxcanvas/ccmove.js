@@ -47,7 +47,6 @@ function CCMove(context, canvas, defaults){
         ctx.putImageData (data[0], 0, 0);
 
         var timePad = Math.floor(Math.random()*251);
-        console.log(timePad);
         var lenAnim = 250 + timePad,
             distance = cnv.width,
             distancePerLenAnim = (Math.PI/2)/lenAnim;
@@ -129,7 +128,7 @@ function CCMove(context, canvas, defaults){
 
     function addPanelAnim(key, func){
         _panelFunctions[key] = func;
-        console.log(_panelFunctions);
+        // console.log(_panelFunctions);
     };
 
     var move = {
