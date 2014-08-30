@@ -1,11 +1,11 @@
 {
-  "name": "canvasbook",
-  "description": "front-end lib for rendering my canvasbookapi onto a... canvas",
+  "name": "canvasbookjs",
+  "description": "frontend lib for rendering my canvasbookapi onto a... canvas",
   "author": {
     "name": "roshow",
     "url": "http://roshow.net"
   },
-  "version": "1.0",
+  "version": "1.0.0",
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.1",
