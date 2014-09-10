@@ -46,8 +46,9 @@ function CCMove(context, canvas, defaults){
         ctx.fillRect(0, 0, cnv.width, cnv.height);
         ctx.putImageData (data[0], 0, 0);
 
-        var timePad = Math.floor(Math.random()*251);
-        var lenAnim = 250 + timePad,
+        // var timePad = Math.floor(Math.random()*251);
+        // var lenAnim = 250 + timePad,
+        var lenAnim = 325,
             distance = cnv.width,
             distancePerLenAnim = (Math.PI/2)/lenAnim;
 
